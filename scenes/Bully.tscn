@@ -7,7 +7,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_md0e3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ra3w"]
-size = Vector3(2.72559, 2.19672, 6.96533)
+size = Vector3(0.864258, 2.19672, 6.96533)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi71q"]
 bg_color = Color(0.103744, 0.103744, 0.103743, 1)

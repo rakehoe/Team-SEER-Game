@@ -42,59 +42,52 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1,
 [node name="Time_Ui" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="Days" type="Label" parent="Time_Ui"]
+[node name="top-left-Ui" type="HBoxContainer" parent="Time_Ui"]
 anchors_preset = -1
-anchor_right = 0.133
-anchor_bottom = 0.107
-offset_left = 32.0
-offset_top = 19.0
-offset_right = 0.639999
-offset_bottom = 0.439995
-theme_override_font_sizes/font_size = 71
-text = "Day	"
+anchor_left = 0.0119792
+anchor_top = 0.00648148
+anchor_right = 0.224479
+anchor_bottom = 0.137963
+theme_override_constants/separation = 10
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="VBoxContainer" parent="Time_Ui/top-left-Ui"]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="Time_Ui/top-left-Ui/Text"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Nighttime :"
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Counts" type="Label" parent="Time_Ui/Days"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.991071
-anchor_right = 1.48661
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 71
+[node name="Days" type="Label" parent="Time_Ui/top-left-Ui/Text"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Day :"
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Time_Ui/top-left-Ui"]
+one_shot = true
+ignore_time_scale = true
+
+[node name="Value" type="VBoxContainer" parent="Time_Ui/top-left-Ui"]
+layout_mode = 2
+
+[node name="Countdown" type="Label" parent="Time_Ui/top-left-Ui/Value"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DayCounts" type="Label" parent="Time_Ui/top-left-Ui/Value"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "00"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="Time" type="Label" parent="Time_Ui"]
-anchors_preset = -1
-anchor_right = 0.117
-anchor_bottom = 0.185
-offset_left = 28.0
-offset_top = 103.0
-offset_right = 10.36
-offset_bottom = 0.199997
-theme_override_font_sizes/font_size = 71
-text = "Time"
-vertical_alignment = 1
-
-[node name="Countdown" type="Label" parent="Time_Ui/Time"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.04348
-anchor_right = 1.96135
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 71
-text = "0"
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="Time_Ui/Time"]
-one_shot = true
-ignore_time_scale = true
 
 [node name="center2" type="ColorRect" parent="Time_Ui"]
 anchors_preset = 8
@@ -116,4 +109,4 @@ pivot_offset = Vector2(2, 6)
 [connection signal="snacks" from="Ben" to="Map" method="_on_ben_snacks"]
 [connection signal="detected" from="Bully" to="Ben" method="_on_bully_detected"]
 [connection signal="start_day" from="Bully" to="." method="_on_bully_start_day"]
-[connection signal="timeout" from="Time_Ui/Time/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Time_Ui/top-left-Ui/Timer" to="." method="_on_timer_timeout"]

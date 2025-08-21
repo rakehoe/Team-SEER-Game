@@ -8,10 +8,10 @@ const SPEED = 5.0
 
 @onready var camera_controller_anchor: Marker3D = $CameraControllerAnchor
 @onready var raycast: RayCast3D = $CameraController/RayCast3D
-@onready var test_text = $Main_Ui/test
-@onready var energy = $Main_Ui/Energy
+@onready var test_text = $"Main_Ui/top-right-ui/test"
+@onready var energy = $"Main_Ui/top-right-ui/Energy"
 @onready var cam = $CameraController/Camera3D
-var moved = true
+var moved = false
 var talking = false
 
 func _ready() -> void:
@@ -21,10 +21,11 @@ func _ready() -> void:
 
 func idle():
 	energy.value += 0.02
-
+var temp
 func _physics_process(_delta: float) -> void:
+	temp = self.rotation
+	print(temp)
 	var camfov = 75
-	
 	interacting(raycast.is_colliding())
 	# Add the gravity.
 	if not is_on_floor():
@@ -37,10 +38,12 @@ func _physics_process(_delta: float) -> void:
 	var new_velocity = Vector2.ZERO
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
 	
+	
 	if direction and !talking:
-		if moved:
+		if !moved:
+
 			intro()
-			moved = false
+			moved = true
 		cam.fov = camfov
 		new_velocity = Vector2(direction.x, direction.z) * SPEED
 		if Input.is_action_pressed("run") and energy.value != 0:
@@ -49,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 			new_velocity = Vector2(direction.x, direction.z) *(SPEED * 1.2)
 	velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
 	move_and_slide()
+	
 	
 #	Checking if the player is not moving
 	if velocity.is_zero_approx():
@@ -87,14 +91,16 @@ func intro():
 	emit_signal('showui',true)
 	$Intro.free()
 	$Main_Ui.show()
-
-
 func _on_bully_detected(ui_hide) -> void:
 	if ui_hide:
+		print(temp)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		talking = true
 		$Main_Ui.hide()
 	elif !ui_hide:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		self.rotation = temp
+		print(self.rotation)
 		talking = false
 		$Main_Ui.show()
 	pass # Replace with function body.

@@ -14,15 +14,6 @@ func _ready() -> void:
 	$Dialogue.hide()
 	Choice.hide()
 
-func _on_detection_body_entered(body: Node3D) -> void:
-	if body.name == "Ben":
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		$Dialogue.show()
-		emit_signal('detected',true)
-		Bully_cam.current = true
-		dialogue(1)
-	pass # Replace with function body.
-
 func dialogue(page):
 	match page:
 		1: 
@@ -55,29 +46,30 @@ func _on_link_button_pressed() -> void:
 	dialogue(current_dialogue)
 	pass # Replace with function body.
 
+func _on_detection_body_entered(body: Node3D) -> void:
+	if body.name == "Ben":
+		Bully_cam.current = true
+		emit_signal('detected',true)
+		$Dialogue.show()
+		dialogue(1)
+	pass # Replace with function body.
+
+func done_chatting():
+	Bully_cam.current = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$Dialogue.hide()
+	$Detection.free()
+	emit_signal('start_day')
+	emit_signal('detected',false)
+
 
 func _on_fight_back_pressed() -> void:
-	emit_signal('start_day')
-	Bully_cam.current = false
-	$Dialogue.hide()
-	emit_signal('detected',false)
-	$Detection.free()
-	pass # Replace with function body.
+	done_chatting()
 
 
 func _on_escape_pressed() -> void:
-	emit_signal('start_day')
-	Bully_cam.current = false
-	$Dialogue.hide()
-	emit_signal('detected',false)
-	$Detection.free()
-	pass # Replace with function body.
+	done_chatting()
 
 
 func _on_accept_pressed() -> void:
-	emit_signal('start_day')
-	Bully_cam.current = false
-	$Dialogue.hide()
-	emit_signal('detected',false)
-	$Detection.free()
-	pass # Replace with function body.
+	done_chatting()

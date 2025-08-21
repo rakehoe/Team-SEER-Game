@@ -56,51 +56,70 @@ collide_with_areas = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Main_Ui" type="CanvasLayer" parent="."]
+layer = 2
 follow_viewport_enabled = true
 
-[node name="test" type="Label" parent="Main_Ui"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -280.0
-offset_top = 90.0
-offset_right = -56.0
-offset_bottom = 225.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 71
-text = "test"
-vertical_alignment = 1
-
-[node name="Energy" type="ProgressBar" parent="Main_Ui"]
+[node name="top-right-ui" type="VBoxContainer" parent="Main_Ui"]
+layout_direction = 2
 anchors_preset = -1
-anchor_left = 0.716
-anchor_right = 1.0
-anchor_bottom = 0.081
-offset_left = 12.2799
-offset_top = 30.0
-offset_right = -24.0
-offset_bottom = -0.480003
-grow_horizontal = 0
+anchor_left = 0.698438
+anchor_top = 0.0277778
+anchor_right = 0.988542
+anchor_bottom = 0.212963
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Energy" type="ProgressBar" parent="Main_Ui/top-right-ui"]
+layout_mode = 2
+size_flags_vertical = 15
 theme_override_font_sizes/font_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_jh7gh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_uxksl")
 value = 100.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="Main_Ui/Energy"]
+[node name="Label" type="Label" parent="Main_Ui/top-right-ui/Energy"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 13.0
-offset_top = -11.5
-offset_right = 66.0
-offset_bottom = 11.5
+anchors_preset = -1
+anchor_left = 0.0437406
+anchor_top = 0.129032
+anchor_right = 0.12368
+anchor_bottom = 0.870968
 grow_vertical = 2
 text = "Energy"
+metadata/_edit_use_anchors_ = true
+
+[node name="Courage" type="ProgressBar" parent="Main_Ui/top-right-ui"]
+layout_mode = 2
+size_flags_vertical = 15
+theme_override_font_sizes/font_size = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_jh7gh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uxksl")
+show_percentage = false
+
+[node name="Label" type="Label" parent="Main_Ui/top-right-ui/Courage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0437406
+anchor_top = 0.129032
+anchor_right = 0.12368
+anchor_bottom = 0.870968
+grow_vertical = 2
+text = "Courage"
+metadata/_edit_use_anchors_ = true
+
+[node name="test" type="Label" parent="Main_Ui/top-right-ui"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "test"
+vertical_alignment = 1
 
 [node name="hand" type="Sprite2D" parent="Main_Ui"]
 modulate = Color(0.0588235, 0.0588235, 0.0588235, 1)
+top_level = true
 position = Vector2(1726, 936)
 rotation = -1.89325
 scale = Vector2(1.90625, 4.09375)
