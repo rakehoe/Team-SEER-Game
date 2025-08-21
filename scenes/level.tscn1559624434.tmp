@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7xltcmx2w6p5"]
+
+[ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/player_controller.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://clfrxt4lfryj2" path="res://scenes/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/enemy.tscn" id="4_mx8sn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_2q6dc"]
+sky_material = SubResource("ProceduralSkyMaterial_rd3vj")
+
+[sub_resource type="Environment" id="Environment_w7c3h"]
+background_mode = 2
+sky = SubResource("Sky_2q6dc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8frs"]
+albedo_color = Color(0.0862745, 0.627451, 0.521569, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
+albedo_color = Color(0.905882, 0.298039, 0.235294, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx8sn"]
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q6dc"]
+emission_enabled = true
+emission = Color(0.815359, 0.81337, 1.15514e-06, 1)
+emission_energy_multiplier = 3.7
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_w7c3h")
+interactive = ExtResource("2_w8frs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.51
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w7c3h")
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -19.6262, -0.25, 23.5295)
+material_override = SubResource("StandardMaterial3D_w8frs")
+use_collision = true
+size = Vector3(16.5, 0.5, 16)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 0, 0, 0.999999, -19.6415, 1.27092, -2.19754)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(44.0515, 0, 0, 0, 8.63261, 0, 0, 0, 0.999999, -14.0986, 4.28179, 5.75208)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(44.0515, 0, 0, 0, 8.63261, 0, 0, 0, 0.999999, -14.0986, 4.28179, 49.4227)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+
+[node name="Interactible" parent="Geometry" instance=ExtResource("2_w8frs")]
+transform = Transform3D(-2.2443, -3.97828e-16, 8.74227e-08, -1.96203e-07, 7.45058e-09, -0.999999, -3.55271e-15, -0.216326, -1.49012e-08, -21.3023, 2.31223, 5.08289)
+material_override = SubResource("StandardMaterial3D_mx8sn")
+
+[node name="Interactible2" parent="Geometry" instance=ExtResource("2_w8frs")]
+transform = Transform3D(-2.2443, -3.97828e-16, 8.74227e-08, -1.96203e-07, 7.45058e-09, -0.999999, -3.55271e-15, -0.216326, -1.49012e-08, -25.3531, 2.31223, 5.08289)
+material_override = SubResource("StandardMaterial3D_mx8sn")
+
+[node name="Interactible3" parent="Geometry" instance=ExtResource("2_w8frs")]
+transform = Transform3D(-2.2443, -3.97828e-16, 8.74227e-08, -1.96203e-07, 7.45058e-09, -0.999999, -3.55271e-15, -0.216326, -1.49012e-08, -29.5618, 2.31223, 5.08289)
+material_override = SubResource("StandardMaterial3D_mx8sn")
+
+[node name="spawn_interact" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(2.2443, 0, 0, 0, -3.72529e-09, 0.999999, 0, -0.216326, 1.49012e-08, -13.8651, 1.05354, 5.31906)
+material_override = SubResource("StandardMaterial3D_2q6dc")
+use_collision = true
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-2.42847e-06, 0, 1, 0, 8.63261, 0, -55.557, 0, -4.37114e-08, 7.91784, 4.28179, 24.9345)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-2.42847e-06, 0, 1, 0, 8.63261, 0, -55.557, 0, -4.37114e-08, -35.7278, 4.28179, 29.6903)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+size = Vector3(0.689026, 1, 1)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-2.42847e-06, 0, 1, 0, 8.63261, 0, -55.557, 0, -4.37114e-08, -35.7278, 4.28179, 29.6903)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+size = Vector3(0.689026, 1, 1)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-2.42847e-06, 0, 1, 0, 8.63261, 0, -55.557, 0, -4.37114e-08, -46.9682, 4.28179, 24.9345)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+use_collision = true
+
+[node name="PlayerController" parent="." instance=ExtResource("1_2q6dc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 1.04074, 0.0306175)
+
+[node name="Enemy" parent="." instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.2713, 1.81722, 21.4757)
+
+[connection signal="pointed" from="PlayerController" to="." method="_on_player_controller_pointed"]
+[connection signal="snacks" from="PlayerController" to="." method="_on_player_controller_snacks"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d01jvnx1fc80v"]
+
+[ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="1_1vjfl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vjfl"]
+emission_enabled = true
+
+[node name="Interactible" type="CSGBox3D"]
+transform = Transform3D(2.2443, 0, 0, 0, 0.216326, 0, 0, 0, 0.999999, 0, 0, 0)
+use_collision = true
+collision_layer = 32768
+collision_mask = 32768
+material = SubResource("StandardMaterial3D_1vjfl")
+script = ExtResource("1_1vjfl")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.867584, 0, 0, 0, -1.22143e-07, -0.125076, 0, -2.79431, 5.46726e-09, 0, 0.529205, 0)
+text = "Snacks"

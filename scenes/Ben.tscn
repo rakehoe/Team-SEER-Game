@@ -1,0 +1,154 @@
+[gd_scene load_steps=8 format=3 uid="uid://yrv80x2vkau4"]
+
+[ext_resource type="Script" uid="uid://bdtfvns68uklu" path="res://code/player.gd" id="1_am71v"]
+[ext_resource type="Script" uid="uid://bl3t2mllel7rx" path="res://code/camera_controller.gd" id="2_6agyq"]
+[ext_resource type="Texture2D" uid="uid://ds1tevhy8k5yv" path="res://icon.svg" id="3_8xumb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e6s5b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d4y06"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh7gh"]
+bg_color = Color(0.541176, 0.152941, 0.160784, 0.988235)
+skew = Vector2(0.7, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxksl"]
+bg_color = Color(0.632955, 0.504483, 0.0926141, 1)
+skew = Vector2(0.7, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="Ben" type="CharacterBody3D"]
+script = ExtResource("1_am71v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_e6s5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_d4y06")
+
+[node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("2_6agyq")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0252688)
+doppler_tracking = 2
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraController"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+target_position = Vector3(1.5, 0, 0)
+collision_mask = 33280
+collide_with_areas = true
+
+[node name="CameraControllerAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Main_Ui" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="test" type="Label" parent="Main_Ui"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 90.0
+offset_right = -56.0
+offset_bottom = 225.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 71
+text = "test"
+vertical_alignment = 1
+
+[node name="Energy" type="ProgressBar" parent="Main_Ui"]
+anchors_preset = -1
+anchor_left = 0.716
+anchor_right = 1.0
+anchor_bottom = 0.081
+offset_left = 12.2799
+offset_top = 30.0
+offset_right = -24.0
+offset_bottom = -0.480003
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_jh7gh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uxksl")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Main_Ui/Energy"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -11.5
+offset_right = 66.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Energy"
+
+[node name="hand" type="Sprite2D" parent="Main_Ui"]
+modulate = Color(0.0588235, 0.0588235, 0.0588235, 1)
+position = Vector2(1726, 936)
+rotation = -1.89325
+scale = Vector2(1.90625, 4.09375)
+skew = 0.815069
+texture = ExtResource("3_8xumb")
+
+[node name="center" type="ColorRect" parent="Main_Ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.0
+offset_right = 2.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center2" type="ColorRect" parent="Main_Ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.0
+offset_right = 2.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.56761
+pivot_offset = Vector2(2, 6)
+
+[node name="Intro" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Instruction" type="Label" parent="Intro"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -116.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Use WASD keys to move around"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

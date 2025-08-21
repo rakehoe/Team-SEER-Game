@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://yrv80x2vkau4"]
+
+[ext_resource type="Script" uid="uid://bdtfvns68uklu" path="res://code/player_controller.gd" id="1_d4y06"]
+[ext_resource type="Script" uid="uid://bl3t2mllel7rx" path="res://code/camera_controller.gd" id="2_6agyq"]
+[ext_resource type="PackedScene" uid="uid://wjfe42sdjkrd" path="res://scenes/Camera_UI.tscn" id="3_8xumb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e6s5b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d4y06"]
+
+[node name="PlayerController" type="CharacterBody3D"]
+script = ExtResource("1_d4y06")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_e6s5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_d4y06")
+
+[node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
+script = ExtResource("2_6agyq")
+
+[node name="Camera3D" parent="CameraController" instance=ExtResource("3_8xumb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0252688)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraController"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+target_position = Vector3(1.5, 0, 0)
+collision_mask = 32768
+
+[node name="CameraControllerAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -283.0
+offset_top = -20.0
+offset_right = -59.0
+offset_bottom = 115.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 71
+text = "Time"
+vertical_alignment = 1
+
+[node name="test" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 90.0
+offset_right = -56.0
+offset_bottom = 225.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 71
+text = "Time"
+vertical_alignment = 1
+
+[node name="Energy" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -172.0
+offset_bottom = 173.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 100.0
+fill_mode = 3
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]

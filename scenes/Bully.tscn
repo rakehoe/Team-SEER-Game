@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhlcch7mrsbx6"]
+
+[ext_resource type="Script" uid="uid://juxp3q1tfq8g" path="res://code/bully.gd" id="1_7p1mj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7p1mj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_md0e3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ra3w"]
+size = Vector3(2.72559, 2.19672, 6.96533)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi71q"]
+bg_color = Color(0.103744, 0.103744, 0.103743, 1)
+border_width_left = 30
+border_width_right = 30
+border_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="Bully" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_7p1mj")
+mesh = SubResource("CapsuleMesh_md0e3")
+script = ExtResource("1_7p1mj")
+Name = "Bully"
+
+[node name="Detection" type="Area3D" parent="."]
+
+[node name="Detection_area" type="CollisionShape3D" parent="Detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0537843, 0.103839, 2.97255)
+shape = SubResource("BoxShape3D_4ra3w")
+debug_color = Color(1, 0.0470588, 0.152941, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1, 4)
+fov = 37.3
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Dialogue"]
+anchors_preset = -1
+anchor_top = 0.712
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.96002
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_gi71q")
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="next_button" type="TextureButton" parent="Dialogue/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.905
+anchor_top = 0.776
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.3999
+offset_top = -4.09601
+grow_horizontal = 0
+grow_vertical = 0
+action_mode = 0
+
+[node name="LinkButton" type="LinkButton" parent="Dialogue/Label"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.888021
+anchor_top = 0.669782
+anchor_right = 0.981771
+anchor_bottom = 0.884735
+theme_override_font_sizes/font_size = 50
+action_mode = 0
+text = "Next"
+underline = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Choices" type="Control" parent="Dialogue"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.70463
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Fight_back" type="Button" parent="Dialogue/Choices"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -447.0
+offset_top = -38.5
+offset_right = -193.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Fight back"
+
+[node name="Escape" type="Button" parent="Dialogue/Choices"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Escape"
+
+[node name="Accept" type="Button" parent="Dialogue/Choices"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 253.0
+offset_top = -38.5
+offset_right = 507.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Accept"
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="pressed" from="Dialogue/Label/LinkButton" to="." method="_on_link_button_pressed"]
+[connection signal="pressed" from="Dialogue/Choices/Fight_back" to="." method="_on_fight_back_pressed"]
+[connection signal="pressed" from="Dialogue/Choices/Escape" to="." method="_on_escape_pressed"]
+[connection signal="pressed" from="Dialogue/Choices/Accept" to="." method="_on_accept_pressed"]
