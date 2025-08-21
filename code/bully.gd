@@ -58,7 +58,6 @@ func _on_link_button_pressed() -> void:
 
 func _on_fight_back_pressed() -> void:
 	emit_signal('start_day')
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Bully_cam.current = false
 	$Dialogue.hide()
 	emit_signal('detected',false)
@@ -68,7 +67,6 @@ func _on_fight_back_pressed() -> void:
 
 func _on_escape_pressed() -> void:
 	emit_signal('start_day')
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Bully_cam.current = false
 	$Dialogue.hide()
 	emit_signal('detected',false)
@@ -78,7 +76,6 @@ func _on_escape_pressed() -> void:
 
 func _on_accept_pressed() -> void:
 	emit_signal('start_day')
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Bully_cam.current = false
 	$Dialogue.hide()
 	emit_signal('detected',false)

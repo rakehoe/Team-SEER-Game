@@ -138,7 +138,7 @@ transform = Transform3D(-2.2443, -2.28286e-08, 1.05529e-07, -2.36838e-07, -7.450
 Interactive_Name = "Snacks"
 
 [node name="Chair_interact" type="CSGBox3D" parent="."]
-transform = Transform3D(2.2443, 0, 0, 0, -3.72529e-09, 0.999999, 0, -0.216326, 1.49012e-08, -13.8651, 1.05354, 5.31906)
+transform = Transform3D(2.2443, 9.45591e-09, 4.37114e-08, -9.81015e-08, 0.216326, -5.86125e-08, -9.81015e-08, 5.73062e-09, 0.999999, 5.1349, 0.528275, 4.93816)
 material_override = SubResource("StandardMaterial3D_2q6dc")
 gi_mode = 2
 operation = 1

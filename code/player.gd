@@ -94,6 +94,7 @@ func _on_bully_detected(ui_hide) -> void:
 		talking = true
 		$Main_Ui.hide()
 	elif !ui_hide:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		talking = false
 		$Main_Ui.show()
 	pass # Replace with function body.
