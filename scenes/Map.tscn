@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c81ugl3yfuic1"]
+[gd_scene load_steps=7 format=3 uid="uid://c81ugl3yfuic1"]
 
 [ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="1_3vi7k"]
 [ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="2_3h1ab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8frs"]
 albedo_color = Color(0.351071, 0.361207, 0.365538, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lajc7"]
+vertices = PackedVector3Array(-20.5866, 0.75, -28.9459, -20.5866, 0.75, 29.0541, 20.6634, 0.75, 29.0541, 20.6634, 0.75, -28.9459)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
 albedo_color = Color(0.151072, 0.37718, 0.257159, 1)
@@ -26,37 +30,18 @@ operation = 1
 use_collision = true
 size = Vector3(42, 0.5, 59)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -35.6105, -0.25, -20.4705)
-material_override = SubResource("StandardMaterial3D_w8frs")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(25.9312, 0.5, 16)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -45.749, -0.25, 49.908)
+navigation_mesh = SubResource("NavigationMesh_lajc7")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -35.6104, -0.25, 119.529)
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 material_override = SubResource("StandardMaterial3D_w8frs")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(25.9312, 0.5, 16)
+size = Vector3(42.1732, 0.5, 58.8917)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(-1.48167e-07, 0, 3.28168, 0, 1, 0, -3.38967, 0, -1.43447e-07, -90.0626, -0.25, 49.6358)
-material_override = SubResource("StandardMaterial3D_w8frs")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(25.9312, 0.5, 16)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-1.48167e-07, 0, 3.28168, 0, 1, 0, -3.38967, 0, -1.43447e-07, -1.06257, -0.25, 49.6358)
-material_override = SubResource("StandardMaterial3D_w8frs")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(25.9312, 0.5, 16)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="."]
 transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 0, 0, 0.999999, -19.6415, 1.27092, 101.302)
