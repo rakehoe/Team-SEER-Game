@@ -24,7 +24,6 @@ func idle():
 var temp
 func _physics_process(_delta: float) -> void:
 	temp = self.rotation
-	print(temp)
 	var camfov = 75
 	interacting(raycast.is_colliding())
 	# Add the gravity.
@@ -62,23 +61,21 @@ func _physics_process(_delta: float) -> void:
 
 
 #Checking if you are looking to an object
+# E - use and F - pickup
 func interacting(cast):
-	var hit = cast
-	if hit:
+	if cast:
 		var target = raycast.get_collider()
-		if target.Interactive_Name == "Snacks":
-			emit_signal('snacks', true)
-			emit_signal('pointed', target)
-			if Input.is_action_just_pressed("interact") and energy.value < energy.max_value:
-				target.free()
-				energy.value += 25
-			elif Input.is_action_just_pressed("interact"):
-				test_text.text = "Full energy"
-#	Need fixing (still sending events because it's in the _physics_process)
-	else:
-		emit_signal('snacks', false)
-		return
-
+		match target.caninteract:
+			"Press 'E' to interact":
+				if Input.is_action_just_pressed("use"):
+					target.free()
+					print(target)
+			"Press 'F' to interact":
+				if Input.is_action_just_pressed("pickup"):
+					target.free()
+					print(target)
+			_:
+				pass
 
 #swithing ui
 func intro():
@@ -93,14 +90,12 @@ func intro():
 	$Main_Ui.show()
 func _on_bully_detected(ui_hide) -> void:
 	if ui_hide:
-		print(temp)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		talking = true
 		$Main_Ui.hide()
 	elif !ui_hide:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		self.rotation = temp
-		print(self.rotation)
 		talking = false
 		$Main_Ui.show()
 	pass # Replace with function body.

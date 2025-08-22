@@ -1,5 +1,5 @@
 extends Node3D
-
+ 
 @onready var Top_left = $"Time_Ui"
 @onready var Stopwatch = $"Time_Ui/top-left-Ui/Timer"
 @onready var Days_label = $"Time_Ui/top-left-Ui/Value/DayCounts"

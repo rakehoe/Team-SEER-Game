@@ -1,18 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c81ugl3yfuic1"]
+[gd_scene load_steps=4 format=3 uid="uid://c81ugl3yfuic1"]
 
 [ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="1_3vi7k"]
-[ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="2_3h1ab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8frs"]
 albedo_color = Color(0.351071, 0.361207, 0.365538, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
 albedo_color = Color(0.151072, 0.37718, 0.257159, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q6dc"]
-emission_enabled = true
-emission = Color(0.815359, 0.81337, 1.15514e-06, 1)
-emission_energy_multiplier = 3.7
 
 [node name="Geometry" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -26,32 +20,8 @@ operation = 1
 use_collision = true
 size = Vector3(42, 0.5, 59)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -35.6105, -0.25, -20.4705)
-material_override = SubResource("StandardMaterial3D_w8frs")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(25.9312, 0.5, 16)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -35.6104, -0.25, 119.529)
-material_override = SubResource("StandardMaterial3D_w8frs")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(25.9312, 0.5, 16)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(-1.48167e-07, 0, 3.28168, 0, 1, 0, -3.38967, 0, -1.43447e-07, -90.0626, -0.25, 49.6358)
-material_override = SubResource("StandardMaterial3D_w8frs")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(25.9312, 0.5, 16)
-
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-1.48167e-07, 0, 3.28168, 0, 1, 0, -3.38967, 0, -1.43447e-07, -1.06257, -0.25, 49.6358)
+transform = Transform3D(-3.47442e-07, 0, 9.38629, 0, 1, 0, -7.94856, 0, -4.10289e-07, -45.1887, -0.25, 49.6358)
 material_override = SubResource("StandardMaterial3D_w8frs")
 gi_mode = 2
 operation = 1
@@ -130,23 +100,16 @@ collision_mask = 512
 Interactive_Name = "dump"
 
 [node name="Interactible6" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -2.28286e-08, 1.05529e-07, -2.36838e-07, -7.45058e-09, -0.999999, 2.36838e-07, -0.216326, 5.96046e-08, 2.27299e-07, 2, 5.2)
-Interactive_Name = "Snacks"
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 6.3921, -0.0925541, 1.33165)
+Interactive_Name = "Chairs"
 
 [node name="Interactible7" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -2.28286e-08, 1.05529e-07, -2.36838e-07, -7.45058e-09, -0.999999, 2.36838e-07, -0.216326, 5.96046e-08, -2.5, 2, 5.2)
-Interactive_Name = "Snacks"
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 2.72974, 0.08881, 3.6824)
+caninteract = "Press 'F' to interact"
 
-[node name="Chair_interact" type="CSGBox3D" parent="."]
-transform = Transform3D(2.2443, 9.45591e-09, 4.37114e-08, -9.81015e-08, 0.216326, -5.86125e-08, -9.81015e-08, 5.73062e-09, 0.999999, 5.1349, 0.528275, 4.93816)
-material_override = SubResource("StandardMaterial3D_2q6dc")
-gi_mode = 2
-operation = 1
-use_collision = true
-collision_layer = 32768
-collision_mask = 32768
-script = ExtResource("2_3h1ab")
-Interactive_Name = "Chair"
+[node name="Interactible8" parent="." instance=ExtResource("1_3vi7k")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 6.2152, 0.08881, 3.6824)
+Interactive_Name = "Locker"
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="."]
 transform = Transform3D(-2.42847e-06, 0, 1, 0, 8.63261, 0, -55.557, 0, -4.37114e-08, 7.91784, 4.28179, -22.0655)
@@ -237,13 +200,6 @@ transform = Transform3D(-55.557, 0, -8.74228e-08, 0, 8.63261, 0, 4.85694e-06, 0,
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 size = Vector3(1.56396, 1, 1)
-
-[node name="CSGBox3D33" type="CSGBox3D" parent="."]
-transform = Transform3D(-55.557, 0, -8.74228e-08, 0, 8.63261, 0, 4.85694e-06, 0, -1, -35.8812, 4.28179, -45.9994)
-material_override = SubResource("StandardMaterial3D_ppgk2")
-gi_mode = 2
-operation = 2
-size = Vector3(0.429688, 0.538086, 1)
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="."]
 transform = Transform3D(-55.557, 0, -8.74228e-08, 0, 8.63261, 0, 4.85694e-06, 0, -1, -35.8812, 4.28179, 145.301)

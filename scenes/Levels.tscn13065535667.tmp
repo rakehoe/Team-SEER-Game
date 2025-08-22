@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=10 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
 [ext_resource type="Script" uid="uid://bcr62e23x8qa0" path="res://code/map.gd" id="2_c6mwt"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
+[ext_resource type="PackedScene" uid="uid://bnhhg68ppwpr0" path="res://scenes/ben_10.tscn" id="6_4e448"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2r41h"]
 
@@ -20,9 +21,6 @@ glow_enabled = true
 
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
-
-[node name="Ben2" parent="." instance=ExtResource("3_4e448")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.13112)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
@@ -107,6 +105,9 @@ pivot_offset = Vector2(2, 6)
 transform = Transform3D(0.852704, 0, 0.522394, 0, 1, 0, -0.522394, 0, 0.852704, 9.53674e-07, 1.04074, 4.24781)
 visible = false
 slide_on_ceiling = false
+
+[node name="Ben" parent="." instance=ExtResource("6_4e448")]
+transform = Transform3D(-0.81, 0, 7.08125e-08, 0, 0.81, 0, -7.08125e-08, 0, -0.81, 0, 0, 5.30248)
 
 [connection signal="detected" from="Bully" to="Time_Ui/Ben" method="_on_bully_detected"]
 [connection signal="start_day" from="Bully" to="." method="_on_bully_start_day"]

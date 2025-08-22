@@ -21,9 +21,6 @@ glow_enabled = true
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
 
-[node name="Ben2" parent="." instance=ExtResource("3_4e448")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.13112)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
 light_color = Color(0.65422, 0.742696, 0.81467, 1)
@@ -107,6 +104,9 @@ pivot_offset = Vector2(2, 6)
 transform = Transform3D(0.852704, 0, 0.522394, 0, 1, 0, -0.522394, 0, 0.852704, 9.53674e-07, 1.04074, 4.24781)
 visible = false
 slide_on_ceiling = false
+
+[node name="Ben2" parent="." instance=ExtResource("3_4e448")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.13112)
 
 [connection signal="detected" from="Bully" to="Time_Ui/Ben" method="_on_bully_detected"]
 [connection signal="start_day" from="Bully" to="." method="_on_bully_start_day"]
