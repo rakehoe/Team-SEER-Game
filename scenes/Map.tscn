@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c81ugl3yfuic1"]
+[gd_scene load_steps=6 format=3 uid="uid://c81ugl3yfuic1"]
 
 [ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="1_3vi7k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8frs"]
 albedo_color = Color(0.351071, 0.361207, 0.365538, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lajc7"]
+vertices = PackedVector3Array(-20.5866, 0.75, -28.9459, -20.5866, 0.75, 29.0541, 20.6634, 0.75, 29.0541, 20.6634, 0.75, -28.9459)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
 albedo_color = Color(0.151072, 0.37718, 0.257159, 1)
@@ -20,8 +24,32 @@ operation = 1
 use_collision = true
 size = Vector3(42, 0.5, 59)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -35.6105, -0.25, -20.4705)
+material_override = SubResource("StandardMaterial3D_w8frs")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(25.9312, 0.5, 16)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(3.38967, 0, 0, 0, 1, 0, 0, 0, 3.28168, -35.6104, -0.25, 119.529)
+material_override = SubResource("StandardMaterial3D_w8frs")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(25.9312, 0.5, 16)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-1.48167e-07, 0, 3.28168, 0, 1, 0, -3.38967, 0, -1.43447e-07, -90.0626, -0.25, 49.6358)
+material_override = SubResource("StandardMaterial3D_w8frs")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(25.9312, 0.5, 16)
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-3.47442e-07, 0, 9.38629, 0, 1, 0, -7.94856, 0, -4.10289e-07, -45.1887, -0.25, 49.6358)
+transform = Transform3D(-1.48167e-07, 0, 3.28168, 0, 1, 0, -3.38967, 0, -1.43447e-07, -1.06257, -0.25, 49.6358)
 material_override = SubResource("StandardMaterial3D_w8frs")
 gi_mode = 2
 operation = 1

@@ -5,6 +5,7 @@ extends Node3D
 @onready var Days_label = $"Time_Ui/top-left-Ui/Value/DayCounts"
 @onready var Time_Left_Value = $"Time_Ui/top-left-Ui/Value/Countdown"
 @onready var DayCycle = $"Time_Ui/top-left-Ui/Text/Time"
+@onready var target = $Ben
 var current_daycycle = ["Daytime :", "Nighttime :"]
 var Days_count = 0
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	Days_label.text = str(Days_count)
 	Time_Left_Value.text = "%02d:%02d" % time_left()
+	get_tree().call_group("guard", "target_position", target.global_transform.origin)
 
 func _on_bully_start_day() -> void:
 	startcountdown(0)

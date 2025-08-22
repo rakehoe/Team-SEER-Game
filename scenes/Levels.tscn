@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=10 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
 [ext_resource type="Script" uid="uid://bcr62e23x8qa0" path="res://code/map.gd" id="2_c6mwt"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
+[ext_resource type="PackedScene" uid="uid://6u641xl34xm4" path="res://scenes/guard.tscn" id="6_4e448"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2r41h"]
 
@@ -37,6 +38,9 @@ script = ExtResource("2_c6mwt")
 
 [node name="Bully" parent="." instance=ExtResource("4_elgn6")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1, -12.1)
+
+[node name="Guard" parent="." instance=ExtResource("6_4e448")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4853, 0.979784, -47.2941)
 
 [node name="Time_Ui" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
