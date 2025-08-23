@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfg4cy2uuwko8"
-path="res://.godot/imported/Ben10.fbx-41813772e163f7779e43a521ab87b6eb.scn"
+uid="uid://bgmcs0vadk2uf"
+path="res://.godot/imported/BenTin.glb-b993b30dd881364ead0b400808528ef1.scn"
 
 [deps]
 
-source_file="res://Assets/Ben10.fbx"
-dest_files=["res://.godot/imported/Ben10.fbx-41813772e163f7779e43a521ab87b6eb.scn"]
+source_file="res://Assets/BenTin.glb"
+dest_files=["res://.godot/imported/BenTin.glb-b993b30dd881364ead0b400808528ef1.scn"]
 
 [params]
 
@@ -28,18 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"skin": {
-"use_external/enabled": true,
-"use_external/path": "res://Assets/skin.tres"
-}
-}
-}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+_subresources={}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

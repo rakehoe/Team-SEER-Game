@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c81ugl3yfuic1"]
+[gd_scene load_steps=4 format=3 uid="uid://c81ugl3yfuic1"]
 
 [ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="1_3vi7k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8frs"]
 albedo_color = Color(0.351071, 0.361207, 0.365538, 1)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_lajc7"]
-vertices = PackedVector3Array(-20.5866, 0.75, -28.9459, -20.5866, 0.75, 29.0541, 20.6634, 0.75, 29.0541, 20.6634, 0.75, -28.9459)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
 albedo_color = Color(0.151072, 0.37718, 0.257159, 1)

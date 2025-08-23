@@ -3,6 +3,8 @@ class_name Bully extends MeshInstance3D
 signal detected
 signal start_day
 
+@export var Maincharacter: CharacterBody3D
+
 @export var Name: String
 @onready var Bully_cam: Camera3D = $Camera3D
 @onready var Printed_dialogue = $Dialogue/Label
@@ -47,7 +49,7 @@ func _on_link_button_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_detection_body_entered(body: Node3D) -> void:
-	if body.name == "Ben":
+	if body == Maincharacter:
 		Bully_cam.current = true
 		emit_signal('detected',true)
 		$Dialogue.show()

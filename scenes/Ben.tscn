@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://yrv80x2vkau4"]
+[gd_scene load_steps=9 format=3 uid="uid://yrv80x2vkau4"]
 
 [ext_resource type="Script" uid="uid://bdtfvns68uklu" path="res://code/player.gd" id="1_am71v"]
+[ext_resource type="PackedScene" uid="uid://bgkoeuyrxohi4" path="res://Assets/Ben10.2.fbx" id="2_2qkwl"]
 [ext_resource type="Script" uid="uid://bl3t2mllel7rx" path="res://code/camera_controller.gd" id="2_6agyq"]
 [ext_resource type="Texture2D" uid="uid://ds1tevhy8k5yv" path="res://icon.svg" id="3_8xumb"]
 
@@ -29,6 +30,9 @@ border_color = Color(0, 0, 0, 1)
 [node name="Ben" type="CharacterBody3D"]
 script = ExtResource("1_am71v")
 
+[node name="Ben10_2" parent="." instance=ExtResource("2_2qkwl")]
+transform = Transform3D(-0.83, 0, -7.25609e-08, 0, 0.83, 0, 7.25609e-08, 0, -0.83, 0, 0, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_e6s5b")
@@ -39,7 +43,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_d4y06")
 
 [node name="CameraController" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43734, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68354, 0)
 script = ExtResource("2_6agyq")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
@@ -47,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.264455)
 doppler_tracking = 2
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraController"]
-transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+transform = Transform3D(4.88697e-08, 0, 1, 0, 1, 0, -1.6398, 0, 2.98023e-08, 0, 0, 0)
 target_position = Vector3(1.5, 0, 0)
 collision_mask = 33280
 collide_with_areas = true

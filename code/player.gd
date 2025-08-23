@@ -1,10 +1,11 @@
 class_name Player extends CharacterBody3D
 
-signal snacks
-signal pointed
 signal showui
+# signal stopped
 
 const SPEED = 5.0
+
+@export var look: MeshInstance3D
 
 @onready var camera_controller_anchor: Marker3D = $CameraControllerAnchor
 @onready var raycast: RayCast3D = $CameraController/RayCast3D
@@ -32,13 +33,12 @@ func _physics_process(_delta: float) -> void:
 	
 	# WASD movement vector
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	
 	# super basic locomotion
 	var new_velocity = Vector2.ZERO
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
 	
 	
-	if direction and !talking:
+	if direction:
 		if !moved:
 
 			intro()
@@ -49,8 +49,9 @@ func _physics_process(_delta: float) -> void:
 			cam.fov = camfov+25
 			energy.value -= 0.05
 			new_velocity = Vector2(direction.x, direction.z) *(SPEED * 1.2)
-	velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
-	move_and_slide()
+	if !talking:
+		velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
+		move_and_slide()
 	
 	
 #	Checking if the player is not moving
@@ -88,11 +89,12 @@ func intro():
 	emit_signal('showui',true)
 	$Intro.free()
 	$Main_Ui.show()
+
 func _on_bully_detected(ui_hide) -> void:
 	if ui_hide:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		talking = true
 		$Main_Ui.hide()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif !ui_hide:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		self.rotation = temp

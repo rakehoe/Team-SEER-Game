@@ -8,7 +8,3 @@ func _ready() -> void:
 func _on_ben_pointed(target) -> void:
 	temp_target = target
 	pass # Replace with function body.
-
-
-func _on_ben_snacks(snacks) -> void:
-	pass # Replace with function body.
