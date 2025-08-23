@@ -1,4 +1,4 @@
-class_name Bully extends MeshInstance3D
+class_name Bully extends Node3D
 
 signal detected
 signal start_day
@@ -48,7 +48,7 @@ func _on_link_button_pressed() -> void:
 	dialogue(current_dialogue)
 	pass # Replace with function body.
 
-func _on_detection_body_entered(body: Node3D) -> void:
+func _on_detection_body_entered(body) -> void:
 	if body == Maincharacter:
 		Bully_cam.current = true
 		emit_signal('detected',true)

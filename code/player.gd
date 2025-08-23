@@ -1,17 +1,17 @@
 class_name Player extends CharacterBody3D
 
 signal showui
-# signal stopped
 
 const SPEED = 5.0
 
-@export var look: MeshInstance3D
-
 @onready var camera_controller_anchor: Marker3D = $CameraControllerAnchor
-@onready var raycast: RayCast3D = $CameraController/RayCast3D
+@onready var raycast: RayCast3D = $CameraController/Hand
 @onready var test_text = $"Main_Ui/top-right-ui/test"
 @onready var energy = $"Main_Ui/top-right-ui/Energy"
 @onready var cam = $CameraController/Camera3D
+@onready var instructions = $Main_Ui/Instructions/Label
+
+var interact = false
 var moved = false
 var talking = false
 
@@ -22,9 +22,7 @@ func _ready() -> void:
 
 func idle():
 	energy.value += 0.02
-var temp
 func _physics_process(_delta: float) -> void:
-	temp = self.rotation
 	var camfov = 75
 	interacting(raycast.is_colliding())
 	# Add the gravity.
@@ -64,19 +62,29 @@ func _physics_process(_delta: float) -> void:
 #Checking if you are looking to an object
 # E - use and F - pickup
 func interacting(cast):
-	if cast:
-		var target = raycast.get_collider()
+	var target = raycast.get_collider()
+	to_interact(target,false)
+	instructions.hide()
+	if cast and target:
 		match target.caninteract:
 			"Press 'E' to interact":
+				to_interact(target,true)
 				if Input.is_action_just_pressed("use"):
 					target.free()
-					print(target)
 			"Press 'F' to interact":
+				to_interact(target,true)
 				if Input.is_action_just_pressed("pickup"):
 					target.free()
-					print(target)
 			_:
 				pass
+	else:
+		instructions.hide()
+
+func to_interact(a,b):
+	if a != null:
+		instructions.text = a.caninteract
+	if b:
+		instructions.show()
 
 #swithing ui
 func intro():
@@ -97,7 +105,6 @@ func _on_bully_detected(ui_hide) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif !ui_hide:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		self.rotation = temp
 		talking = false
 		$Main_Ui.show()
 	pass # Replace with function body.
