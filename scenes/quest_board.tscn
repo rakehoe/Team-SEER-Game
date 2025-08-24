@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6rq82k7lnr6g"]
+
+[ext_resource type="Script" uid="uid://dw4wfghqmoh1a" path="res://code/quest_board.gd" id="1_bsu6p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ripmp"]
+albedo_color = Color(0.0279488, 0.172323, 0.207678, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsu6p"]
+albedo_color = Color(0.230588, 0.121981, 0.0321367, 1)
+albedo_texture_force_srgb = true
+
+[node name="QuestBoard" type="Node3D"]
+script = ExtResource("1_bsu6p")
+
+[node name="QuestBoard" type="CSGBox3D" parent="."]
+transform = Transform3D(1.00633, -5.40272e-05, 0.000598094, 0.000108463, 0.503676, -0.00102051, -0.000547787, 0.000467926, 1.09854, 0.0368196, 0.00246548, -1.9737e-05)
+material_override = SubResource("StandardMaterial3D_ripmp")
+size = Vector3(0.33609, 2.26196, 4.62793)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.735701, -5.40225e-05, 0.00053021, 7.92943e-05, 0.503632, -0.000904679, -0.000400472, 0.000467885, 0.973859, 0.0579903, 0.656148, -1.77591e-07)
+material_override = SubResource("StandardMaterial3D_bsu6p")
+size = Vector3(0.606445, 0.430664, 5.23145)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.735701, -5.40225e-05, 0.00053021, 7.92943e-05, 0.503632, -0.000904679, -0.000400472, 0.000467885, 0.973859, 0.0579903, -0.643727, -1.77591e-07)
+material_override = SubResource("StandardMaterial3D_bsu6p")
+size = Vector3(0.606445, 0.430664, 5.23145)
+
+[node name="QuestList" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.57895, 0, 0, -0.979598)
+
+[node name="quest0" type="Label3D" parent="QuestList"]
+transform = Transform3D(-0.000544453, -0.000107266, 1, 0.000928962, 1, 0.000107772, -0.999999, 0.000929021, -0.000544353, 0.214, 0.506888, 1.94328)
+text = "1. Interact with the bully in the hallway."
+font_size = 25
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+
+[node name="quest1" type="Label3D" parent="QuestList"]
+transform = Transform3D(-0.000544453, -0.000107266, 1, 0.000928962, 1, 0.000107772, -0.999999, 0.000929021, -0.000544353, 0.214, 0.173641, 1.94328)
+text = "2. Finish your exam in a specific room."
+font_size = 25
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+
+[node name="quest2" type="Label3D" parent="QuestList"]
+transform = Transform3D(-0.000544453, -0.000107266, 1, 0.000928962, 1, 0.000107772, -0.999999, 0.000929021, -0.000544353, 0.214, -0.200359, 1.94328)
+text = "3. Roam around the map after your exam."
+font_size = 25
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2

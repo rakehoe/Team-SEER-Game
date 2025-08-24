@@ -14,28 +14,39 @@ const SPEED = 5.0
 var interact = false
 var moved = false
 var talking = false
+var sit = false
 
 func _ready() -> void:
 	$Main_Ui.hide()
 	$Intro.show()
-	test_text.text = "Speed: " + str(SPEED)
 
 func idle():
-	energy.value += 0.02
+	if sit:
+		energy.value += 0.02
+		if Input.is_action_pressed("stand"):
+			sit = false
+
 func _physics_process(_delta: float) -> void:
+	test_text.text = "sitting: " + str(sit)
 	var camfov = 75
+	idle()
 	interacting(raycast.is_colliding())
+	var input_dir: Vector2
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
-	
+
 	# WASD movement vector
-	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	if is_on_floor():
+		input_dir= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	
 	# super basic locomotion
 	var new_velocity = Vector2.ZERO
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
-	
-	
+	if Input.is_action_pressed("run") and energy.value > 10 and !sit:
+		cam.fov = camfov+25
+
+	self.show()
 	if direction:
 		if !moved:
 
@@ -43,19 +54,22 @@ func _physics_process(_delta: float) -> void:
 			moved = true
 		cam.fov = camfov
 		new_velocity = Vector2(direction.x, direction.z) * SPEED
-		if Input.is_action_pressed("run") and energy.value != 0:
+		if Input.is_action_pressed("run") and energy.value > 10 and !sit:
 			cam.fov = camfov+25
 			energy.value -= 0.05
 			new_velocity = Vector2(direction.x, direction.z) *(SPEED * 1.2)
+
 	if !talking:
-		velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
-		move_and_slide()
+		if !sit:
+			velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
+			move_and_slide()
 	
 	
 #	Checking if the player is not moving
 	if velocity.is_zero_approx():
 		idle()
-		cam.fov = camfov
+		if !Input.is_action_pressed("run"):
+			cam.fov = camfov
 	
 
 
@@ -74,7 +88,11 @@ func interacting(cast):
 			"Press 'F' to interact":
 				to_interact(target,true)
 				if Input.is_action_just_pressed("pickup"):
-					target.free()
+					if target.Interactive_Name == "Chair" and !sit:
+						var chairpos = Vector3(target.position)
+						sit = true
+						self.position = chairpos
+					pass
 			_:
 				pass
 	else:

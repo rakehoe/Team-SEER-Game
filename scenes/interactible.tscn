@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="1_1vjfl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vjfl"]
-emission_enabled = true
 
 [node name="Interactible" type="CSGBox3D"]
 transform = Transform3D(2.2443, 0, 0, 0, 0.216326, 0, 0, 0, 0.999999, 0, 0, 0)

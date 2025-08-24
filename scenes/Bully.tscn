@@ -212,7 +212,7 @@ bind/57/pose = Transform3D(-0.992789, 0.119372, 0.0095879, -0.119648, -0.992024,
 albedo_texture = ExtResource("2_010yb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ra3w"]
-size = Vector3(0.864258, 2.19672, 6.96533)
+size = Vector3(0.864258, 2.19672, 5.88354)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gi71q"]
 bg_color = Color(0.103744, 0.103744, 0.103743, 1)
@@ -223,6 +223,9 @@ border_color = Color(0.101961, 0.101961, 0.101961, 1)
 [node name="YumiBully" type="Node3D"]
 script = ExtResource("1_7p1mj")
 Name = "Yumi"
+
+[node name="face" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Root" type="Node3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0)
@@ -735,13 +738,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_010yb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248646, 0.986215, 0)
 
 [node name="Detection_area" type="CollisionShape3D" parent="Detection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0537843, 0.103839, 2.97255)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0537843, 0.103839, 2.43166)
 shape = SubResource("BoxShape3D_4ra3w")
 debug_color = Color(1, 0.0470588, 0.152941, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.990748, 0.135716, 0, -0.135716, 0.990748, -0.00815678, 1.55275, 3.25515)
-fov = 37.3
+transform = Transform3D(1, 0, 0, 0, 0.99776, 0.0669008, 0, -0.0669008, 0.99776, -0.00815678, 1.55275, 4.5404)
+fov = 41.9
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 

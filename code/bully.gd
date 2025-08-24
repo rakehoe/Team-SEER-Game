@@ -50,6 +50,7 @@ func _on_link_button_pressed() -> void:
 
 func _on_detection_body_entered(body) -> void:
 	if body == Maincharacter:
+		Maincharacter.look_at($face.position)
 		Bully_cam.current = true
 		emit_signal('detected',true)
 		$Dialogue.show()

@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=11 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
+[ext_resource type="PackedScene" uid="uid://cunpmklph2hk2" path="res://scenes/chair.tscn" id="4_cae5c"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
 [ext_resource type="PackedScene" uid="uid://oikkpqjwjgvi" path="res://scenes/guard.tscn" id="6_4e448"]
+[ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2r41h"]
+sky_top_color = Color(0.558754, 0.488987, 0.167721, 1)
+sky_horizon_color = Color(0.864537, 0.488386, 0.282655, 1)
 
 [sub_resource type="Sky" id="Sky_2q6dc"]
 sky_material = SubResource("ProceduralSkyMaterial_2r41h")
@@ -14,32 +18,53 @@ radiance_size = 4
 
 [sub_resource type="Environment" id="Environment_w7c3h"]
 background_mode = 2
+background_energy_multiplier = 1.69
 sky = SubResource("Sky_2q6dc")
+sky_custom_fov = 51.4
+ambient_light_color = Color(0.517895, 0.373543, 0.0798311, 1)
+ambient_light_energy = 8.77
+reflected_light_source = 2
 tonemap_mode = 2
 glow_enabled = true
 
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
+morning = 60.0
+night = 60.0
 
-[node name="Ben" parent="." instance=ExtResource("3_4e448")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.85914)
+[node name="Ben" parent="." groups=["guard"] instance=ExtResource("3_4e448")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.89399, 0, 0)
+rotation_order = 0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
-light_color = Color(0.65422, 0.742696, 0.81467, 1)
+light_color = Color(0.798964, 0.724629, 0.516765, 1)
+light_energy = 1.8
 shadow_enabled = true
+shadow_blur = 4.521
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w7c3h")
 
-[node name="Map" parent="." instance=ExtResource("1_5ch6c")]
-transform = Transform3D(-2.75288e-08, 0, -0.652445, 0, 1, 0, 0.629786, 0, -2.85193e-08, 0, 0, 0)
+[node name="Map" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("1_5ch6c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+Maincharacter = NodePath("../Ben")
 
-[node name="Bully" parent="." instance=ExtResource("4_elgn6")]
-transform = Transform3D(0.00739994, 0, 0.999973, 0, 1, 0, -0.999973, 0, 0.00739994, -3.13478, -0.001019, -6.51889)
+[node name="Chair" parent="Map" instance=ExtResource("4_cae5c")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 3.56079, 0.357229, -0.732294)
+
+[node name="Chair2" parent="Map" instance=ExtResource("4_cae5c")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -0.425502, 0.357229, -0.732294)
+
+[node name="Chair3" parent="Map" instance=ExtResource("4_cae5c")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -4.95441, 0.357229, -0.732294)
+
+[node name="Bully" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("4_elgn6")]
+transform = Transform3D(-0.00739985, 0, -0.999973, 0, 1, 0, 0.999973, 0, -0.00739985, 4.62242, -0.001019, 7.21465)
+Maincharacter = NodePath("../Ben")
 
 [node name="Guard" parent="." instance=ExtResource("6_4e448")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.21989, 0.979784, -25.6096)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.4447, 0.979784, 26.001)
 
 [node name="Time_Ui" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -111,6 +136,11 @@ transform = Transform3D(0.852704, 0, 0.522394, 0, 1, 0, -0.522394, 0, 0.852704, 
 visible = false
 slide_on_ceiling = false
 
+[node name="QuestBoard" parent="." instance=ExtResource("6_elgn6")]
+transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 1.90982, 1.36651, -7.42103)
+
+[connection signal="Day_state" from="." to="QuestBoard" method="_on_levels_day_state"]
+[connection signal="exam_time" from="Map" to="." method="_on_map_exam_time"]
+[connection signal="detected" from="Bully" to="Ben" method="_on_bully_detected"]
 [connection signal="start_day" from="Bully" to="." method="_on_bully_start_day"]
-[connection signal="timeout" from="Time_Ui/top-left-Ui/Timer" to="." method="_on_timer_timeout"]
 [connection signal="showui" from="Time_Ui/Ben" to="." method="_on_ben_showui"]
