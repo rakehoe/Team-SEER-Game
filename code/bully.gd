@@ -68,10 +68,12 @@ func done_chatting():
 
 func _on_fight_back_pressed() -> void:
 	done_chatting()
+	emit_signal('start_day',25)
 
 
 func _on_escape_pressed() -> void:
 	done_chatting()
+	emit_signal('start_day',25)
 
 
 func _on_accept_pressed() -> void:

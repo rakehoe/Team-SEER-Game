@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cunpmklph2hk2"]
+[gd_scene load_steps=4 format=3 uid="uid://cunpmklph2hk2"]
 
 [ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="1_i2o7u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vjfl"]
 emission_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2o7u"]
+size = Vector3(0.712646, 10.5121, 1)
 
 [node name="Chair" type="CSGBox3D"]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0, 0, 0)
@@ -14,11 +17,20 @@ size = Vector3(0.782227, 1, 1)
 material = SubResource("StandardMaterial3D_1vjfl")
 script = ExtResource("1_i2o7u")
 Interactive_Name = "Chair"
-caninteract = "Press 'F' to interact"
+caninteract = "Press 'E' to interact"
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(-0.867584, -2.44286e-07, 1.60431e-07, -1.11282e-06, 2.88448e-07, -0.125076, -7.58465e-08, 2.79431, 1.29112e-08, -4.7332e-16, 0.529205, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 8.48768e-09, 1.45042e-10, -2.44573e-09, 3.39008, -0.0307216, -6.45159e-10, 0.305182, 0.341267, 3.65954e-09, 2.00378, 0.566328)
+transform = Transform3D(1, 3.43103e-09, 6.8149e-11, -1.00032e-09, 3.40153, -0.0124903, -2.35488e-10, 0.124076, 0.34242, 3.65954e-09, 2.00378, 0.566328)
 size = Vector3(0.786133, 2.77246, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, -4.94022e-15, 0, 1.01929e-14, 1, 1.52056e-12, 0, -3.68594e-14, 1, -1.08029e-14, 2.62079, -4.04121e-14)
+shape = SubResource("BoxShape3D_i2o7u")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
