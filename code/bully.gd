@@ -31,7 +31,7 @@ func dialogue(page):
 			text_animation()
 			Printed_dialogue.text = Name + ": I must pass the exam. And you will give me the answer tomorrow."
 			$Dialogue/Label/LinkButton.hide()
-			await get_tree().create_timer(3.0).timeout
+			await get_tree().create_timer(0.4).timeout
 			Choice.show()
 			
 
@@ -55,26 +55,25 @@ func _on_detection_body_entered(body) -> void:
 		emit_signal('detected',true)
 		$Dialogue.show()
 		dialogue(1)
-	pass # Replace with function body.
 
 func done_chatting():
 	Bully_cam.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Dialogue.hide()
 	$Detection.free()
-	emit_signal('start_day')
 	emit_signal('detected',false)
 
 
 func _on_fight_back_pressed() -> void:
+	emit_signal('start_day',50,30)
 	done_chatting()
-	emit_signal('start_day',25)
 
 
 func _on_escape_pressed() -> void:
+	emit_signal('start_day',25,25)
 	done_chatting()
-	emit_signal('start_day',25)
 
 
 func _on_accept_pressed() -> void:
 	done_chatting()
+	emit_signal('start_day')

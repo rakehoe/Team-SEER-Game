@@ -76,99 +76,163 @@ transform = Transform3D(-2.2443, -1.11759e-08, 6.18176e-08, -1.41561e-07, 0.2163
 
 [node name="Chair2" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -0.497291, 5.36442e-07, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair3" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, 0.937713, 1.43051e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair4" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 7.10543e-14, -1.40142e-15, 1, 2.5353, 2.5034e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair5" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 8.52651e-14, -5.13244e-16, 1, 3.93484, 3.33786e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair6" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -9.02053, -5.00679e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair7" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, -7.58553, -4.11272e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair8" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 1.42109e-13, -2.51165e-15, 1, -5.98794, -3.09944e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair9" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 1.56319e-13, -5.13244e-16, 1, -4.5884, -2.14577e-06, 12.0207)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair10" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -0.497291, 1.07288e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair11" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, 0.937713, 1.96695e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair12" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 8.52651e-14, -1.62347e-15, 1, 2.53531, 3.09944e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair13" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 9.9476e-14, -5.13244e-16, 1, 3.93484, 3.93391e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair14" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -9.02053, -4.41074e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair15" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, -7.58553, -3.51667e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair16" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 1.56319e-13, -2.73369e-15, 1, -5.98794, -2.5034e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair17" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 1.7053e-13, -5.13244e-16, 1, -4.5884, -1.54972e-06, 20.5079)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair18" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -0.497291, 1.66893e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair19" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, 0.937714, 2.563e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair20" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 9.9476e-14, -1.84551e-15, 1, 2.53531, 3.69549e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair21" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 1.13687e-13, -5.13244e-16, 1, 3.93484, 4.52995e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair22" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -9.02053, -3.8147e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair23" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, -7.58553, -2.92063e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair24" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 1.7053e-13, -2.95574e-15, 1, -5.98794, -1.90735e-06, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair25" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 1.84741e-13, -5.13244e-16, 1, -4.5884, -9.53674e-07, 28.3112)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair26" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -0.49729, 2.32458e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair27" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, 0.937714, 3.27826e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair28" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 1.13687e-13, -2.06756e-15, 1, 2.53531, 4.41074e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair29" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 1.27898e-13, -5.13244e-16, 1, 3.93484, 5.24521e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair30" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91553e-17, 1, -9.02053, -3.09944e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair31" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 1.18627e-14, 0, -2.912e-16, 1, -7.58553, -2.20537e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair32" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.33227e-15, 1.06581e-14, 0, 1, 1.89681e-14, 1.84741e-13, -3.17778e-15, 1, -5.98794, -1.2517e-06, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Chair33" parent="Room1/Chairs" instance=ExtResource("3_xkm8s")]
 transform = Transform3D(1, 1.77636e-15, 1.06581e-14, 0, 1, 2.60735e-14, 1.98952e-13, -5.13244e-16, 1, -4.5884, -2.38419e-07, 38.4225)
+Interactive_Type = 2
+Object_Type = 1
 
 [node name="Roof" type="CSGBox3D" parent="."]
 transform = Transform3D(6.00788, 0, 0, 0, 1, 0, 0, 0, 3.88467, -46.0105, 3.79992, 50.0856)
@@ -241,17 +305,41 @@ gi_mode = 2
 operation = 1
 collision_layer = 512
 collision_mask = 512
-Interactive_Name = "dump"
 
 [node name="Interactible6" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -2.06875, -0.0925541, 2.45316)
-Interactive_Name = "Food"
-caninteract = "Press 'E' to interact"
+Interactive_Type = 1
+Food_Type = 1
+
+[node name="Interactible7" parent="." instance=ExtResource("1_3vi7k")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -5.10632, -0.0925541, 2.45316)
+Interactive_Type = 1
+Food_Type = 2
+
+[node name="Interactible9" parent="." instance=ExtResource("1_3vi7k")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -5.10632, -0.0925541, 4.3435)
+Interactive_Type = 1
+Food_Type = 3
+
+[node name="Interactible10" parent="." instance=ExtResource("1_3vi7k")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0.423986, -0.0925541, 4.3435)
+Interactive_Type = 1
+Food_Type = 4
+
+[node name="Interactible11" parent="." instance=ExtResource("1_3vi7k")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0.423986, -0.0925541, 2.88443)
+Interactive_Type = 1
+Food_Type = 5
+
+[node name="Interactible12" parent="." instance=ExtResource("1_3vi7k")]
+transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 3.24293, -0.0925541, 2.88443)
+Interactive_Type = 1
+Food_Type = 6
 
 [node name="Interactible8" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -2.25946, 0.08881, 4.37424)
-Interactive_Name = "Locker"
-caninteract = "Press 'E' to interact"
+Interactive_Type = 2
+Object_Type = 2
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="."]
 transform = Transform3D(-2.42847e-06, 0, 1, 0, 8.63261, 0, -55.557, 0, -4.37114e-08, 7.91784, 4.28179, -22.0655)

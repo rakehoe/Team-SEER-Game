@@ -18,7 +18,6 @@ var completed_quest = 0
 func _ready() -> void:
 	for i in list.get_child_count():
 		list.get_child(i).text = Morning_quest[i]
-		++i
 	pass
 	
 func _process(_delta):
@@ -27,7 +26,6 @@ func _process(_delta):
 			list.get_child(i).text = Morning_quest[i]
 		elif day_state == 1:
 			list.get_child(i).text = Night_quest[i]
-		++i	
 		
 
 

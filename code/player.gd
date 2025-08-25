@@ -9,8 +9,22 @@ const SPEED = 5.0
 @onready var raycast: RayCast3D = $CameraController/Hand
 @onready var test_text = $"Main_Ui/top-right-ui/test"
 @onready var energy = $"Main_Ui/top-right-ui/Energy"
+@onready var energy_label = $"Main_Ui/top-right-ui/Energy/Energy update"
+@onready var courage = $"Main_Ui/top-right-ui/Courage"
+@onready var courage_label = $"Main_Ui/top-right-ui/Courage/Courage update"
 @onready var cam = $CameraController/Camera3D
-@onready var instructions = $Main_Ui/Instructions/Label
+@onready var instructions = $Main_Ui/Side_Instructions/Look_instruction
+@onready var consequence_label = $Instructions/Consequences
+@onready var inventory = $Main_Ui/Inventory
+@onready var anim = $Ben10_2/Animation
+var FOOD_ENERGY = {
+	"APPLE": 10,
+	"BREAD": 5,
+	"BANANA": 8,
+	"WATER": 2,
+	"CHIPS": 7,
+	"ENERGY DRINK": 20
+}
 
 var interact = false
 var moved = false
@@ -19,29 +33,33 @@ var sit = false
 var current_max_energy = 100
 
 func _ready() -> void:
+	mainhand.hide()
 	$Main_Ui.hide()
+	instructions.hide()
 	$Intro.show()
 	if bully:
 		bully.connect("detected",_on_bully_detected)
-		bully.connect("start_day",_on_consequences)
+	if inventory:
+		inventory.connect("eating",_energy_update)
 
 func idle():
+	anim.play('IDLEANIM')
 	if sit:
 		if energy.value < current_max_energy:
-			energy.value += 0.02
+			_energy_update(0.02)
 		if Input.is_action_pressed("stand"):
 			sit = false
 
 func _physics_process(_delta: float) -> void:
 	test_text.text = "sitting: " + str(sit)
 	var camfov = 75
-	idle()
 	interacting(raycast.is_colliding())
 	var input_dir: Vector2
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
-
+	
 	# WASD movement vector
 	if is_on_floor():
 		input_dir= Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -60,24 +78,45 @@ func _physics_process(_delta: float) -> void:
 			moved = true
 		cam.fov = camfov
 		new_velocity = Vector2(direction.x, direction.z) * SPEED
-		if Input.is_action_pressed("run") and energy.value > 10 and !sit:
+		if anim.current_animation != "RUNANIM":
+			anim.play('RUNANIM')
+		if Input.is_action_pressed("run") and energy.value > 0 and !sit:
 			cam.fov = camfov+25
-			energy.value -= 0.05
+			_energy_update(-0.05)
 			new_velocity = Vector2(direction.x, direction.z) *(SPEED * 1.2)
 
 	if !talking:
 		if !sit:
 			velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
 			move_and_slide()
-	
-	
-#	Checking if the player is not moving
+	else:
+		anim.play("IDLEANIM")
+
+	#Checking if the player is not moving
 	if velocity.is_zero_approx():
 		idle()
 		if !Input.is_action_pressed("run"):
 			cam.fov = camfov
 	
 
+
+# updating the energy
+@onready var energy_timer = $"Main_Ui/top-right-ui/Energy_timer"
+
+func _energy_update(received_energy):
+	var t = 1
+	energy_timer.start(t)
+	if energy.value < current_max_energy || energy.value > 0:
+		energy_label.show()
+		if received_energy > 0:
+			energy_label.text = "+%0.2f Energy" % received_energy
+		elif received_energy < 0:
+			energy_label.text = "%0.2f Energy" % received_energy
+		else:
+			energy_label.text = "0.00 Energy"
+		energy.value += received_energy
+func _energy_timer_timeout() -> void:
+	energy_label.hide()
 
 #Checking if you are looking to an object
 # E - use and F - pickup
@@ -87,23 +126,37 @@ func interacting(cast):
 	
 	instructions.hide()
 	if cast and target:
-		if !sit:
+		if target.Object_Type != target.ObjectType.CHAIR:
 			to_interact(target,true)
-		match target.caninteract:
-			"Press 'E' to interact":
-				to_interact(target,true)
+		match target.Interactive_Type:
+			target.Interactivetype.OBJECT:
+				if target.cansit:
+					to_interact(target,true)
 				if Input.is_action_just_pressed("use"):
 					if target.cansit and !sit:
 						sit = true
 						self.position.y += 1
-			"Press 'F' to interact":
+				else:
+					to_interact(target,false)
+			target.Interactivetype.FOOD:
 				if Input.is_action_just_pressed("pickup"):
-					target.free()
+					var food_str = target.FoodType.keys()[target.Food_Type].replace("_"," ")
+					var energy_value = FOOD_ENERGY.get(food_str, 0)
+					update_inv(food_str,target,energy_value)
 					pass
 			_:
 				pass
 	else:
 		instructions.hide()
+
+func update_inv(new_item,freethis,evalue):
+	var invcontent = inventory.inv_content
+	for i in invcontent[0].size():
+		if invcontent[0][i] == "":
+			invcontent[1][i] = evalue
+			invcontent[0][i] = new_item
+			freethis.free()
+			return
 
 func to_interact(a,b):
 	if a != null:
@@ -134,8 +187,43 @@ func _on_bully_detected(ui_hide) -> void:
 		$Main_Ui.show()
 	pass # Replace with function body.
 
-func _on_consequences(received):
-	if received > 0:
+func _on_bully_start_day(min_req, received) -> void:
+	var consequence
+	match min_req:
+		50:
+			consequence = "fight back"
+			pass
+		25:
+			consequence = "escape"
+			pass
+	if courage.value < min_req:
+		consequence_label.show()
+		consequence_label.text = "You don't have enough courage to " + consequence
+		await get_tree().create_timer(2).timeout
+		consequence_label.text = "%1d will be deducted to your energy for the entire day." % received
+		await get_tree().create_timer(3).timeout
+		consequence_label.hide()
 		current_max_energy -= received
-		energy.value -= received
-	pass
+		_energy_update(-received)
+	pass # Replace with function body.
+
+
+@onready var mainhand = $CameraController/Realhand/Things
+@onready var thingslabel = $CameraController/Realhand/Things/Things_Label
+@onready var iteminstruction = $Main_Ui/Side_Instructions/Item_instruction
+@onready var itemdeletion = $Main_Ui/Side_Instructions/Item_deletion
+
+func _on_inventory_inv_key(key_press,thingsLabel) -> void:
+	if key_press < 10 and thingsLabel != "":
+		mainhand.show()
+		iteminstruction.show()
+		itemdeletion.show()
+		iteminstruction.text = 'Press "E" to use this item'
+		itemdeletion.text = 'Press "Q" to delete this item'
+		thingslabel.text = thingsLabel
+	else:
+		itemdeletion.hide()
+		iteminstruction.hide()
+		mainhand.hide()
+		
+	pass # Replace with function body.

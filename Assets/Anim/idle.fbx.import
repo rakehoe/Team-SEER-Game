@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bgkoeuyrxohi4"
-path="res://.godot/imported/Ben10.2.fbx-c205dae3664fd485532a2cb052fa1bc0.scn"
+uid="uid://cgtj6sqj52gi7"
+path="res://.godot/imported/idle.fbx-55bc83193219e69606ec80c7277b2de3.scn"
 
 [deps]
 
-source_file="res://Assets/Ben10.2.fbx"
-dest_files=["res://.godot/imported/Ben10.2.fbx-c205dae3664fd485532a2cb052fa1bc0.scn"]
+source_file="res://Assets/Anim/idle.fbx"
+dest_files=["res://.godot/imported/idle.fbx-55bc83193219e69606ec80c7277b2de3.scn"]
 
 [params]
 

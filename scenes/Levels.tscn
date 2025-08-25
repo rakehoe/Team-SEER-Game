@@ -1,38 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=8 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
+[ext_resource type="Environment" uid="uid://50ksdi4h1i3f" path="res://scenes/Environment.tres" id="2_elgn6"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
 [ext_resource type="PackedScene" uid="uid://oikkpqjwjgvi" path="res://scenes/guard.tscn" id="6_4e448"]
 [ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2r41h"]
-sky_top_color = Color(0.558754, 0.488987, 0.167721, 1)
-sky_horizon_color = Color(0.864537, 0.488386, 0.282655, 1)
-
-[sub_resource type="Sky" id="Sky_2q6dc"]
-sky_material = SubResource("ProceduralSkyMaterial_2r41h")
-radiance_size = 4
-
-[sub_resource type="Environment" id="Environment_w7c3h"]
-background_mode = 2
-background_energy_multiplier = 1.69
-sky = SubResource("Sky_2q6dc")
-sky_custom_fov = 51.4
-ambient_light_color = Color(0.517895, 0.373543, 0.0798311, 1)
-ambient_light_energy = 8.77
-reflected_light_source = 2
-tonemap_mode = 2
-glow_enabled = true
-
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
 morning = 60.0
 night = 60.0
-
-[node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
-bully = NodePath("../Bully")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
@@ -42,7 +21,10 @@ shadow_enabled = true
 shadow_blur = 4.521
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_w7c3h")
+environment = ExtResource("2_elgn6")
+
+[node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
+bully = NodePath("../Bully")
 
 [node name="Map" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("1_5ch6c")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -126,3 +108,4 @@ transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 1.90982,
 [connection signal="Day_state" from="." to="QuestBoard" method="_on_levels_day_state"]
 [connection signal="exam_time" from="Map" to="." method="_on_map_exam_time"]
 [connection signal="start_day" from="Bully" to="." method="_on_bully_start_day"]
+[connection signal="start_day" from="Bully" to="Ben" method="_on_bully_start_day"]

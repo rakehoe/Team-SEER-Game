@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjlbqufv8d38f"
-path.s3tc="res://.godot/imported/YumiBuliKulor.png-04d71438d042eb7343714a9fee3554fc.s3tc.ctex"
+uid="uid://bbubhibbpytqr"
+path.s3tc="res://.godot/imported/skaterMaleA.png-2e7a4a85c6b85f4ace2016608cfaf2b3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/YumiBuliKulor.png"
-dest_files=["res://.godot/imported/YumiBuliKulor.png-04d71438d042eb7343714a9fee3554fc.s3tc.ctex"]
+source_file="res://Assets/Skins/skaterMaleA.png"
+dest_files=["res://.godot/imported/skaterMaleA.png-2e7a4a85c6b85f4ace2016608cfaf2b3.s3tc.ctex"]
 
 [params]
 

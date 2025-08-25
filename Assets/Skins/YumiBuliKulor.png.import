@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m8t27h3si80s"
-path.s3tc="res://.godot/imported/BenTin_skin Base Color.png-13ddf4a5dfc123d81e05e32f25b303ed.s3tc.ctex"
+uid="uid://bjlbqufv8d38f"
+path.s3tc="res://.godot/imported/YumiBuliKulor.png-c255500fdc5b6ddc90a4f54910bc6857.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "871d9cac473c43db21813e066a5a4164"
-}
 
 [deps]
 
-source_file="res://Assets/BenTin_skin Base Color.png"
-dest_files=["res://.godot/imported/BenTin_skin Base Color.png-13ddf4a5dfc123d81e05e32f25b303ed.s3tc.ctex"]
+source_file="res://Assets/Skins/YumiBuliKulor.png"
+dest_files=["res://.godot/imported/YumiBuliKulor.png-c255500fdc5b6ddc90a4f54910bc6857.s3tc.ctex"]
 
 [params]
 

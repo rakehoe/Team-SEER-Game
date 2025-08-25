@@ -27,10 +27,11 @@ func _process(_delta: float) -> void:
 	Time_Left_Value.text = "%02d:%02d" % time_left()
 	get_tree().call_group("guard", "target_position", Ben.global_transform.origin)
 
-func _on_bully_start_day() -> void:
+func _on_bully_start_day(_temp,_temp2) -> void:
 	Top_left.show()
 	
 func MORNING():
+	Ben.sit = false
 	emit_signal('Day_state','Morning')
 	DayCycle.text = current_daycycle[0]
 	Stopwatch.start(morning)
@@ -40,6 +41,7 @@ func MORNING():
 	Ben.rotation = startingrot
 
 func NIGHT():
+	Ben.sit = false
 	emit_signal('Day_state','Evening')
 	Stopwatch.start(night)
 	DayCycle.text = current_daycycle[1]
