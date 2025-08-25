@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=7 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
 [ext_resource type="Environment" uid="uid://50ksdi4h1i3f" path="res://scenes/Environment.tres" id="2_elgn6"]
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
-[ext_resource type="PackedScene" uid="uid://oikkpqjwjgvi" path="res://scenes/guard.tscn" id="6_4e448"]
 [ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
 
 [node name="Levels" type="Node3D"]
@@ -24,6 +23,7 @@ shadow_blur = 4.521
 environment = ExtResource("2_elgn6")
 
 [node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79961, 3.8147e-06, -36.6459)
 bully = NodePath("../Bully")
 
 [node name="Map" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("1_5ch6c")]
@@ -31,13 +31,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 Maincharacter = NodePath("../Ben")
 
 [node name="Bully" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("4_elgn6")]
-transform = Transform3D(-0.00739985, 0, -0.999973, 0, 1, 0, 0.999973, 0, -0.00739985, 4.62242, 0.249572, 7.21465)
+transform = Transform3D(-0.00739985, 0, -0.999973, 0, 1, 0, 0.999973, 0, -0.00739985, 5.20869, 0.249572, -14.2932)
 Maincharacter = NodePath("../Ben")
 
-[node name="Guard" parent="." instance=ExtResource("6_4e448")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.4447, 0.979784, 26.001)
-
 [node name="Time_Ui" type="CanvasLayer" parent="."]
+layer = 3
 follow_viewport_enabled = true
 
 [node name="top-left-Ui" type="HBoxContainer" parent="Time_Ui"]
@@ -103,9 +101,11 @@ rotation = -1.56761
 pivot_offset = Vector2(2, 6)
 
 [node name="QuestBoard" parent="." instance=ExtResource("6_elgn6")]
-transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 1.90982, 1.36651, -7.42103)
+transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 1.78485, 1.46123, -44.7113)
 
 [connection signal="Day_state" from="." to="QuestBoard" method="_on_levels_day_state"]
+[connection signal="showui" from="Ben" to="." method="_on_ben_showui"]
 [connection signal="exam_time" from="Map" to="." method="_on_map_exam_time"]
+[connection signal="stop_player" from="Map" to="Ben" method="_on_map_stop_player"]
 [connection signal="start_day" from="Bully" to="." method="_on_bully_start_day"]
 [connection signal="start_day" from="Bully" to="Ben" method="_on_bully_start_day"]

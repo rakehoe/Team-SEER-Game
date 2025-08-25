@@ -50,11 +50,23 @@ func idle():
 		if Input.is_action_pressed("stand"):
 			sit = false
 
+
+func runfov(on):
+	var camfov = 75
+	if on and cam.fov < 85:
+		cam.fov += 1
+	elif !on and cam.fov > camfov:
+		cam.fov -=1
+
+
 func _physics_process(_delta: float) -> void:
 	test_text.text = "sitting: " + str(sit)
-	var camfov = 75
 	interacting(raycast.is_colliding())
 	var input_dir: Vector2
+
+	if sit:
+		itemdeletion.show()
+		itemdeletion.text = 'Press "SPACE" to stand'
 
 	# Add the gravity.
 	if not is_on_floor():
@@ -68,25 +80,25 @@ func _physics_process(_delta: float) -> void:
 	var new_velocity = Vector2.ZERO
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
 	if Input.is_action_pressed("run") and energy.value > 10 and !sit:
-		cam.fov = camfov+25
+		runfov(true)
 
 	self.show()
 	if direction:
+		runfov(false)
 		if !moved:
-
 			intro()
 			moved = true
-		cam.fov = camfov
 		new_velocity = Vector2(direction.x, direction.z) * SPEED
 		if anim.current_animation != "RUNANIM":
 			anim.play('RUNANIM')
-		if Input.is_action_pressed("run") and energy.value > 0 and !sit:
-			cam.fov = camfov+25
+		if Input.is_action_pressed("run") and energy.value > 0 and !sit and !talking:
+			runfov(true)
 			_energy_update(-0.05)
 			new_velocity = Vector2(direction.x, direction.z) *(SPEED * 1.2)
 
 	if !talking:
 		if !sit:
+			itemdeletion.hide()
 			velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
 			move_and_slide()
 	else:
@@ -96,9 +108,7 @@ func _physics_process(_delta: float) -> void:
 	if velocity.is_zero_approx():
 		idle()
 		if !Input.is_action_pressed("run"):
-			cam.fov = camfov
-	
-
+			runfov(false)
 
 # updating the energy
 @onready var energy_timer = $"Main_Ui/top-right-ui/Energy_timer"
@@ -172,7 +182,7 @@ func intro():
 		$Intro/Instruction.modulate.a -= 0.1
 		i -= 1
 		
-	emit_signal('showui',true)
+	emit_signal('showui')
 	$Intro.free()
 	$Main_Ui.show()
 
@@ -226,4 +236,9 @@ func _on_inventory_inv_key(key_press,thingsLabel) -> void:
 		iteminstruction.hide()
 		mainhand.hide()
 		
+	pass # Replace with function body.
+
+
+func _on_map_stop_player(talk) -> void:
+	talking = talk
 	pass # Replace with function body.

@@ -15,6 +15,10 @@ var current_daycycle = ["Morning :", "Evening :"]
 @export var night = 180.0
 var Days_count = 0
 
+func _on_ben_showui() -> void:
+	Top_left.show()
+	pass # Replace with function body.
+
 func _ready() -> void:
 	emit_signal('Day_state','Morning')
 	startingpos = Ben.position
@@ -27,9 +31,6 @@ func _process(_delta: float) -> void:
 	Time_Left_Value.text = "%02d:%02d" % time_left()
 	get_tree().call_group("guard", "target_position", Ben.global_transform.origin)
 
-func _on_bully_start_day(_temp,_temp2) -> void:
-	Top_left.show()
-	
 func MORNING():
 	Ben.sit = false
 	emit_signal('Day_state','Morning')
@@ -61,3 +62,4 @@ func _on_map_exam_time() -> void:
 	MORNING()
 	pass # Replace with function body.
 # 56
+

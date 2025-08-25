@@ -14,6 +14,12 @@ var caninteract: String
 @export var cansit = false
 
 func _ready() -> void:
+	if Interactive_Type == Interactivetype.FOOD:
+		var rng := RandomNumberGenerator.new()
+		rng.randomize()
+		var foodchosen := FoodType.keys()
+		var idx := rng.randi_range(1, foodchosen.size() - 1)
+		Food_Type = idx
 	pass # Replace with function body.
 
 func _process(_delta):

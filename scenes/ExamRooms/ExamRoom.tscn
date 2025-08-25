@@ -1,0 +1,283 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2vfabm3t30qs"]
+
+[ext_resource type="Script" uid="uid://vgg14470s1na" path="res://code/examtime.gd" id="1_15do6"]
+[ext_resource type="PackedScene" uid="uid://cunpmklph2hk2" path="res://scenes/chair.tscn" id="2_cel1m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15do6"]
+bg_color = Color(0.360784, 0.690196, 0.458824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cel1m"]
+bg_color = Color(0.359526, 0.690334, 0.457882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnw3n"]
+bg_color = Color(0.552146, 0.89906, 0.647025, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7jyl"]
+bg_color = Color(0.201158, 0.421625, 0.267889, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
+albedo_color = Color(0.151072, 0.37718, 0.257159, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lajc7"]
+size = Vector3(1, 4.14844, 3.63397)
+
+[node name="Examroom" type="Node3D"]
+script = ExtResource("1_15do6")
+
+[node name="Exam_Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 1.72601e-09, -1.50962e-07, -4.23629e-09, 0.99922, 0.0394865, 1.50912e-07, 0.0394865, -0.99922, 2.73451, 2.80306, 28.1618)
+doppler_tracking = 2
+
+[node name="Examchoices" type="CanvasLayer" parent="Exam_Camera"]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="Exam_Camera/Examchoices"]
+anchors_preset = -1
+anchor_top = 0.751852
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.103518, 0.18697, 0.157772, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Exam_Camera/Examchoices"]
+anchors_preset = -1
+anchor_left = 0.239583
+anchor_top = 0.783333
+anchor_right = 0.760417
+anchor_bottom = 0.907407
+offset_top = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 95
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="A" type="Button" parent="Exam_Camera/Examchoices/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_15do6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cel1m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lnw3n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k7jyl")
+text = "A"
+
+[node name="B" type="Button" parent="Exam_Camera/Examchoices/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_15do6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cel1m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lnw3n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k7jyl")
+text = "B"
+
+[node name="C" type="Button" parent="Exam_Camera/Examchoices/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_15do6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cel1m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lnw3n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k7jyl")
+text = "C"
+
+[node name="Board" type="CSGBox3D" parent="."]
+transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.09869, 3.50992, 37.3032)
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(0.624023, 0.698242, 5.33627)
+
+[node name="Label3D" type="Label3D" parent="Board"]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 0.999999, 0, 8.74228e-08, 0, -0.999999, 0.282025, 0.288006, -2.74489)
+modulate = Color(0, 0, 0, 1)
+text = "asda sd qwefa sdfasdf adsfsadf"
+font_size = 11
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+width = 100.0
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="."]
+transform = Transform3D(-8.8761e-07, 0, 0.495023, 0, 8.63261, 0, -20.3062, 0, -2.16382e-08, 20.1582, 4.28179, 23.2191)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(1.73645, 1, 26.0745)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(-8.8761e-07, 0, 0.495023, 0, 8.63261, 0, -20.3062, 0, -2.16382e-08, -7.22855, 4.28179, 21.5873)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(1.56543, 1, 1)
+
+[node name="DOor" type="CSGBox3D" parent="CSGBox3D13"]
+transform = Transform3D(1.47666, 0, 0, 0, 0.999999, 0, -3.21358e-16, 0, 1.20855, 0.688754, -0.322734, 0)
+operation = 2
+size = Vector3(0.0603027, 0.354531, 1)
+
+[node name="DOor2" type="CSGBox3D" parent="CSGBox3D13"]
+transform = Transform3D(1.47666, 0, 0, 0, 0.999999, 0, -3.21358e-16, 0, 1.20855, -0.676809, -0.322734, 0)
+operation = 2
+size = Vector3(0.0603027, 0.354531, 1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.09869, 4.28179, 39.0349)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(0.96582, 1, 9.82196)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.37552, 4.28179, 5.73365)
+material_override = SubResource("StandardMaterial3D_ppgk2")
+gi_mode = 2
+operation = 1
+use_collision = true
+size = Vector3(0.991211, 1, 1)
+
+[node name="RoomDoor" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79342, 1.94763, 8.27969)
+shape = SubResource("BoxShape3D_lajc7")
+debug_color = Color(0.821444, 0.155076, 0.246863, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79342, 1.94763, 34.8888)
+shape = SubResource("BoxShape3D_lajc7")
+debug_color = Color(0.821444, 0.155076, 0.246863, 1)
+
+[node name="Chairs" type="Node3D" parent="."]
+transform = Transform3D(-2.2443, -1.11759e-08, 6.18176e-08, -1.41561e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 6.24464, 0.173424, 45.7395)
+
+[node name="Rows" type="Node3D" parent="Chairs"]
+transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91588e-17, 1, -1.32912, 2.38419e-07, 14.8896)
+
+[node name="Chair2" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 4.44089e-16, 0, 0, 1, 4.75728e-15, 0, -6.91588e-17, 1, 0, 0, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair3" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, -4.44089e-16, 0, -2.27374e-13, 1, 4.75728e-15, 0, -2.91203e-16, 1, 1.54294, 1.01328e-06, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair4" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 3.3179e-14, 7.10543e-14, -1.40143e-15, 1, 3.14052, 1.96695e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair5" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 4.02844e-14, 8.52651e-14, -5.13248e-16, 1, 4.54006, 2.80142e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Rows2" type="Node3D" parent="Chairs"]
+transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91588e-17, 1, -1.32912, 5.96046e-07, 19.5737)
+
+[node name="Chair2" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 4.44089e-16, 0, 0, 1, 4.75728e-15, 0, -6.91588e-17, 1, 0, 0, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair3" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, -4.44089e-16, 0, -2.27374e-13, 1, 4.75728e-15, 0, -2.91203e-16, 1, 1.54294, 1.01328e-06, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair4" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 3.3179e-14, 7.10543e-14, -1.40143e-15, 1, 3.14052, 1.96695e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair5" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 4.02844e-14, 8.52651e-14, -5.13248e-16, 1, 4.54006, 2.80142e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Rows3" type="Node3D" parent="Chairs"]
+transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91588e-17, 1, -1.32912, 8.9407e-07, 23.5762)
+
+[node name="Chair2" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 4.44089e-16, 0, 0, 1, 4.75728e-15, 0, -6.91588e-17, 1, 0, 0, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair3" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, -4.44089e-16, 0, -2.27374e-13, 1, 4.75728e-15, 0, -2.91203e-16, 1, 1.54294, 1.01328e-06, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair4" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 3.3179e-14, 7.10543e-14, -1.40143e-15, 1, 3.14052, 1.96695e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair5" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 4.02844e-14, 8.52651e-14, -5.13248e-16, 1, 4.54006, 2.80142e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Rows4" type="Node3D" parent="Chairs"]
+transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91588e-17, 1, -1.32912, 1.19209e-06, 27.6872)
+
+[node name="Chair2" parent="Chairs/Rows4" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 4.44089e-16, 0, 0, 1, 4.75728e-15, 0, -6.91588e-17, 1, 0, 0, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair3" parent="Chairs/Rows4" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, -4.44089e-16, 0, -2.27374e-13, 1, 4.75728e-15, 0, -2.91203e-16, 1, 1.54294, 1.01328e-06, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair4" parent="Chairs/Rows4" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 3.3179e-14, 7.10543e-14, -1.40143e-15, 1, 3.14052, 1.96695e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair5" parent="Chairs/Rows4" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 4.02844e-14, 8.52651e-14, -5.13248e-16, 1, 4.54006, 2.80142e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Rows5" type="Node3D" parent="Chairs"]
+transform = Transform3D(1, 8.88178e-16, 1.06581e-14, 2.27374e-13, 1, 1.18627e-14, 0, -6.91588e-17, 1, -1.32912, 1.49012e-06, 32.3237)
+
+[node name="Chair2" parent="Chairs/Rows5" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 4.44089e-16, 0, 0, 1, 4.75728e-15, 0, -6.91588e-17, 1, 0, 0, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair3" parent="Chairs/Rows5" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, -4.44089e-16, 0, -2.27374e-13, 1, 4.75728e-15, 0, -2.91203e-16, 1, 1.54294, 1.01328e-06, -1.90735e-06)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair4" parent="Chairs/Rows5" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 3.3179e-14, 7.10543e-14, -1.40143e-15, 1, 3.14052, 1.96695e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[node name="Chair5" parent="Chairs/Rows5" instance=ExtResource("2_cel1m")]
+transform = Transform3D(1, 8.88178e-16, 0, -2.27374e-13, 1, 4.02844e-14, 8.52651e-14, -5.13248e-16, 1, 4.54006, 2.80142e-06, 0)
+Interactive_Type = 2
+Object_Type = 1
+
+[connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/A" to="." method="_on_a_pressed"]
+[connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/B" to="." method="_on_b_pressed"]
+[connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/C" to="." method="_on_c_pressed"]
+[connection signal="body_entered" from="RoomDoor" to="." method="_on_room_door_body_entered"]
