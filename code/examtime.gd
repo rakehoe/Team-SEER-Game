@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+
 enum Subjects { NONE, ENGLISH, MATH, SCIENCE, ESP}
 @export var Subject_Room: Subjects = Subjects.NONE
 @export var Exam_List: PackedStringArray
@@ -58,17 +59,17 @@ func _page_update():
 func _exam_done():
 	match score:
 		5:
-			print("demmn")
+			Takers.courage.value += 10
 		4: 
-			print("demm")
+			Takers.courage.value += 7
 		3: 
-			print("demm")
+			Takers.courage.value += 5
 		2: 
-			print("demm")
+			Takers.courage.value += 2
 		1: 
-			print("demm")
+			Takers.courage.value += 1
 		_: 
-			print("demm")
+			Takers.courage.value += 0
 	Takers.talking = false
 	ExamCamera.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
