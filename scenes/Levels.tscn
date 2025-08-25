@@ -9,8 +9,12 @@
 
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
-morning = 60.0
+morning = 30.0
 night = 60.0
+
+[node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79961, 3.8147e-06, -36.6459)
+bully = NodePath("../Bully")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
@@ -21,10 +25,6 @@ shadow_blur = 4.521
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_elgn6")
-
-[node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79961, 3.8147e-06, -36.6459)
-bully = NodePath("../Bully")
 
 [node name="Map" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("1_5ch6c")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

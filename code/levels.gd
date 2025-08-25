@@ -1,7 +1,6 @@
 extends Node3D
  
 signal Day_state
-
 @onready var Ben = $Ben
 @onready var Top_left = $"Time_Ui"
 @onready var Stopwatch = $"Time_Ui/top-left-Ui/Timer"
@@ -32,22 +31,23 @@ func _process(_delta: float) -> void:
 	get_tree().call_group("guard", "target_position", Ben.global_transform.origin)
 
 func MORNING():
-	Ben.sit = false
 	emit_signal('Day_state','Morning')
-	DayCycle.text = current_daycycle[0]
 	Stopwatch.start(morning)
 	await Stopwatch.timeout
 	NIGHT()
-	Ben.position = startingpos
-	Ben.rotation = startingrot
 
 func NIGHT():
 	Ben.sit = false
+	Ben.talking = false
 	emit_signal('Day_state','Evening')
 	Stopwatch.start(night)
 	DayCycle.text = current_daycycle[1]
 	await Stopwatch.timeout
-	MORNING()
+	# another morning
+	emit_signal('Day_state','Morning')
+	Ben.sit = false
+	Ben.talking = false
+	DayCycle.text = current_daycycle[0]
 	Days_count += 1
 	Ben.position = startingpos
 	Ben.rotation = startingrot
@@ -62,4 +62,3 @@ func _on_map_exam_time() -> void:
 	MORNING()
 	pass # Replace with function body.
 # 56
-

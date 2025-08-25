@@ -114,12 +114,12 @@ use_collision = true
 size = Vector3(1.73645, 1, 26.0745)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="."]
-transform = Transform3D(-8.8761e-07, 0, 0.495023, 0, 8.63261, 0, -20.3062, 0, -2.16382e-08, -7.22855, 4.28179, 21.5873)
+transform = Transform3D(-8.8761e-07, 0, 0.495023, 0, 8.63261, 0, -20.3062, 0, -2.16382e-08, -7.22855, 4.28179, 21.912)
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(1.56543, 1, 1)
+size = Vector3(1.59741, 1, 1)
 
 [node name="DOor" type="CSGBox3D" parent="CSGBox3D13"]
 transform = Transform3D(1.47666, 0, 0, 0, 0.999999, 0, -3.21358e-16, 0, 1.20855, 0.688754, -0.322734, 0)
@@ -132,20 +132,20 @@ operation = 2
 size = Vector3(0.0603027, 0.354531, 1)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="."]
-transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.09869, 4.28179, 39.0349)
+transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.07506, 4.28179, 46.6944)
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(0.96582, 1, 9.82196)
+size = Vector3(0.967987, 1, 51.7343)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="."]
-transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.37552, 4.28179, 5.73365)
+transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, 3.35423, 4.28179, 5.73365)
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(0.991211, 1, 1)
+size = Vector3(0.993164, 1, 1)
 
 [node name="RoomDoor" type="Area3D" parent="."]
 

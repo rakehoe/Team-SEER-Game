@@ -51,28 +51,20 @@ use_collision = true
 size = Vector3(0.39185, 2.97473, 31.8126)
 
 [node name="CenterWall2" type="CSGBox3D" parent="."]
-transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 2.27374e-13, 0, 0.999999, -49.4809, 4.20098, 50.5949)
+transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 2.27374e-13, 0, 0.999999, -49.4946, 4.20098, 50.5949)
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(0.39185, 2.97473, 31.8126)
-
-[node name="CenterWall3" type="CSGBox3D" parent="."]
-transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 2.27374e-13, 0, 0.999999, -49.4809, 4.20098, -12.8376)
-material_override = SubResource("StandardMaterial3D_ppgk2")
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(0.39185, 2.97473, 31.8126)
+size = Vector3(0.391358, 2.97473, 31.8126)
 
 [node name="CenterWall4" type="CSGBox3D" parent="."]
-transform = Transform3D(-2.42847e-06, 0, -0.999999, 0, 2.96755, 0, 55.557, 0, -4.37113e-08, 10.3306, 4.20098, -10.61)
+transform = Transform3D(-2.42847e-06, 0, -0.999999, 0, 2.96755, 0, 55.557, 0, -4.37113e-08, 10.9134, 4.20098, -10.5728)
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(0.39185, 2.97473, 31.8126)
+size = Vector3(0.39319, 2.97473, 30.6469)
 
 [node name="Examroom" parent="." instance=ExtResource("2_xkm8s")]
 Subject_Room = 1
@@ -154,7 +146,7 @@ collision_mask = 512
 [node name="Interactible6" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -2.06875, -0.0925541, 2.45316)
 Interactive_Type = 1
-Food_Type = 6
+Food_Type = 1
 
 [node name="Interactible7" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -5.10632, -0.0925541, 2.45316)
@@ -164,22 +156,22 @@ Food_Type = 1
 [node name="Interactible9" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -5.10632, -0.0925541, 4.3435)
 Interactive_Type = 1
-Food_Type = 6
+Food_Type = 2
 
 [node name="Interactible10" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0.423986, -0.0925541, 4.3435)
 Interactive_Type = 1
-Food_Type = 6
+Food_Type = 1
 
 [node name="Interactible11" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0.423986, -0.0925541, 2.88443)
 Interactive_Type = 1
-Food_Type = 3
+Food_Type = 6
 
 [node name="Interactible12" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 3.24293, -0.0925541, 2.88443)
 Interactive_Type = 1
-Food_Type = 2
+Food_Type = 1
 
 [node name="Interactible8" parent="." instance=ExtResource("1_3vi7k")]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -2.25946, 0.08881, 4.37424)
@@ -195,7 +187,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.282407, 0.282408, 0.282407, 0.27451)
+color = Color(0.0980392, 0.2, 0.34902, 0.592157)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EntraceExitConfirmation"]
 anchors_preset = -1
@@ -213,6 +205,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ExitEntrance" type="Label" parent="EntraceExitConfirmation/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 66
 text = "Do you want to enter the school?"
 horizontal_alignment = 1

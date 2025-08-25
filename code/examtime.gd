@@ -16,32 +16,31 @@ enum Subjects { NONE, ENGLISH, MATH, SCIENCE, ESP}
 var page = 0
 var score = 0
 var Takers
-var EnglishExamList = [
-	"What is the color of an apple? \n\n A. Red \t B. Blue \t C. Orange",
-	"What is the color of a grape? \n\n A. Red \t B. Blue \t C. Orange",
-	"What is the color of an orange? \n\n A. Red \t B. Blue \t C. Orange",
-	"What is the color of an sky? \n\n A. Red \t B. Blue \t C. Orange"
-]
-
-var EnglishAnswerkey = [
-	"A", "B", "C", "B"
-]
-
+@onready var Mainlevel = get_parent().get_parent()
+@onready var tempTaker
 func _ready():
+	for i in Mainlevel.get_child_count():
+		if Mainlevel.get_child(i).name == "Ben":
+			tempTaker = Mainlevel.get_child(i)
 	choicesUi.hide()
+	Mainlevel.connect('Day_state',daystate)
+
 
 func _on_room_door_body_entered(body:Node3D) -> void:
 	if body.name == "Ben":
-		_start_exam()
 		Takers = body
-		body.talking = true
-		ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
-		pass
+		print(Takers)
+		if Mainlevel.DayCycle.text == Mainlevel.current_daycycle[0] and Mainlevel.Stopwatch.get_time_left()==0:
+			body.talking = true
+			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
+			_start_exam()
+			pass
 
 
 func _start_exam():
 	page = 0
 	score = 0
+	Mainlevel.MORNING()
 	ExamCamera.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	await get_tree().create_timer(3).timeout
@@ -55,22 +54,27 @@ func _page_update():
 	else:
 		_exam_done()
 
+func daystate(states):
+	if states == 'Evening':
+		_exam_done()
+	pass
+
 
 func _exam_done():
 	match score:
 		5:
-			Takers.courage.value += 10
+			tempTaker.courage.value += 10
 		4: 
-			Takers.courage.value += 7
+			tempTaker.courage.value += 7
 		3: 
-			Takers.courage.value += 5
+			tempTaker.courage.value += 5
 		2: 
-			Takers.courage.value += 2
+			tempTaker.courage.value += 2
 		1: 
-			Takers.courage.value += 1
+			tempTaker.courage.value += 1
 		_: 
-			Takers.courage.value += 0
-	Takers.talking = false
+			pass
+	tempTaker.talking = false
 	ExamCamera.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
