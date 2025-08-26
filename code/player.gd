@@ -4,6 +4,7 @@ signal showui
 
 const SPEED = 5.0
 
+var foods = preload("res://scenes/Food.tscn")
 @export var bully: Node3D
 @onready var camera_controller_anchor: Marker3D = $CameraControllerAnchor
 @onready var raycast: RayCast3D = $CameraController/Hand
@@ -20,9 +21,7 @@ const SPEED = 5.0
 var FOOD_ENERGY = {
 	"APPLE": 10,
 	"BREAD": 5,
-	"BANANA": 8,
 	"WATER": 2,
-	"CHIPS": 7,
 	"ENERGY DRINK": 20
 }
 
@@ -33,7 +32,6 @@ var sit = false
 var current_max_energy = 100
 
 func _ready() -> void:
-	mainhand.hide()
 	$Main_Ui.hide()
 	instructions.hide()
 	$Intro.show()
@@ -48,6 +46,7 @@ func idle():
 		if energy.value < current_max_energy:
 			_energy_update(0.02)
 		if Input.is_action_pressed("stand"):
+			itemdeletion.hide()
 			sit = false
 
 
@@ -66,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 
 	if sit:
 		itemdeletion.show()
-		itemdeletion.text = 'Press "SPACE" to stand'
+		itemdeletion.text = 'Press [SPACE] to stand'
 
 	# Add the gravity.
 	if not is_on_floor():
@@ -98,7 +97,6 @@ func _physics_process(_delta: float) -> void:
 
 	if !talking:
 		if !sit:
-			itemdeletion.hide()
 			velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
 			move_and_slide()
 	else:
@@ -218,23 +216,28 @@ func _on_bully_start_day(min_req, received) -> void:
 	pass # Replace with function body.
 
 
-@onready var mainhand = $CameraController/Realhand/Things
 @onready var thingslabel = $CameraController/Realhand/Things/Things_Label
 @onready var iteminstruction = $Main_Ui/Side_Instructions/Item_instruction
 @onready var itemdeletion = $Main_Ui/Side_Instructions/Item_deletion
+@onready var droppoint = $Droppoint
+
 
 func _on_inventory_inv_key(key_press,thingsLabel) -> void:
 	if key_press < 10 and thingsLabel != "":
-		mainhand.show()
 		iteminstruction.show()
 		itemdeletion.show()
-		iteminstruction.text = 'Press "E" to use this item'
-		itemdeletion.text = 'Press "Q" to delete this item'
+		iteminstruction.text = 'Press [L Mouse] to use this item'
+		itemdeletion.text = 'Press [Q] to drop'
 		thingslabel.text = thingsLabel
+	elif key_press == 20 and thingsLabel != "":
+		var instance = foods.instantiate()
+		instance.name = "Thrown"
+		instance.drop(thingsLabel)
+		instance.set_global_transform(droppoint.get_global_transform_interpolated())
+		get_parent().get_parent().add_child(instance)
 	else:
 		itemdeletion.hide()
 		iteminstruction.hide()
-		mainhand.hide()
 		
 	pass # Replace with function body.
 

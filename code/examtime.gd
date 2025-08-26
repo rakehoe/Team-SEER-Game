@@ -1,10 +1,11 @@
-@tool
 extends Node3D
 
 enum Subjects { NONE, ENGLISH, MATH, SCIENCE, ESP}
+enum Answers { NONE, A, B, C }
 @export var Subject_Room: Subjects = Subjects.NONE
-@export var Exam_List: PackedStringArray
-@export var Exam_Answer_Key: PackedStringArray
+@export_multiline var Exam_List: Array[String]
+@export var Exam_Answer_Key: Array[Answers]
+
 
 @onready var choicesUi = $Exam_Camera/Examchoices
 @onready var Button_A = $Exam_Camera/Examchoices/HBoxContainer/A
@@ -50,9 +51,10 @@ func _start_exam():
 
 func _page_update():
 	if page < Exam_List.size():
-		ExamBoard.text = Exam_List[page]
+		ExamBoard.text = str(Exam_List[page])
 	else:
 		_exam_done()
+
 
 func daystate(states):
 	if states == 'Evening':
@@ -89,14 +91,13 @@ func _answer_checking(ans):
 		_page_update()
 
 
-
 func _on_a_pressed() -> void:
-	_answer_checking("A")
+	_answer_checking(1)
 	
 	
 func _on_b_pressed() -> void:
-	_answer_checking("B")
+	_answer_checking(2)
 	
 	
 func _on_c_pressed() -> void:
-	_answer_checking("C")
+	_answer_checking(3)

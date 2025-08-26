@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://dhlcch7mrsbx6"]
 
 [ext_resource type="Script" uid="uid://juxp3q1tfq8g" path="res://code/bully.gd" id="1_7p1mj"]
-[ext_resource type="Texture2D" uid="uid://bjlbqufv8d38f" path="res://Assets/Skins/YumiBuliKulor.png" id="2_010yb"]
+[ext_resource type="Texture2D" uid="uid://bjlbqufv8d38f" path="res://Assets/Models/Skins/YumiBuliKulor.png" id="2_010yb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlxri"]
 resource_name = "skin"

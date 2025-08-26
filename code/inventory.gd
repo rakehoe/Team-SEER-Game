@@ -18,8 +18,9 @@ func _process(_delta):
 
 	_default_name()
 	if Input.is_action_just_pressed("throw") and key_active < 10:
+		emit_signal('inv_key',20,inv_content[0][key_active])
 		inv_remove()
-	if Input.is_action_just_pressed("use") and key_active < 10:
+	if Input.is_action_just_pressed("consume") and key_active < 10:
 		eat(inv_content[1][key_active])
 		inv_remove()
 	for i in range(1,6):

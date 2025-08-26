@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfr3tccr1ra02"]
+
+[ext_resource type="Script" uid="uid://b76evlh4mg4op" path="res://code/shelfs.gd" id="1_6nuja"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc0qv"]
+size = Vector3(1.0083, 2.56641, 0.0958252)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ludke"]
+size = Vector3(1, 4.38611, 0.195557)
+
+[node name="Shelfs" type="StaticBody3D"]
+disable_mode = 1
+script = ExtResource("1_6nuja")
+
+[node name="Spawningpoints" type="Node3D" parent="."]
+
+[node name="object" type="Marker3D" parent="Spawningpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59822, -1.51719)
+
+[node name="object3" type="Marker3D" parent="Spawningpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59822, 0.0484594)
+
+[node name="object5" type="Marker3D" parent="Spawningpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59822, 1.49899)
+
+[node name="object2" type="Marker3D" parent="Spawningpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.761166, -1.51719)
+
+[node name="object4" type="Marker3D" parent="Spawningpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.761166, 0.0484594)
+
+[node name="object6" type="Marker3D" parent="Spawningpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.761166, 1.49899)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3513, 0)
+size = Vector3(1.00562, 2.74365, 4.6377)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2785, 0)
+operation = 2
+size = Vector3(1.11938, 0.360352, 4.41504)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2785, 0)
+operation = 2
+size = Vector3(0.617188, 0.360352, 4.75366)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522057, 0)
+operation = 2
+size = Vector3(1.11938, 0.685852, 4.41504)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522057, 0)
+operation = 2
+size = Vector3(0.613281, 0.685852, 4.76196)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363, 0)
+operation = 2
+size = Vector3(0.613281, 0.685852, 4.76196)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363319, 0)
+operation = 2
+size = Vector3(1.11938, 0.685852, 4.41504)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20847, 0)
+operation = 2
+size = Vector3(1.11938, 0.685852, 4.41504)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(0.85885, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.38056, 0)
+operation = 2
+height = 4.85156
+
+[node name="side" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000244141, 1.3513, 2.26166)
+shape = SubResource("BoxShape3D_xc0qv")
+
+[node name="side2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000244141, 1.3513, -2.27411)
+shape = SubResource("BoxShape3D_xc0qv")
+
+[node name="Top" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.000244141, 2.13638, 0.00901651)
+shape = SubResource("BoxShape3D_ludke")
+
+[node name="Mid" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.000244141, 1.26146, 0.00901651)
+shape = SubResource("BoxShape3D_ludke")
+
+[node name="Bot" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.000244141, 0.386541, 0.00901651)
+shape = SubResource("BoxShape3D_ludke")

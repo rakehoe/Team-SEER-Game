@@ -4,7 +4,6 @@ signal stop_player
 signal exam_time
 
 @export var Maincharacter: CharacterBody3D
-@onready var temp_target: CSGBox3D = $temptarget
 @onready var instructions = $EntraceExitConfirmation
 @onready var labelins = $EntraceExitConfirmation/VBoxContainer/ExitEntrance
 var entered = false

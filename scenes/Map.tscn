@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://c81ugl3yfuic1"]
 
-[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="1_3vi7k"]
 [ext_resource type="Script" uid="uid://bcr62e23x8qa0" path="res://code/map.gd" id="1_lajc7"]
 [ext_resource type="PackedScene" uid="uid://d2vfabm3t30qs" path="res://scenes/ExamRooms/ExamRoom.tscn" id="2_xkm8s"]
+[ext_resource type="ArrayMesh" uid="uid://cubcm0itr4ivv" path="res://Assets/FurnituresAndItems/low_poly_tree/low_poly_tree/Lowpoly_tree_sample.obj" id="3_xkm8s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8frs"]
 albedo_color = Color(0.351071, 0.361207, 0.365538, 1)
@@ -17,10 +17,10 @@ emission = Color(0.277883, 0.84472, 0.983061, 1)
 emission_energy_multiplier = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xkm8s"]
-size = Vector3(0.0407104, 2.021, 6.82837)
+size = Vector3(0.0208435, 2.021, 3.26782)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tm3qm"]
-size = Vector3(0.0305176, 1.63538, 5.63831)
+size = Vector3(0.0305176, 1.63538, 3.55957)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkm8s"]
 bg_color = Color(0.109387, 0.263126, 0.139252, 1)
@@ -68,26 +68,23 @@ size = Vector3(0.39319, 2.97473, 30.6469)
 
 [node name="Examroom" parent="." instance=ExtResource("2_xkm8s")]
 Subject_Room = 1
-Exam_List = PackedStringArray("What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of a grape? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an orange? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an sky? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange")
-Exam_Answer_Key = PackedStringArray("A", "B", "C", "B", "A")
+Exam_List = Array[String](["What is the color of an apple?
+A. Red
+B. Blue
+C. Orange"])
+Exam_Answer_Key = Array[int]([1])
 
 [node name="Examroom2" parent="." instance=ExtResource("2_xkm8s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44.5691, 0, -7.15599)
 Subject_Room = 2
-Exam_List = PackedStringArray("What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of a grape? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an orange? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an sky? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange")
-Exam_Answer_Key = PackedStringArray("A", "B", "C", "B", "A")
 
 [node name="Examroom3" parent="." instance=ExtResource("2_xkm8s")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.33009, 0, 47.8537)
 Subject_Room = 3
-Exam_List = PackedStringArray("What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of a grape? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an orange? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an sky? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange")
-Exam_Answer_Key = PackedStringArray("A", "B", "C", "B", "A")
 
 [node name="Examroom4" parent="." instance=ExtResource("2_xkm8s")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -46.1201, 0, 40.6738)
 Subject_Room = 4
-Exam_List = PackedStringArray("What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of a grape? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an orange? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an sky? \\n\\n A. Red \\t B. Blue \\t C. Orange", "What is the color of an apple? \\n\\n A. Red \\t B. Blue \\t C. Orange")
-Exam_Answer_Key = PackedStringArray("A", "B", "C", "B", "A")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(11.1499, 0, -5.68434e-14, 0, 1, 0, 1.13687e-13, 0, 15.6175, -35.6104, -0.25, 54.1661)
@@ -105,7 +102,7 @@ size = Vector3(0.0570068, 1.67065, 3.32825)
 [node name="Exit" type="Area3D" parent="CSGBox3D2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D2/Exit"]
-transform = Transform3D(0.999982, 0, -2.22045e-16, 0, 0.999999, 0, 5.00222e-12, 0, 1, -0.0175475, 0.15747, -0.112914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 6.82121e-13, 0, 1, -0.0274809, 0.15747, 0.0682087)
 shape = SubResource("BoxShape3D_xkm8s")
 debug_color = Color(0.513726, 0.411765, 0.0313726, 0.792157)
 
@@ -115,7 +112,7 @@ transform = Transform3D(0.0179995, 0, 1.66533e-16, 0, 0.336978, 0, -3.55271e-15,
 [node name="Entrance" type="Area3D" parent="CSGBox3D2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D2/Entrance"]
-transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, 2.27374e-13, 0, 1, 0.020952, 0.198303, 0.0531616)
+transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, 9.09495e-13, 0, 1, 0.020952, 0.198303, 0.0531616)
 shape = SubResource("BoxShape3D_tm3qm")
 debug_color = Color(0.513726, 0.411765, 0.0313726, 0.792157)
 
@@ -123,60 +120,17 @@ debug_color = Color(0.513726, 0.411765, 0.0313726, 0.792157)
 transform = Transform3D(0.0179995, 0, 1.66533e-16, 0, 0.336978, 0, -3.55271e-15, 0, 1, -0.0711898, -0.491288, 0.473969)
 
 [node name="StartingRoom" type="CSGBox3D" parent="."]
-transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 2.27374e-13, 0, 0.999999, 35.3955, 4.20098, 3.11546)
+transform = Transform3D(55.557, 0, 0, 0, 2.96755, 0, 2.27374e-13, 0, 0.999999, 35.3955, 3.6668, 3.11546)
 material_override = SubResource("StandardMaterial3D_ppgk2")
 gi_mode = 2
 operation = 1
 use_collision = true
-size = Vector3(0.39185, 2.97473, 31.8126)
+size = Vector3(0.39185, 2.61472, 31.8126)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StartingRoom"]
-transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, 4.54747e-13, 0, 1, 0.0128968, 0.229248, 0.142883)
+transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, 6.82121e-13, 0, 1, 0.00888616, 0.229248, 0.142883)
 operation = 2
 size = Vector3(0.314453, 3.79443, 28)
-
-[node name="temptarget" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -3.97828e-16, 8.74227e-08, -1.96203e-07, 7.45058e-09, -0.999999, -3.55271e-15, -0.216326, -1.49012e-08, -6.76738, 1.31223, 5.08289)
-visible = false
-gi_mode = 2
-operation = 1
-collision_layer = 512
-collision_mask = 512
-
-[node name="Interactible6" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -2.06875, -0.0925541, 2.45316)
-Interactive_Type = 1
-Food_Type = 1
-
-[node name="Interactible7" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -5.10632, -0.0925541, 2.45316)
-Interactive_Type = 1
-Food_Type = 1
-
-[node name="Interactible9" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -5.10632, -0.0925541, 4.3435)
-Interactive_Type = 1
-Food_Type = 2
-
-[node name="Interactible10" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0.423986, -0.0925541, 4.3435)
-Interactive_Type = 1
-Food_Type = 1
-
-[node name="Interactible11" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0.423986, -0.0925541, 2.88443)
-Interactive_Type = 1
-Food_Type = 6
-
-[node name="Interactible12" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 3.24293, -0.0925541, 2.88443)
-Interactive_Type = 1
-Food_Type = 1
-
-[node name="Interactible8" parent="." instance=ExtResource("1_3vi7k")]
-transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, -2.25946, 0.08881, 4.37424)
-Interactive_Type = 2
-Object_Type = 2
 
 [node name="EntraceExitConfirmation" type="CanvasLayer" parent="."]
 layer = 10
@@ -238,6 +192,28 @@ text = "NO
 "
 icon_alignment = 1
 expand_icon = true
+
+[node name="Environment" type="Node3D" parent="."]
+transform = Transform3D(-0.208595, 0, -0.978002, 0, 1, 0, 0.978002, 0, -0.208595, 35.6808, 1.29792, -16.825)
+
+[node name="LowpolyTreeSample" type="MeshInstance3D" parent="Environment"]
+mesh = ExtResource("3_xkm8s")
+skeleton = NodePath("../..")
+
+[node name="LowpolyTreeSample3" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-0.485497, 0, 0.874239, 0, 1, 0, -0.874239, 0, -0.485497, 34.5986, 0, -23.0944)
+mesh = ExtResource("3_xkm8s")
+skeleton = NodePath("../..")
+
+[node name="LowpolyTreeSample2" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.179875, 0, -0.650592, 0, 0.675, 0, 0.650592, 0, 0.179875, 11.5773, 3.8147e-06, -19.3326)
+mesh = ExtResource("3_xkm8s")
+skeleton = NodePath("../..")
+
+[node name="LowpolyTreeSample4" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.542456, 0, -0.401704, 0, 0.675, 0, 0.401704, 0, 0.542456, 40.3052, 3.8147e-06, -5.24107)
+mesh = ExtResource("3_xkm8s")
+skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="CSGBox3D2/Exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="CSGBox3D2/Entrance" to="." method="_on_entrance_body_entered"]

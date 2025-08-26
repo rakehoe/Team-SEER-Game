@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=8 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
@@ -6,15 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
 [ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
+[ext_resource type="PackedScene" uid="uid://cfr3tccr1ra02" path="res://scenes/shelfs.tscn" id="7_elgn6"]
 
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
 morning = 30.0
-night = 60.0
+night = 20.0
 
 [node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79961, 3.8147e-06, -36.6459)
 bully = NodePath("../Bully")
+
+[node name="DropPoint" type="Marker3D" parent="Ben"]
+transform = Transform3D(1, 1.77636e-15, 1.42109e-14, 0, 1, 0, -7.10543e-15, 0, 1, 1.19209e-07, 1.72513, -1.08284)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
@@ -32,6 +36,7 @@ Maincharacter = NodePath("../Ben")
 
 [node name="Bully" parent="." node_paths=PackedStringArray("Maincharacter") instance=ExtResource("4_elgn6")]
 transform = Transform3D(-0.00739985, 0, -0.999973, 0, 1, 0, 0.999973, 0, -0.00739985, 5.20869, 0.249572, -14.2932)
+visible = false
 Maincharacter = NodePath("../Ben")
 
 [node name="Time_Ui" type="CanvasLayer" parent="."]
@@ -102,6 +107,18 @@ pivot_offset = Vector2(2, 6)
 
 [node name="QuestBoard" parent="." instance=ExtResource("6_elgn6")]
 transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 1.78485, 1.46123, -44.7113)
+
+[node name="Shelfs" parent="." instance=ExtResource("7_elgn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3218, 0.107376, -29.8366)
+
+[node name="Shelfs2" parent="." instance=ExtResource("7_elgn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.88303, 0.107376, -29.8366)
+
+[node name="Shelfs3" parent="." instance=ExtResource("7_elgn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15394, 0.107376, -29.8366)
+
+[node name="Shelfs4" parent="." instance=ExtResource("7_elgn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33318, 0.107376, -29.8366)
 
 [connection signal="Day_state" from="." to="QuestBoard" method="_on_levels_day_state"]
 [connection signal="showui" from="Ben" to="." method="_on_ben_showui"]

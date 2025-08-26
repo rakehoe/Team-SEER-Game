@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bdtfvns68uklu" path="res://code/player.gd" id="1_am71v"]
 [ext_resource type="Script" uid="uid://bl3t2mllel7rx" path="res://code/camera_controller.gd" id="2_6agyq"]
-[ext_resource type="Texture2D" uid="uid://bbubhibbpytqr" path="res://Assets/Skins/skaterMaleA.png" id="2_qosg8"]
+[ext_resource type="Texture2D" uid="uid://bbubhibbpytqr" path="res://Assets/Models/Skins/skaterMaleA.png" id="2_qosg8"]
 [ext_resource type="Texture2D" uid="uid://ds1tevhy8k5yv" path="res://icon.svg" id="3_8xumb"]
 [ext_resource type="Script" uid="uid://dx588nxi2bkw7" path="res://code/inventory.gd" id="5_qosg8"]
-[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/interactible.tscn" id="6_uykeq"]
+[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/Food.tscn" id="6_uykeq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f48d1"]
 resource_name = "skin"
@@ -1831,6 +1831,7 @@ alignment = 2
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+text = "Looking at"
 horizontal_alignment = 2
 vertical_alignment = 2
 autowrap_mode = 2
@@ -1840,6 +1841,7 @@ metadata/_edit_use_anchors_ = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+text = "using"
 horizontal_alignment = 2
 vertical_alignment = 2
 autowrap_mode = 2
@@ -1849,6 +1851,7 @@ metadata/_edit_use_anchors_ = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+text = "deleting"
 horizontal_alignment = 2
 vertical_alignment = 2
 autowrap_mode = 2
@@ -1883,6 +1886,9 @@ autowrap_mode = 2
 
 [node name="Debug_thirdpov" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65239e-07, 2.02374, 1.89011)
+
+[node name="Droppoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22224e-08, 1.46496, -0.826128)
 
 [connection signal="timeout" from="Main_Ui/top-right-ui/Energy_timer" to="." method="_energy_timer_timeout"]
 [connection signal="inv_key" from="Main_Ui/Inventory" to="." method="_on_inventory_inv_key"]
