@@ -17,7 +17,7 @@ enum Answers { NONE, A, B, C }
 var page = 0
 var score = 0
 var Takers
-@onready var Mainlevel = get_parent().get_parent()
+@onready var Mainlevel = get_parent().get_parent().get_parent()
 @onready var tempTaker
 func _ready():
 	for i in Mainlevel.get_child_count():
@@ -36,6 +36,8 @@ func _on_room_door_body_entered(body:Node3D) -> void:
 			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
 			_start_exam()
 			pass
+	else:
+		return
 
 
 func _start_exam():
@@ -73,7 +75,7 @@ func _exam_done():
 		2: 
 			tempTaker.courage.value += 2
 		1: 
-			tempTaker.courage.value += 1
+			tempTaker.courage.value += 100
 		_: 
 			pass
 	tempTaker.talking = false

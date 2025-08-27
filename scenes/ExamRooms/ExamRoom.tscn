@@ -157,11 +157,13 @@ size = Vector3(0.993164, 1, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomDoor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79342, 1.94763, 8.27969)
 shape = SubResource("BoxShape3D_lajc7")
+disabled = true
 debug_color = Color(0.821444, 0.155076, 0.246863, 1)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomDoor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79342, 1.94763, 34.8888)
 shape = SubResource("BoxShape3D_lajc7")
+disabled = true
 debug_color = Color(0.821444, 0.155076, 0.246863, 1)
 
 [node name="Chairs" type="Node3D" parent="."]

@@ -10,6 +10,7 @@ var entered = false
 var side = false
 
 func _ready() -> void:
+	guard.connect("gone",_guard_gone)
 	instructions.hide()
 	$Roof.show()
 
@@ -53,3 +54,16 @@ func _on_no_pressed() -> void:
 func _on_yes_pressed() -> void:
 	_choice(true)
 # End of Entrance/ Exit codes
+
+@onready var guard = $NavigationRegion3D/Path3D/PathFollow3D/Guard
+@onready var pathfollow = $NavigationRegion3D/Path3D/PathFollow3D
+
+
+func _guard_gone(): 
+	var guardnode = preload("res://scenes/guard.tscn")
+	var instance = guardnode.instantiate()
+	instance.name = "Guard"
+	await get_tree().create_timer(2.0).timeout
+	pathfollow.add_child(instance)
+	guard = $NavigationRegion3D/Path3D/PathFollow3D/Guard
+	guard.connect("gone",_guard_gone)

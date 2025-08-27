@@ -1603,6 +1603,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248646, 0.986215, 0)
 [node name="Detection_area" type="CollisionShape3D" parent="Detection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0537843, 0.103839, 2.43166)
 shape = SubResource("BoxShape3D_4ra3w")
+disabled = true
 debug_color = Color(1, 0.0470588, 0.152941, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]

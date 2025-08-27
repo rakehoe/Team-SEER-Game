@@ -2,7 +2,7 @@ class_name Player extends CharacterBody3D
 
 signal showui
 
-const SPEED = 5.0
+var SPEED = 5.0
 
 var foods = preload("res://scenes/Food.tscn")
 @export var bully: Node3D
@@ -41,6 +41,7 @@ func _ready() -> void:
 		inventory.connect("eating",_energy_update)
 
 func idle():
+	anim.speed_scale = 1
 	anim.play('IDLEANIM')
 	if sit:
 		if energy.value < current_max_energy:
@@ -59,11 +60,16 @@ func runfov(on):
 
 
 func _physics_process(_delta: float) -> void:
+	if energy.value < 10:
+		SPEED = 3
+	elif energy.value > 10:
+		SPEED = 5
 	test_text.text = "sitting: " + str(sit)
 	interacting(raycast.is_colliding())
 	var input_dir: Vector2
 
 	if sit:
+		idle()
 		itemdeletion.show()
 		itemdeletion.text = 'Press [SPACE] to stand'
 
@@ -88,18 +94,23 @@ func _physics_process(_delta: float) -> void:
 			intro()
 			moved = true
 		new_velocity = Vector2(direction.x, direction.z) * SPEED
-		if anim.current_animation != "RUNANIM":
+		if anim.current_animation != "RUNANIM" and !sit and !talking:
 			anim.play('RUNANIM')
+			anim.speed_scale = 0.5
 		if Input.is_action_pressed("run") and energy.value > 0 and !sit and !talking:
+			anim.speed_scale = 1
 			runfov(true)
 			_energy_update(-0.05)
 			new_velocity = Vector2(direction.x, direction.z) *(SPEED * 1.2)
+		elif Input.is_action_pressed("run") and sit:
+			idle()
 
-	if !talking:
-		if !sit:
-			velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
-			move_and_slide()
+	if !talking and !sit:
+		velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
+		move_and_slide()
+		itemdeletion.hide()
 	else:
+		anim.speed_scale = 1
 		anim.play("IDLEANIM")
 
 	#Checking if the player is not moving
@@ -213,6 +224,12 @@ func _on_bully_start_day(min_req, received) -> void:
 		consequence_label.hide()
 		current_max_energy -= received
 		_energy_update(-received)
+	if courage.value > min_req:
+		consequence_label.show()
+		consequence_label.text = "You beat the bully"
+		await get_tree().create_timer(2).timeout
+		consequence_label.hide()
+		
 	pass # Replace with function body.
 
 
