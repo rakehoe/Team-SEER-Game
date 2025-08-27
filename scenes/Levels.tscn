@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=7 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
 [ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
-[ext_resource type="PackedScene" uid="uid://cfr3tccr1ra02" path="res://scenes/shelfs.tscn" id="7_elgn6"]
 
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
@@ -14,7 +13,7 @@ morning = 30.0
 night = 20.0
 
 [node name="Ben" parent="." node_paths=PackedStringArray("bully") instance=ExtResource("3_4e448")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79961, 3.8147e-06, -36.6459)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.4926, 3.8147e-06, -43.4299)
 bully = NodePath("../Bully")
 
 [node name="DropPoint" type="Marker3D" parent="Ben"]
@@ -105,19 +104,7 @@ rotation = -1.56761
 pivot_offset = Vector2(2, 6)
 
 [node name="QuestBoard" parent="." instance=ExtResource("6_elgn6")]
-transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, 1.78485, 1.46123, -44.7113)
-
-[node name="Shelfs" parent="." instance=ExtResource("7_elgn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3218, 0.107376, -29.8366)
-
-[node name="Shelfs2" parent="." instance=ExtResource("7_elgn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.88303, 0.107376, -29.8366)
-
-[node name="Shelfs3" parent="." instance=ExtResource("7_elgn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15394, 0.107376, -29.8366)
-
-[node name="Shelfs4" parent="." instance=ExtResource("7_elgn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33318, 0.107376, -29.8366)
+transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, -11.6864, 1.46123, -49.1068)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(2.98023e-08, 1, 0, 4.37114e-08, -1.3027e-15, 1, 1, -2.98023e-08, -4.37114e-08, 22.0759, 71.0761, 25.4722)

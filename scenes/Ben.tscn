@@ -1076,6 +1076,8 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e6s5b"]
 margin = 5.0
+radius = 0.328321
+height = 1.77451
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d4y06"]
 
@@ -1578,7 +1580,7 @@ libraries = {
 autoplay = "IDLEANIM"
 
 [node name="MainBodyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 1.67037e-22, 0, 1, 0, 1.67037e-22, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.865399, 0)
 shape = SubResource("CapsuleShape3D_e6s5b")
 debug_color = Color(0.944466, 0.202459, 0.318537, 0.42)
 

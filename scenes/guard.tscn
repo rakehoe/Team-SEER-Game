@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bbubhibbpytqr" path="res://Assets/Models/Skins/skaterMaleA.png" id="2_ci2qi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci2qi"]
-radius = 0.461542
+radius = 0.229308
+height = 1.70297
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgg6q"]
 resource_name = "skin"
@@ -1090,7 +1091,7 @@ spot_range = 4.50256
 spot_angle = 42.767
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.71551e-09, 1.0397, 0.17651)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.71551e-09, 0.811469, 0.17651)
 shape = SubResource("CapsuleShape3D_ci2qi")
 
 [node name="Root" type="Node3D" parent="."]
