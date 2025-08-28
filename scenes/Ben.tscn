@@ -1076,8 +1076,8 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e6s5b"]
 margin = 5.0
-radius = 0.328321
-height = 1.77451
+radius = 0.429061
+height = 2.0729
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d4y06"]
 
@@ -1130,6 +1130,7 @@ rotation_order = 0
 script = ExtResource("2_6agyq")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 2.47504e-08, 3.57673e-09, -2.47504e-08, 0.959087, 0.283112, 3.57673e-09, -0.283112, 0.959087, 4.7922e-09, 0.113235, -0.156429)
 doppler_tracking = 1
 
@@ -1580,7 +1581,7 @@ libraries = {
 autoplay = "IDLEANIM"
 
 [node name="MainBodyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.865399, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13181e-08, 0.973777, -0.24385)
 shape = SubResource("CapsuleShape3D_e6s5b")
 debug_color = Color(0.944466, 0.202459, 0.318537, 0.42)
 
@@ -1686,6 +1687,7 @@ theme_override_font_sizes/font_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_2qkwl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qosg8")
 value = 100.0
+allow_lesser = true
 show_percentage = false
 
 [node name="Label" type="Label" parent="Main_Ui/top-right-ui/Courage"]
@@ -1887,9 +1889,6 @@ And hold [SHIFT] to sprint"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="Debug_thirdpov" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65239e-07, 2.02374, 1.89011)
 
 [node name="Droppoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.22224e-08, 1.46496, -0.826128)

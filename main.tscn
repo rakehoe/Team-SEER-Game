@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceehx7rnq6nr3"]
+[gd_scene load_steps=3 format=3 uid="uid://ceehx7rnq6nr3"]
 
+[ext_resource type="Script" uid="uid://dr8r7g3gk6fc7" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c7xltcmx2w6p5" path="res://scenes/Levels.tscn" id="1_ig7tw"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_0xm2m")
 
 [node name="Levels" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

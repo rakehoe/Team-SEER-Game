@@ -131,8 +131,6 @@ var entered3
 
 
 func door_open(whatdoor,open):
-	if Takers.talking:
-		Takers.talking = false
 	if open:
 		match whatdoor:
 			Door1:

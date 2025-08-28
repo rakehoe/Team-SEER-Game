@@ -8,7 +8,7 @@ emission_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_i2o7u"]
 size = Vector3(0.712646, 10.5121, 1)
 
-[node name="Chair" type="CSGBox3D"]
+[node name="Chair" type="CSGBox3D" groups=["Floor and Walls"]]
 transform = Transform3D(-2.2443, -1.33727e-08, 6.18176e-08, -1.38737e-07, 0.216326, -1.58933e-08, -1.38737e-07, 2.00533e-09, -0.999999, 0, 0, 0)
 use_collision = true
 collision_layer = 32768

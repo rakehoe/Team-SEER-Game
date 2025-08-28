@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody3D
 
 signal showui
+signal medead
 
 var SPEED = 5.0
 
@@ -60,6 +61,9 @@ func runfov(on):
 
 
 func _physics_process(_delta: float) -> void:
+	if courage.value <= 0:
+		emit_signal('medead')
+		return
 	if energy.value < 10:
 		SPEED = 3
 	elif energy.value > 10:
