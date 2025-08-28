@@ -1092,6 +1092,7 @@ spot_angle = 42.767
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.71551e-09, 0.811469, 0.17651)
+visible = false
 shape = SubResource("CapsuleShape3D_ci2qi")
 
 [node name="Root" type="Node3D" parent="."]

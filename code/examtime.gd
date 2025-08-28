@@ -13,13 +13,16 @@ enum Answers { NONE, A, B, C }
 @onready var Button_C = $Exam_Camera/Examchoices/HBoxContainer/C
 @onready var ExamCamera: Camera3D = $Exam_Camera
 @onready var ExamBoard = $Board/Label3D
+@onready var Mainlevel = get_parent().get_parent().get_parent()
+@onready var tempTaker
 
 var page = 0
 var score = 0
 var Takers
-@onready var Mainlevel = get_parent().get_parent().get_parent()
-@onready var tempTaker
+
+
 func _ready():
+	riddles.connect("open_door", door_open)
 	for i in Mainlevel.get_child_count():
 		if Mainlevel.get_child(i).name == "Ben":
 			tempTaker = Mainlevel.get_child(i)
@@ -27,10 +30,21 @@ func _ready():
 	Mainlevel.connect('Day_state',daystate)
 
 
+func _process(_delta):
+	if Door1.get_child(0).is_playing():
+		doorcolision.disabled = true
+		pass
+	elif Door2.get_child(0).is_playing():
+		door2colision.disabled = true
+	elif !Door1.get_child(0).is_playing() or !Door2.get_child(0).is_playing():
+		doorcolision.disabled = false
+		door2colision.disabled = false
+		pass
+
+
 func _on_room_door_body_entered(body:Node3D) -> void:
 	if body.name == "Ben":
 		Takers = body
-		print(Takers)
 		if Mainlevel.DayCycle.text == Mainlevel.current_daycycle[0] and Mainlevel.Stopwatch.get_time_left()==0:
 			body.talking = true
 			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
@@ -103,3 +117,60 @@ func _on_b_pressed() -> void:
 	
 func _on_c_pressed() -> void:
 	_answer_checking(3)
+
+
+@onready var riddles = $DoorRiddle
+@onready var fromdoor1 = $FromInside
+@onready var fromdoor2 = $FromInside2
+@onready var Door2 = $RoomDoor2/Door
+@onready var doorcolision = $RoomDoor/DoorCollision
+@onready var Door1 = $RoomDoor/Door
+@onready var door2colision = $RoomDoor2/DoorCollision
+var entered3
+
+
+
+func door_open(whatdoor,open):
+	if Takers.talking:
+		Takers.talking = false
+	if open:
+		match whatdoor:
+			Door1:
+				Door1.get_child(0).play("OpenDoor1")
+				await Door1.get_child(0).animation_finished
+				Door1.get_child(0).play_backwards("OpenDoor1")
+					
+			Door2:
+				Door2.get_child(0).play("OpenDoor2")
+				await Door2.get_child(0).animation_finished
+				Door2.get_child(0).play_backwards("OpenDoor2")
+
+func _Door_one_entered(body:Node3D) -> void:
+	if body.name == "Ben":
+		Takers = body
+		body.talking = true
+		riddles._start_riddle(Door1)
+	elif body.name == "Guard":
+		door_open(Door1,true)
+
+func _Door_two_entered(body: Node3D) -> void:
+	if body.name == "Ben":
+		Takers = body
+		body.talking = true
+		riddles._start_riddle(Door2)
+		pass
+	elif body.name == "Guard":
+		door_open(Door2,true)
+	pass # Replace with function body.
+
+
+func _fromdoor2(body: Node3D) -> void:
+	if body.name == "Ben" and !Door1.get_child(0).is_playing():
+		door_open(Door2,true)
+	pass # Replace with function body.
+
+
+func _fromdoor1(body: Node3D) -> void:
+	if body.name == "Ben" and !Door2.get_child(0).is_playing():
+		door_open(Door1,true)
+	pass # Replace with function body.
