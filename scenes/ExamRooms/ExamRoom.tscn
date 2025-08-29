@@ -44,8 +44,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_15do6")
 
 [node name="Exam_Camera" type="Camera3D" parent="."]
-transform = Transform3D(-1, 1.726e-09, -1.50962e-07, -4.23629e-09, 0.99922, 0.0394865, 1.50912e-07, 0.0394865, -0.99922, 0.0711252, 2.80306, -1.42036)
+transform = Transform3D(-1, 6.10321e-10, 8.74206e-08, 0, 0.999976, -0.00698126, -8.74228e-08, -0.00698126, -0.999976, 0.0711253, 2.80306, -4.08488)
 doppler_tracking = 2
+fov = 51.8
 
 [node name="Examchoices" type="CanvasLayer" parent="Exam_Camera"]
 layer = 10
@@ -143,7 +144,7 @@ debug_color = Color(0.453356, 0.394376, 0.75227, 1)
 transform = Transform3D(-7.98853e-09, 0, -0.185139, 0, 0.189917, 0, 0.182756, 0, -8.0927e-09, -8.39074, -0.167581, 5.84854)
 
 [node name="Chairs" type="Node3D" parent="."]
-transform = Transform3D(-1.369, -8.326e-09, 9.21074e-08, -8.63508e-08, 0.132, 5.65467e-09, -2.06713e-07, 1.22363e-09, -0.61, 0, 0.0588508, 0)
+transform = Transform3D(-1.369, -8.326e-09, 9.21074e-08, -8.63508e-08, 0.132, 5.65467e-09, -2.06713e-07, 1.22363e-09, -0.61, -4.72714e-08, 0.0588508, 1.08144)
 
 [node name="Rows" type="Node3D" parent="Chairs"]
 transform = Transform3D(0.817224, -2.2693e-13, 3.55271e-15, 5.68434e-14, 1, -2.06138e-14, 2.84217e-14, -1.0202e-15, 1, -0.00317505, 1.62496, -1.70944)
@@ -266,18 +267,20 @@ size = Vector3(0.624023, 0.698242, 5.33627)
 
 [node name="Label3D" type="Label3D" parent="Board"]
 physics_interpolation_mode = 2
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.292984, 0.288006, -2.7449)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.304, 0.263, -2.745)
+alpha_antialiasing_mode = 1
 texture_filter = 0
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0.988235)
 text = "asda sd qwefa sdfasdf adsfsadf"
-font_size = 11
+font_size = 10
 outline_size = 1
 horizontal_alignment = 0
 vertical_alignment = 0
-line_spacing = 3.0
-autowrap_mode = 2
-width = 150.0
+line_spacing = 1.0
+autowrap_mode = 3
+justification_flags = 131
+width = 125.0
 
 [node name="TeachersTable" parent="." instance=ExtResource("5_k7jyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05748e-07, 0, 4.70696)
@@ -345,10 +348,7 @@ drag_and_drop_selection_enabled = false
 caret_blink = true
 
 [node name="Shelfs" parent="." instance=ExtResource("6_yhl83")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65793, 0, -5.54743)
-
-[node name="Shelfs2" parent="." instance=ExtResource("6_yhl83")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65793, 0, 4.65938)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0277241, 0, -7.28976)
 
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/A" to="." method="_on_a_pressed"]
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/B" to="." method="_on_b_pressed"]

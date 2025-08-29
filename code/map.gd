@@ -1,7 +1,6 @@
 extends Node3D
 
 signal stop_player
-
 signal exam_taken
 
 
@@ -12,7 +11,8 @@ var entered = false
 var side = false
 
 func _ready() -> void:
-	guard.connect("gone",_guard_gone)
+	if guard:
+		guard.connect("gone", _guard_gone)
 	instructions.hide()
 	$Roof.show()
 
@@ -57,15 +57,16 @@ func _on_yes_pressed() -> void:
 	_choice(true)
 # End of Entrance/ Exit codes
 
-@onready var guard = $NavigationRegion3D/Path3D/PathFollow3D/Guard
+@onready var guard := get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
 @onready var pathfollow = $NavigationRegion3D/Path3D/PathFollow3D
 
-
-func _guard_gone(): 
+func _guard_gone(spawn_again): 
 	var guardnode = preload("res://scenes/guard.tscn")
 	var instance = guardnode.instantiate()
 	instance.name = "Guard"
 	await get_tree().create_timer(2.0).timeout
-	pathfollow.add_child(instance)
-	guard = $NavigationRegion3D/Path3D/PathFollow3D/Guard
-	guard.connect("gone",_guard_gone)
+	if spawn_again:
+		pathfollow.add_child(instance)
+	guard = get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
+	if guard:
+		guard.connect("gone",_guard_gone)

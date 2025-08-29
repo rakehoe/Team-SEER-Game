@@ -70,7 +70,7 @@ func _on_flashlight_body_exited(body: Node3D) -> void:
 
 
 func _out_of_sight() -> void:
-	emit_signal('gone')
+	emit_signal('gone',true)
 	await get_tree().create_timer(0.5).timeout
 	self.free()
 	pass # Replace with function body.

@@ -30,7 +30,6 @@ albedo_color = Color(0.151072, 0.37718, 0.257159, 1)
 albedo_color = Color(0.783191, 0.78319, 0, 1)
 emission_enabled = true
 emission = Color(0.277883, 0.84472, 0.983061, 1)
-emission_energy_multiplier = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xkm8s"]
 size = Vector3(0.0208435, 2.021, 3.26782)
@@ -72,6 +71,7 @@ curve = SubResource("Curve3D_xkm8s")
 transform = Transform3D(0.598564, 0, 0.801057, 0, 1, 0, -0.801057, 0, 0.598564, 1.82417, 0, 0.194447)
 
 [node name="Guard" parent="NavigationRegion3D/Path3D/PathFollow3D" instance=ExtResource("2_tm3qm")]
+Damage = 5
 
 [node name="Walls" type="CSGBox3D" parent="NavigationRegion3D" groups=["Floor and Walls"]]
 transform = Transform3D(55.557, 0, 9.92081e-10, 0, 2.96755, 0, -5.5117e-08, 0, 0.999999, -3.82257, 8.74636, 13.609)
@@ -177,29 +177,78 @@ visible = false
 size = Vector3(32.8392, 18.8119, 64.6841)
 
 [node name="Examroom" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 9.92085e-10, 0, 1, 0, -9.92085e-10, 0, 1, 15.8947, 0.296183, 14.6945)
 Subject_Room = 1
-Exam_List = Array[String](["What is the color of an apple?
-A. Red
-B. Blue
-C. Orange"])
-Exam_Answer_Key = Array[int]([1])
+Exam_List = Array[String](["What is the synonym for Happy ?
+A. Sad
+B. Joyful
+C. Sorrow", "Fill in the missing word:
+She ____ to school everyday. 
+A. go
+B. goes
+C. going", "What is the figure of speech is used in this sentence ?
+\"The classroom was a zoo.\"
+A. Metaphor
+B. Simile
+C. Hyperbole", "Who wrote the Noli Me Tangere?
+A. William Shakespeare
+B. Fancisco Balagtas
+C. Jose Rizal"])
+Exam_Answer_Key = Array[int]([2, 2, 3, 3])
 
 [node name="Examroom2" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
-unique_name_in_owner = true
 transform = Transform3D(-4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, -4.47984, 0.296183, -7.64017)
 Subject_Room = 2
+Exam_List = Array[String](["What is the product of  6 x 6  ?
+A. 12
+B. 36
+C. 18", "What is the sum of 45 + 50 ?
+A. 95
+B. 90
+C. 85", "What is the correct answer for this problem 2 x ( 11 + 4 ) = ?
+A. 20
+B. 35
+C. 30", "What is the correct answer when you turn 25% into fraction ?
+A. 1/2
+B. 1/8
+C. 1/4", "What is the sum of 1/5 + 6/5 ?
+A. 7/5
+B. 7/10
+C. 7/25"])
+Exam_Answer_Key = Array[int]([2, 1, 3, 3, 1])
 
 [node name="Examroom3" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
-unique_name_in_owner = true
 transform = Transform3D(-4.27193e-08, 0, -1, 0, 1, 0, 1, 0, -4.27193e-08, -4.43607, 0.296183, 34.9026)
 Subject_Room = 3
+Exam_List = Array[String](["How long does it takes the Earth to complete one revolution around the sun?
+A. 365 days
+B.265 days
+C. 365.25", "What is the by product of the plant during its photosynthesis?
+A. Carbon Dioxide gas
+B. Oxygen gas
+C. Nitrogen gas", "What part of the body is responsible for thought, movement, and memory?
+A. Heart
+B. Brain
+C. Skin", "Sucrose is commonly known for?
+A. Blood sugar
+B. Fruit sugar
+C. White table sugar"])
+Exam_Answer_Key = Array[int]([3, 2, 2, 3])
 
 [node name="Examroom4" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
-unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.64307e-08, 0, 1, 0, -8.64307e-08, 0, -1, -23.8288, 0.296183, 14.9177)
-Subject_Room = 4
+Subject_Room = 3
+Exam_List = Array[String](["How many percent does the Earth's surface covered by water ?
+A. 80%
+B. 90%
+C. 71%", "The hair, nails, and skin are part of which system ?
+A. Integumentary System
+B. Nervouse System
+C. Muscular System", "What do you call a living organism with a backbone ?
+A. Invertebrate
+B. Vertebrate
+C. Arachnids"])
+Exam_Answer_Key = Array[int]([3, 1, 3])
 
 [node name="Roof" type="CSGBox3D" parent="."]
 transform = Transform3D(6.00788, 0, 0, 0, 1, 0, 0, 0, 3.88467, -2.76723, 8.09826, -1.2804)

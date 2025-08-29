@@ -1189,8 +1189,8 @@ Damage = 50
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965039, 0.262105, 0, -0.262105, 0.965039, -1.5431e-08, 1.26037, -0.124441)
 light_color = Color(0.530414, 0.527904, 0, 1)
-light_energy = 13.148
-light_volumetric_fog_energy = 4.852
+light_energy = 14.343
+shadow_enabled = true
 spot_range = 4.50256
 spot_angle = 42.767
 

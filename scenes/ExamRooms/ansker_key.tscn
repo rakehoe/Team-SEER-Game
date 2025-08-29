@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="1_sid1s"]
 
 [node name="Answerkey" type="CSGBox3D"]
+use_collision = true
+collision_layer = 32769
+collision_mask = 32769
 size = Vector3(0.275635, 0.0283203, 0.438477)
 script = ExtResource("1_sid1s")
-Interactive_Type = 2
-Object_Type = 2
+Interactive_Type = 3
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.116661, 0.0160306, -0.179539)

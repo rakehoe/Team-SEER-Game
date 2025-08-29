@@ -4,7 +4,6 @@ signal taken
 
 enum Subjects { NONE, ENGLISH, MATH, SCIENCE, ESP}
 enum Answers { NONE, A, B, C }
-@export var Exam_Room :bool = true
 @export var Subject_Room: Subjects = Subjects.NONE
 @export_multiline var Exam_List: Array[String]
 @export var Exam_Answer_Key: Array[Answers]
@@ -27,7 +26,7 @@ var exam_taken := false
 
 
 func _ready():
-	print(get_parent().get_parent())
+	ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
 	get_parent().get_parent().connect('exam_taken',_stay_open)
 	riddles.connect("open_door", door_open)
 	for i in Mainlevel.get_child_count():
@@ -54,7 +53,7 @@ func _stay_open(stay):
 		exam_taken = stay
 
 
-func _start_exam():
+func _start_exam(takenfrom):
 	emit_signal('taken',true)
 	page = 0
 	score = 0
@@ -62,27 +61,27 @@ func _start_exam():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	await get_tree().create_timer(0.5).timeout
 	choicesUi.show()
-	_page_update()
+	_page_update(takenfrom)
 
 
-func _page_update():
+func _page_update(takenfrom):
 	if page < Exam_List.size():
 		ExamBoard.text = str(Exam_List[page])
 	else:
-		_exam_done()
+		_exam_done(takenfrom)
 
 
 func daystate(states):
+	var _dump = null
 	if states == 'Evening':
 		morning = false
-		exam_taken = false
-		_exam_done()
+		_exam_done(_dump)
 	else: 
 		morning = true
 	pass
 
 
-func _exam_done():
+func _exam_done(takenfrom):
 	emit_signal('taken',true)
 	match score:
 		5:
@@ -94,22 +93,26 @@ func _exam_done():
 		2: 
 			tempTaker.courage.value += 2
 		1: 
-			tempTaker.courage.value += 100
+			tempTaker.courage.value += 1
 		_: 
 			pass
 	tempTaker.talking = false
 	ExamCamera.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if takenfrom != null:
+		print("open")
+		door_open(takenfrom,true)
 	ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
 	choicesUi.hide()
 
 
 func _answer_checking(ans):
+	var _dump = null
 	if page < Exam_Answer_Key.size():
 		if ans == Exam_Answer_Key[page]:
 			score += 1
 		page += 1
-		_page_update()
+		_page_update(_dump)
 
 
 func _on_a_pressed() -> void:
@@ -154,8 +157,8 @@ func _Door_one_entered(body:Node3D) -> void:
 		if morning and not exam_taken:
 			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
 			body.talking = true
-			_start_exam()
-		elif exam_taken:
+			_start_exam(Door1)
+		elif morning and exam_taken:
 			door_open(Door1,true)
 		riddles._start_riddle(Door1)
 	elif body.name == "Guard":
@@ -167,9 +170,9 @@ func _Door_two_entered(body: Node3D) -> void:
 		if morning and not exam_taken:
 			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
 			body.talking = true
-			_start_exam()
+			_start_exam(Door2)
 		
-		elif exam_taken:
+		elif morning and exam_taken:
 			door_open(Door2,true)
 		riddles._start_riddle(Door2)
 		pass

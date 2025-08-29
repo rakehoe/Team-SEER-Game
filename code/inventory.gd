@@ -33,8 +33,10 @@ func _process(_delta):
 				5: _key_active(i-1)
 
 func eat(energy_value):
+	var Myplayer = get_parent().get_parent()
 	if energy_value != 0:
-		emit_signal('eating',energy_value)
+		if Myplayer.energy.value < Myplayer.current_max_energy:
+			emit_signal('eating',energy_value)
 	pass
 
 func inv_remove():

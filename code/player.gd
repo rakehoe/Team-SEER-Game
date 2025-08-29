@@ -27,13 +27,13 @@ var FOOD_ENERGY = {
 	"ENERGY DRINK": 20
 }
 var has_answerkey := false
-
+var has_quest := false
 
 var interact = false
 var moved = false
 var talking = false
 var sit = false
-var current_max_energy = 100
+var current_max_energy := 100
 func _ready() -> void:
 	mainUI.hide()
 	instructions.hide()
@@ -64,6 +64,14 @@ func runfov(on):
 
 
 func _physics_process(_delta: float) -> void:
+	var evalue = get_node('Main_Ui/top-right-ui/Energy/HBoxContainer/valueovertotal')
+	var cvalue = get_node('Main_Ui/top-right-ui/Courage/HBoxContainer/valueovertotal')
+	display_quest()
+
+	if energy.value > current_max_energy:
+		energy.value = current_max_energy
+	evalue.text = "%0d / 100" % energy.value
+	cvalue.text = "%0d / 100" % courage.value
 	if courage.value <= 0:
 		emit_signal('medead')
 		return
@@ -71,7 +79,6 @@ func _physics_process(_delta: float) -> void:
 		SPEED = 3
 	elif energy.value > 10:
 		SPEED = 5
-	test_text.text = "sitting: " + str(sit)
 	interacting(raycast.is_colliding())
 	var input_dir: Vector2
 
@@ -132,15 +139,15 @@ func _physics_process(_delta: float) -> void:
 func _energy_update(received_energy):
 	var t = 1
 	energy_timer.start(t)
-	if energy.value < current_max_energy || energy.value > 0:
+	if energy.value < current_max_energy or energy.value > 0:
 		energy_label.show()
+		energy.value += received_energy
 		if received_energy > 0:
 			energy_label.text = "+%0.2f Energy" % received_energy
 		elif received_energy < 0:
 			energy_label.text = "%0.2f Energy" % received_energy
 		else:
 			energy_label.text = "0.00 Energy"
-		energy.value += received_energy
 func _energy_timer_timeout() -> void:
 	energy_label.hide()
 
@@ -154,6 +161,8 @@ func interacting(cast):
 	if cast and target:
 		if target.Object_Type != target.ObjectType.CHAIR:
 			to_interact(target,true)
+		elif target.Object_Type == target.ObjectType.SAFE:
+			to_interact(target,true)
 		match target.Interactive_Type:
 			target.Interactivetype.OBJECT:
 				if target.cansit:
@@ -162,6 +171,9 @@ func interacting(cast):
 					if target.cansit and !sit:
 						sit = true
 						self.position.y += 1
+					elif target.Object_Type == target.ObjectType.SAFE:
+						var cabinetdoor = target.get_parent().get_node('Cabinet')
+						cabinetdoor.play('Open')
 				else:
 					to_interact(target,false)
 			target.Interactivetype.FOOD:
@@ -170,6 +182,12 @@ func interacting(cast):
 					var energy_value = FOOD_ENERGY.get(food_str, 0)
 					update_inv(food_str,target,energy_value)
 					pass
+			target.Interactivetype.ANSWERKEY:
+				if Input.is_action_just_pressed("use"):
+					has_answerkey = true
+					await get_tree().create_timer(0.2).timeout
+					target.free()
+				pass
 			_:
 				pass
 	else:
@@ -270,3 +288,13 @@ func _on_inventory_inv_key(key_press,thingsLabel) -> void:
 func _on_map_stop_player(talk) -> void:
 	talking = talk
 	pass # Replace with function body.
+
+func display_quest():
+	# print("%s quest %s answer" % [has_quest, has_answerkey])
+	if has_quest:
+		test_text.text = "Quest: Find the answer key during night time."
+	elif has_quest and has_answerkey:
+		test_text.text = "Quest: Interact with the bully in the morning."
+	elif !has_quest:
+		test_text.text = ""
+	

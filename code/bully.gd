@@ -71,6 +71,7 @@ func _on_detection_body_entered(body) -> void:
 		emit_signal('detected',true)
 		await get_tree().create_timer(0.9).timeout
 		DialogueUi.visible = true
+		nextbtn.visible = true
 		if not questsubmit:
 			bullyDialogue(bullytext)
 		elif questsubmit:
@@ -128,6 +129,8 @@ func Questdialogue():
 	bullyDialogue(7)
 	done_chatting()
 	self.global_position.y += 20
+	Maincharacter.has_answerkey = false
+	Maincharacter.has_quest = false
 	questsubmit = false
 
 func _consequences(action,punishment):
@@ -144,6 +147,7 @@ func _consequences(action,punishment):
 			benDialogue(5)
 	await get_tree().create_timer(2).timeout
 	benDialogue(6)
+	Maincharacter.has_quest = true
 	await get_tree().create_timer(2).timeout
 	done_chatting()
 	self.global_position.y += 20
@@ -170,7 +174,7 @@ func _on_fight_back_pressed() -> void:
 	benDialogue(1)
 	if Maincharacter.courage.value < fightback:
 		_consequences(50,25)
-		questsubmit = true
+		Maincharacter.has_quest = true
 	else:
 		_action_success('fightback')
 
@@ -179,7 +183,7 @@ func _on_escape_pressed() -> void:
 	benDialogue(2)
 	if Maincharacter.courage.value < escape:
 		_consequences(25,20)
-		questsubmit = true
+		Maincharacter.has_quest = true
 	else:
 		_action_success('escape')
 
@@ -188,6 +192,7 @@ func _on_accept_pressed() -> void:
 	done_chatting()
 	self.global_position.y += 20
 	questsubmit = true
+	Maincharacter.has_quest = true
 
 # hiding all UI
 func Hide_Bully_Ui():
