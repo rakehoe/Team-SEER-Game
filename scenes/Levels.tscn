@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=11 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
@@ -7,10 +7,135 @@
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
 [ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
 
+[sub_resource type="Animation" id="Animation_4e448"]
+resource_name = "Morning"
+length = 120.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.672, 1.927]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.148692, 1.50663, -0.100758), Vector3(-3.76468, 1.50622, -0.101229)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.23, 0.43]
+}
+
+[sub_resource type="Animation" id="Animation_elgn6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.672]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.148692, 1.50663, -0.100758)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.23]
+}
+
+[sub_resource type="Animation" id="Animation_cae5c"]
+resource_name = "Evening"
+length = 180.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.23333, 175.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.927, 5.672]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333, 175.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-3.76468, 1.50622, -0.101229), Vector3(-6.28319, 1.50622, -0.101229)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.23333, 175.733),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.43, 1.23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_elgn6"]
+_data = {
+&"Evening": SubResource("Animation_cae5c"),
+&"Morning": SubResource("Animation_4e448"),
+&"RESET": SubResource("Animation_elgn6")
+}
+
 [node name="Levels" type="Node3D"]
 script = ExtResource("1_c6mwt")
-morning = 30.0
-night = 20.0
+morning = 20.0
 
 [node name="Ben" parent="." instance=ExtResource("3_4e448")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.4926, 3.8147e-06, -43.4299)
@@ -19,9 +144,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.49
 transform = Transform3D(1, 1.77636e-15, 1.42109e-14, 0, 1, 0, -7.10543e-15, 0, 1, 1.19209e-07, 1.72513, -1.08284)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 15.2284, 0)
+transform = Transform3D(0.0786637, -0.140641, 0.986931, -0.0994772, 0.983949, 0.148145, -0.991925, -0.109831, 0.0634106, 0, 15.2284, 0)
 light_color = Color(0.798964, 0.724629, 0.516765, 1)
-light_energy = 1.8
+light_energy = 5.672
+light_volumetric_fog_energy = 6.761
+light_angular_distance = 23.44
 shadow_enabled = true
 shadow_blur = 4.521
 
@@ -109,7 +236,39 @@ transform = Transform3D(2.98023e-08, 1, 0, 4.37114e-08, -1.3027e-15, 1, 1, -2.98
 projection = 1
 size = 100.0
 
+[node name="Days_transition" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Days_transition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0987284, 0.0987284, 0.0987284, 1)
+
+[node name="Transitioning" type="RichTextLabel" parent="Days_transition"]
+anchors_preset = -1
+anchor_left = 0.117708
+anchor_top = -0.0037037
+anchor_right = 0.882292
+anchor_bottom = 1.0037
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.889765, 0.570642, 0.0343064, 1)
+theme_override_font_sizes/normal_font_size = 100
+text = "The bell has rung, You were forced to leave the building"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DaysAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_elgn6")
+}
+
 [connection signal="Day_state" from="." to="QuestBoard" method="_on_levels_day_state"]
 [connection signal="showui" from="Ben" to="." method="_on_ben_showui"]
-[connection signal="exam_time" from="Map" to="." method="_on_map_exam_time"]
 [connection signal="stop_player" from="Map" to="Ben" method="_on_map_stop_player"]

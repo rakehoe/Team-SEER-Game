@@ -171,7 +171,13 @@ transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, 4.54747e-13, 0, 1, -0.02986
 operation = 2
 size = Vector3(0.0478516, 0.280861, 19.5511)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" groups=["Floor and Walls"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9698, 9.40259, 11.9096)
+visible = false
+size = Vector3(32.8392, 18.8119, 64.6841)
+
 [node name="Examroom" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 9.92085e-10, 0, 1, 0, -9.92085e-10, 0, 1, 15.8947, 0.296183, 14.6945)
 Subject_Room = 1
 Exam_List = Array[String](["What is the color of an apple?
@@ -181,21 +187,19 @@ C. Orange"])
 Exam_Answer_Key = Array[int]([1])
 
 [node name="Examroom2" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
+unique_name_in_owner = true
 transform = Transform3D(-4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, -4.47984, 0.296183, -7.64017)
 Subject_Room = 2
 
 [node name="Examroom3" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
+unique_name_in_owner = true
 transform = Transform3D(-4.27193e-08, 0, -1, 0, 1, 0, 1, 0, -4.27193e-08, -4.43607, 0.296183, 34.9026)
 Subject_Room = 3
 
 [node name="Examroom4" parent="NavigationRegion3D" instance=ExtResource("2_xkm8s")]
+unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.64307e-08, 0, 1, 0, -8.64307e-08, 0, -1, -23.8288, 0.296183, 14.9177)
 Subject_Room = 4
-
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" groups=["Floor and Walls"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9698, 9.40259, 11.9096)
-visible = false
-size = Vector3(32.8392, 18.8119, 64.6841)
 
 [node name="Roof" type="CSGBox3D" parent="."]
 transform = Transform3D(6.00788, 0, 0, 0, 1, 0, 0, 0, 3.88467, -2.76723, 8.09826, -1.2804)
@@ -219,7 +223,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 6.82121e-13, 0, 1, -0.0274809, 0.15747
 shape = SubResource("BoxShape3D_xkm8s")
 debug_color = Color(0.513726, 0.411765, 0.0313726, 0.792157)
 
-[node name="Marker3D2" type="Marker3D" parent="CSGBox3D2/Exit"]
+[node name="outside" type="Marker3D" parent="CSGBox3D2/Exit"]
 transform = Transform3D(0.0179995, 0, 1.66533e-16, 0, 0.336978, 0, 0, 0, 1, 0.0719233, -0.246019, 0.135491)
 
 [node name="Entrance" type="Area3D" parent="CSGBox3D2"]
@@ -229,7 +233,7 @@ transform = Transform3D(1, 0, -2.22045e-16, 0, 1, 0, 9.09495e-13, 0, 1, 0.020952
 shape = SubResource("BoxShape3D_tm3qm")
 debug_color = Color(0.513726, 0.411765, 0.0313726, 0.792157)
 
-[node name="Marker3D" type="Marker3D" parent="CSGBox3D2/Entrance"]
+[node name="inside" type="Marker3D" parent="CSGBox3D2/Entrance"]
 transform = Transform3D(0.0179995, 0, 1.66533e-16, 0, 0.336978, 0, -3.55271e-15, 0, 1, -0.0711898, -0.491288, 0.473969)
 
 [node name="StartingRoom" type="CSGBox3D" parent="."]
@@ -355,6 +359,10 @@ text = "NO
 icon_alignment = 1
 expand_icon = true
 
+[connection signal="taken" from="NavigationRegion3D/Examroom" to="." method="_on_exams"]
+[connection signal="taken" from="NavigationRegion3D/Examroom2" to="." method="_on_exams"]
+[connection signal="taken" from="NavigationRegion3D/Examroom3" to="." method="_on_exams"]
+[connection signal="taken" from="NavigationRegion3D/Examroom4" to="." method="_on_exams"]
 [connection signal="body_entered" from="CSGBox3D2/Exit" to="." method="_on_exit_body_entered"]
 [connection signal="body_entered" from="CSGBox3D2/Entrance" to="." method="_on_entrance_body_entered"]
 [connection signal="pressed" from="EntraceExitConfirmation/VBoxContainer/HBoxContainer/Yes" to="." method="_on_yes_pressed"]

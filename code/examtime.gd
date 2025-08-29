@@ -1,7 +1,10 @@
 extends Node3D
 
+signal taken
+
 enum Subjects { NONE, ENGLISH, MATH, SCIENCE, ESP}
 enum Answers { NONE, A, B, C }
+@export var Exam_Room :bool = true
 @export var Subject_Room: Subjects = Subjects.NONE
 @export_multiline var Exam_List: Array[String]
 @export var Exam_Answer_Key: Array[Answers]
@@ -19,9 +22,13 @@ enum Answers { NONE, A, B, C }
 var page = 0
 var score = 0
 var Takers
+var morning := true
+var exam_taken := false
 
 
 func _ready():
+	print(get_parent().get_parent())
+	get_parent().get_parent().connect('exam_taken',_stay_open)
 	riddles.connect("open_door", door_open)
 	for i in Mainlevel.get_child_count():
 		if Mainlevel.get_child(i).name == "Ben":
@@ -42,25 +49,18 @@ func _process(_delta):
 		pass
 
 
-func _on_room_door_body_entered(body:Node3D) -> void:
-	if body.name == "Ben":
-		Takers = body
-		if Mainlevel.DayCycle.text == Mainlevel.current_daycycle[0] and Mainlevel.Stopwatch.get_time_left()==0:
-			body.talking = true
-			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
-			_start_exam()
-			pass
-	else:
-		return
+func _stay_open(stay):
+	if stay:
+		exam_taken = stay
 
 
 func _start_exam():
+	emit_signal('taken',true)
 	page = 0
 	score = 0
-	Mainlevel.MORNING()
 	ExamCamera.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(0.5).timeout
 	choicesUi.show()
 	_page_update()
 
@@ -74,11 +74,16 @@ func _page_update():
 
 func daystate(states):
 	if states == 'Evening':
+		morning = false
+		exam_taken = false
 		_exam_done()
+	else: 
+		morning = true
 	pass
 
 
 func _exam_done():
+	emit_signal('taken',true)
 	match score:
 		5:
 			tempTaker.courage.value += 10
@@ -146,7 +151,12 @@ func door_open(whatdoor,open):
 func _Door_one_entered(body:Node3D) -> void:
 	if body.name == "Ben":
 		Takers = body
-		body.talking = true
+		if morning and not exam_taken:
+			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
+			body.talking = true
+			_start_exam()
+		elif exam_taken:
+			door_open(Door1,true)
 		riddles._start_riddle(Door1)
 	elif body.name == "Guard":
 		door_open(Door1,true)
@@ -154,7 +164,13 @@ func _Door_one_entered(body:Node3D) -> void:
 func _Door_two_entered(body: Node3D) -> void:
 	if body.name == "Ben":
 		Takers = body
-		body.talking = true
+		if morning and not exam_taken:
+			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
+			body.talking = true
+			_start_exam()
+		
+		elif exam_taken:
+			door_open(Door2,true)
 		riddles._start_riddle(Door2)
 		pass
 	elif body.name == "Guard":

@@ -282,8 +282,10 @@ width = 150.0
 [node name="TeachersTable" parent="." instance=ExtResource("5_k7jyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05748e-07, 0, 4.70696)
 
-[node name="DoorRiddle" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 9.92085e-10, 0, 1, 0, -9.92085e-10, 0, 1, 15.8947, 0.296183, 14.6945)
+[node name="DoorRiddle" type="CanvasLayer" parent="."]
+layer = 50
+offset = Vector2(15.8947, 0.296183)
+transform = Transform2D(1, 0, 0, 1, 15.8947, 0.296183)
 script = ExtResource("4_lnw3n")
 Riddles = Array[String](["Dalawang batong itim, malayo ang nararating.", "Kay lapit-lapit na sa mata, di mo pa rin makita.", "Nakayuko ang reyna, di nalalaglag ang korona.", "Ate mo, ate ko, ate ng lahat ng tao.", "Sinampal ko muna bago inalok.", "Nang munti pa ay paruparo, nang lumaki ay latigo.", "Hidi tao, hindi hayop, nagsusuot ng damit.", "Bibingka ng hari, hindi mo mahati.", "Kumindat ang sultan, natakot ang bayan.", "Hayan na, hayan na, di mo pa makita.", "Gulay na kay tamis, puti ang kutis."])
 Answers = Array[String](["mata", "tenga", "bayabas", "atis", "sampalok", "sitaw", "sampayan", "tubig", "kidlat", "hangin", "singkamas"])

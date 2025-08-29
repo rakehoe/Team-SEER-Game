@@ -1,7 +1,9 @@
 extends Node3D
 
 signal stop_player
-signal exam_time
+
+signal exam_taken
+
 
 @export var Maincharacter: CharacterBody3D
 @onready var instructions = $EntraceExitConfirmation
@@ -14,11 +16,9 @@ func _ready() -> void:
 	instructions.hide()
 	$Roof.show()
 
-func _on_room_1_door_body_entered(body: Node3D) -> void:
-	if body == Maincharacter and !entered:
-		emit_signal('exam_time')
-		entered = true
-	pass # Replace with function body.
+
+func _on_exams(take):
+	emit_signal('exam_taken',take)
 
 # Entrance / Exit codes
 func _entered(body):
@@ -28,15 +28,17 @@ func _entered(body):
 		instructions.show()
 
 func _choice(done):
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	var insides = get_node('CSGBox3D2/Entrance/inside')
+	var outsides = get_node('CSGBox3D2/Exit/outside')
 	if done:
 		await get_tree().create_timer(0.5).timeout
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	emit_signal('stop_player',false)
 	instructions.hide()
 	if done and side:
-		Maincharacter.position.z += 10
+		Maincharacter.position = insides.global_position
 	elif done and !side:
-		Maincharacter.position.z -= 10
+		Maincharacter.position = outsides.global_position
 
 func _on_exit_body_entered(body:Node3D) -> void:
 	side = false

@@ -1,34 +1,25 @@
 class_name Bully extends Node3D
 
 signal detected
-signal consequences
 signal bully_beaten
 
 @onready var Maincharacter: CharacterBody3D = get_parent().get_node('Ben')
 @export var Name: String
 
-var Bully_dialogue: Array[String] = [
-	"Hey kid, stop!",
-	"You cannot pass here, until you do something for me.",
-	"I must pass the exam. And you will give me the answer tomorrow.",
-	"ARGGHHH!",
-	"Hey! Comeback!"
-]
 @onready var Bully_cam: Camera3D = $Camera3D
 @onready var Dialoguetxt = $Dialogue/Label
 @onready var Choice = $Dialogue/Choices
 @onready var nextbtn :LinkButton = get_node("Dialogue/Label/LinkButton")
 @onready var DialogueUi :CanvasLayer = get_node("Dialogue")
 
+@onready var morningpos = self.get_global_position()
 
 var fightback := 75
 var escape := 20
 var bullytext := 0
-var bentext := 0
+var questsubmit := false
 
 func _ready() -> void:
-	for i in Ben_dialogue.size():
-		print("%0d =" % i + Ben_dialogue[i])
 	DialogueUi.hide()
 	Choice.hide()
 
@@ -52,6 +43,7 @@ func benDialogue(page):
 			Dialoguetxt.visible_characters += i
 
 func _on_link_button_pressed() -> void:
+	nextbtn.hide()
 	Dialoguetxt.text = ""
 	await get_tree().create_timer(0.5).timeout
 	Dialoguetxt.visible_characters = 0
@@ -59,9 +51,11 @@ func _on_link_button_pressed() -> void:
 		0:
 			bullytext += 1
 			bullyDialogue(bullytext)
+			nextbtn.show()
 		1:
 			benDialogue(0)
 			bullytext += 1
+			nextbtn.show()
 		2:
 			bullyDialogue(bullytext)
 			bullytext += 1
@@ -76,28 +70,65 @@ func _on_detection_body_entered(body) -> void:
 		Bully_cam.current = true
 		emit_signal('detected',true)
 		await get_tree().create_timer(0.9).timeout
-		DialogueUi.show()
-		bullyDialogue(bullytext)
+		DialogueUi.visible = true
+		if not questsubmit:
+			bullyDialogue(bullytext)
+		elif questsubmit:
+			Questdialogue()
 
+
+# ending the bully convo
 func done_chatting():
-	DialogueUi.hide()
+	DialogueUi.visible = false
+	Choice.visible = false
 	emit_signal('detected',false)
 	Bully_cam.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+
+var Bully_dialogue: Array[String] = [
+	"Hey kid, stop!",
+	"You cannot pass here, until you do something for me.",
+	"I must pass the exam. And you will give me the answer tomorrow.",
+	"ARGGHHH!",
+	"Hey! Comeback!",
+	"Hey kid, where's my answer key?",
+	"Now I'm gonna fail the exam because of you!",
+	"I'll see you again tomorrow!"
 	
+]
 	
 var Ben_dialogue: Array[String] = [
 	"Ehh?",
 	"You use [ 50 Energy ] to fight back the bully",
-	"You use [ 25 Energy ] to fight back the bully",
+	"You use [ 25 Energy ] in trying to escape",
 	"You don't have enough courage to do that action",
 	"Your maximum energy has depleted by [ 25 Energy ] for the entire day",
 	"Your maximum energy has depleted by [ 20 Energy ] for the entire day",
 	"You are forced to accept the bully's order",
 	"You have beaten the bully",
-	"You have escaped successfully"
+	"You have escaped successfully",
+	"You don't have the answerkey to give to the bully",
+	"You gave the answerkey to the bully"
 ]
 
+# if you acceptet the bully's order
+func Questdialogue():
+	bullyDialogue(5)
+	if !Maincharacter.has_answerkey:
+		await get_tree().create_timer(3.5).timeout
+		benDialogue(9)
+		await get_tree().create_timer(3.5).timeout
+		bullyDialogue(6)
+	else:
+		await get_tree().create_timer(3.5).timeout
+		benDialogue(10)
+	await get_tree().create_timer(3.5).timeout
+	bullyDialogue(7)
+	done_chatting()
+	self.global_position.y += 20
+	questsubmit = false
 
 func _consequences(action,punishment):
 	Choice.hide()
@@ -115,6 +146,7 @@ func _consequences(action,punishment):
 	benDialogue(6)
 	await get_tree().create_timer(2).timeout
 	done_chatting()
+	self.global_position.y += 20
 
 
 func _action_success(action):
@@ -123,9 +155,14 @@ func _action_success(action):
 	match action:
 		'fightback':
 			benDialogue(6)
+			await get_tree().create_timer(2).timeout
+			bullyDialogue(3)
 		'escape':
 			benDialogue(7)
+			await get_tree().create_timer(2).timeout
+			bullyDialogue(4)
 	await get_tree().create_timer(2.0).timeout
+	emit_signal('bully_beaten',action)
 	done_chatting()
 
 
@@ -133,17 +170,27 @@ func _on_fight_back_pressed() -> void:
 	benDialogue(1)
 	if Maincharacter.courage.value < fightback:
 		_consequences(50,25)
+		questsubmit = true
 	else:
 		_action_success('fightback')
+
 
 func _on_escape_pressed() -> void:
 	benDialogue(2)
 	if Maincharacter.courage.value < escape:
 		_consequences(25,20)
+		questsubmit = true
 	else:
 		_action_success('escape')
 
 
 func _on_accept_pressed() -> void:
 	done_chatting()
-	emit_signal('consequences')
+	self.global_position.y += 20
+	questsubmit = true
+
+# hiding all UI
+func Hide_Bully_Ui():
+	DialogueUi.hide()
+	Bully_cam.current = false
+	self.global_position = morningpos

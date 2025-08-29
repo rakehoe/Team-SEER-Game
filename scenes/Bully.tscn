@@ -1610,6 +1610,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99776, 0.0669008, 0, -0.0669008, 0.99776, 
 fov = 41.9
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="Label" type="RichTextLabel" parent="Dialogue"]
 anchors_preset = -1

@@ -26,6 +26,8 @@ var FOOD_ENERGY = {
 	"WATER": 2,
 	"ENERGY DRINK": 20
 }
+var has_answerkey := false
+
 
 var interact = false
 var moved = false
