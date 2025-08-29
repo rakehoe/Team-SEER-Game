@@ -8,4 +8,28 @@ script = ExtResource("1_0xm2m")
 
 [node name="Levels" parent="." instance=ExtResource("1_ig7tw")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="End Scene" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="ColorRect" type="ColorRect" parent="End Scene"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.167766, 0.240615, 0.238965, 1)
+
+[node name="content" type="RichTextLabel" parent="End Scene/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.236979
+anchor_top = 0.359259
+anchor_right = 0.763542
+anchor_bottom = 0.640741
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "End credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

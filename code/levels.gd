@@ -1,6 +1,9 @@
 extends Node3D
  
 signal Day_state
+signal end_game
+
+
 @onready var Ben = $Ben
 @onready var Top_left = $"Time_Ui"
 @onready var Stopwatch = $"Time_Ui/top-left-Ui/Timer"
@@ -19,6 +22,7 @@ func _on_ben_showui() -> void:
 	pass # Replace with function body.
 
 func _ready() -> void:
+	get_node('Ben').connect('medead',_kill_player)
 	emit_signal('Day_state','Morning')
 	startingpos = Ben.position
 	startingrot = Ben.rotation
@@ -61,4 +65,7 @@ func time_left():
 func _on_map_exam_time() -> void:
 	MORNING()
 	pass # Replace with function body.
-# 56
+
+func _kill_player():
+	emit_signal('end_game',Days_count)
+	pass
