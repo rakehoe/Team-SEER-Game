@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2vfabm3t30qs"]
+[gd_scene load_steps=17 format=3 uid="uid://d2vfabm3t30qs"]
 
 [ext_resource type="Script" uid="uid://vgg14470s1na" path="res://code/examtime.gd" id="1_15do6"]
-[ext_resource type="PackedScene" uid="uid://cunpmklph2hk2" path="res://scenes/chair.tscn" id="2_cel1m"]
-[ext_resource type="PackedScene" uid="uid://dr40tre4pg7ti" path="res://scenes/door.tscn" id="2_lnw3n"]
+[ext_resource type="PackedScene" uid="uid://cunpmklph2hk2" path="res://scenes/ExamRooms/chair.tscn" id="2_cel1m"]
+[ext_resource type="PackedScene" uid="uid://dr40tre4pg7ti" path="res://scenes/ExamRooms/door.tscn" id="2_lnw3n"]
 [ext_resource type="Script" uid="uid://boh8uj08delqm" path="res://code/door_riddle.gd" id="4_lnw3n"]
+[ext_resource type="PackedScene" uid="uid://cgadtpdy6cbqh" path="res://scenes/ExamRooms/teacherstable.tscn" id="5_k7jyl"]
+[ext_resource type="PackedScene" uid="uid://cfr3tccr1ra02" path="res://scenes/shelfs.tscn" id="6_yhl83"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15do6"]
 bg_color = Color(0.360784, 0.690196, 0.458824, 1)
@@ -144,88 +146,58 @@ transform = Transform3D(-7.98853e-09, 0, -0.185139, 0, 0.189917, 0, 0.182756, 0,
 transform = Transform3D(-1.369, -8.326e-09, 9.21074e-08, -8.63508e-08, 0.132, 5.65467e-09, -2.06713e-07, 1.22363e-09, -0.61, 0, 0.0588508, 0)
 
 [node name="Rows" type="Node3D" parent="Chairs"]
-transform = Transform3D(1, -2.27374e-13, 7.10543e-15, 2.27374e-13, 1, 7.02455e-16, 5.68434e-14, -1.0202e-15, 1, -0.00317518, 1.62496, -4.33843)
+transform = Transform3D(0.817224, -2.2693e-13, 3.55271e-15, 5.68434e-14, 1, -2.06138e-14, 2.84217e-14, -1.0202e-15, 1, -0.00317505, 1.62496, -1.70944)
 
 [node name="Chair4" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.32943e-16, 0, -2.17181e-13, 1, 3.55271e-14, 7.10543e-14, -1.77636e-15, 1, 0, 0, 0)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair5" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, 0, -1.24225e-15, 1, -4.30518, -2.86102e-06, 9.53674e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair6" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, -2.05343, -1.3113e-06, 4.76837e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair7" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, 2.38185, 1.54972e-06, -4.76837e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair8" parent="Chairs/Rows" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, 4.66772, 3.09944e-06, -9.53674e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Rows2" type="Node3D" parent="Chairs"]
-transform = Transform3D(1, -2.27374e-13, 7.10543e-15, 2.27374e-13, 1, 7.02455e-16, 5.68434e-14, -1.0202e-15, 1, -0.00317493, 1.62496, 0.868239)
+transform = Transform3D(0.817224, -2.2693e-13, 3.55271e-15, 5.68434e-14, 1, -2.06138e-14, 2.84217e-14, -1.0202e-15, 1, -0.00317481, 1.62496, 3.49723)
 
 [node name="Chair4" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.32943e-16, 0, -2.17181e-13, 1, 3.55271e-14, 7.10543e-14, -1.77636e-15, 1, 0, 0, 0)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair5" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, 0, -1.24225e-15, 1, -4.30518, -2.86102e-06, 9.53674e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair6" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, -2.05343, -1.3113e-06, 4.76837e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair7" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, 2.38185, 1.54972e-06, -4.76837e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair8" parent="Chairs/Rows2" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, 4.66772, 3.09944e-06, -9.53674e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Rows3" type="Node3D" parent="Chairs"]
-transform = Transform3D(1, -2.27374e-13, 7.10543e-15, 2.27374e-13, 1, 7.02455e-16, 5.68434e-14, -1.0202e-15, 1, -0.00317464, 1.62496, 6.99373)
+transform = Transform3D(0.817224, -2.2693e-13, 3.55271e-15, 5.68434e-14, 1, -2.06138e-14, 2.84217e-14, -1.0202e-15, 1, -0.00317451, 1.62496, 9.62272)
 
 [node name="Chair4" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.32943e-16, 0, -2.17181e-13, 1, 3.55271e-14, 7.10543e-14, -1.77636e-15, 1, 0, 0, 0)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair5" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, 0, -1.24225e-15, 1, -4.30518, -2.86102e-06, 9.53674e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair6" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, -2.05343, -1.3113e-06, 4.76837e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair7" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, 2.38185, 1.54972e-06, -4.76837e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="Chair8" parent="Chairs/Rows3" instance=ExtResource("2_cel1m")]
 transform = Transform3D(1, 8.88178e-16, -7.10543e-15, -2.27374e-13, 1, 3.62296e-14, -2.84217e-14, -1.24225e-15, 1, 4.66772, 3.09944e-06, -9.53674e-07)
-Interactive_Type = 2
-Object_Type = 1
 
 [node name="RoomSize" type="CSGBox3D" parent="." groups=["Floor and Walls"]]
 transform = Transform3D(-8.8761e-07, 0, 0.495023, 0, 8.63261, 0, -20.3062, 0, -2.16382e-08, 0, 10.142, 0)
@@ -307,10 +279,13 @@ line_spacing = 3.0
 autowrap_mode = 2
 width = 150.0
 
+[node name="TeachersTable" parent="." instance=ExtResource("5_k7jyl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05748e-07, 0, 4.70696)
+
 [node name="DoorRiddle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 9.92085e-10, 0, 1, 0, -9.92085e-10, 0, 1, 15.8947, 0.296183, 14.6945)
 script = ExtResource("4_lnw3n")
-Riddles = Array[String](["Dalawang batong itim, malayo ang nararating.", "Kay lapit-lapit na sa mata, di mo pa rin makita.", "Nakayuko ang reyna, di nalalaglag ang korona.", "Ate mo, ate ko, ate ng lahat ng tao.", "Sinampal ko muna bago inalok.", "Nang munti pa ay paruparo, nang lumaki ay latigo.", "Hidi tao, hindi hayop, nagsusuot ng damit.", "Bibingka ng hari, hindi mo mahati.", "Kumindat ang sultan, natakot ang bayan.", "Hayan na, hayan na, di mo pa makita.", "Gulay na kay tamis, pauti ang kutis"])
+Riddles = Array[String](["Dalawang batong itim, malayo ang nararating.", "Kay lapit-lapit na sa mata, di mo pa rin makita.", "Nakayuko ang reyna, di nalalaglag ang korona.", "Ate mo, ate ko, ate ng lahat ng tao.", "Sinampal ko muna bago inalok.", "Nang munti pa ay paruparo, nang lumaki ay latigo.", "Hidi tao, hindi hayop, nagsusuot ng damit.", "Bibingka ng hari, hindi mo mahati.", "Kumindat ang sultan, natakot ang bayan.", "Hayan na, hayan na, di mo pa makita.", "Gulay na kay tamis, puti ang kutis."])
 Answers = Array[String](["mata", "tenga", "bayabas", "atis", "sampalok", "sitaw", "sampayan", "tubig", "kidlat", "hangin", "singkamas"])
 
 [node name="Bg" type="ColorRect" parent="DoorRiddle"]
@@ -366,6 +341,12 @@ virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 caret_blink = true
+
+[node name="Shelfs" parent="." instance=ExtResource("6_yhl83")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65793, 0, -5.54743)
+
+[node name="Shelfs2" parent="." instance=ExtResource("6_yhl83")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.65793, 0, 4.65938)
 
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/A" to="." method="_on_a_pressed"]
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/B" to="." method="_on_b_pressed"]

@@ -5,8 +5,8 @@ signal medead
 
 var SPEED = 5.0
 
-var foods = preload("res://scenes/Food.tscn")
-@export var bully: Node3D
+var Items = preload("res://scenes/Items.tscn")
+@onready var bully: Node3D = get_parent().get_node('Bully')
 @onready var camera_controller_anchor: Marker3D = $CameraControllerAnchor
 @onready var raycast: RayCast3D = $CameraController/Hand
 @onready var test_text = $"Main_Ui/top-right-ui/test"
@@ -19,6 +19,7 @@ var foods = preload("res://scenes/Food.tscn")
 @onready var consequence_label = $Instructions/Consequences
 @onready var inventory = $Main_Ui/Inventory
 @onready var anim = $Ben10_2/Animation
+@onready var mainUI :CanvasLayer = get_node("Main_Ui")
 var FOOD_ENERGY = {
 	"APPLE": 10,
 	"BREAD": 5,
@@ -31,13 +32,13 @@ var moved = false
 var talking = false
 var sit = false
 var current_max_energy = 100
-
 func _ready() -> void:
-	$Main_Ui.hide()
+	mainUI.hide()
 	instructions.hide()
 	$Intro.show()
 	if bully:
 		bully.connect("detected",_on_bully_detected)
+		# bully.connect("consequences", _)
 	if inventory:
 		inventory.connect("eating",_energy_update)
 
@@ -197,17 +198,17 @@ func intro():
 		
 	emit_signal('showui')
 	$Intro.free()
-	$Main_Ui.show()
+	mainUI.show()
 
 func _on_bully_detected(ui_hide) -> void:
 	if ui_hide:
+		mainUI.hide()
 		talking = true
-		$Main_Ui.hide()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif !ui_hide:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		talking = false
-		$Main_Ui.show()
+		mainUI.show()
 	pass # Replace with function body.
 
 func _on_bully_start_day(min_req, received) -> void:
@@ -251,7 +252,8 @@ func _on_inventory_inv_key(key_press,thingsLabel) -> void:
 		itemdeletion.text = 'Press [Q] to drop'
 		thingslabel.text = thingsLabel
 	elif key_press == 20 and thingsLabel != "":
-		var instance = foods.instantiate()
+		var instance = Items.instantiate()
+		instance.Interactive_Type = instance.Interactivetype.FOOD
 		instance.name = "Thrown"
 		instance.drop(thingsLabel)
 		instance.set_global_transform(droppoint.get_global_transform_interpolated())

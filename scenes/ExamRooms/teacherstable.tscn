@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgadtpdy6cbqh"]
+
+[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/Items.tscn" id="1_niqrm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyfa0"]
+albedo_color = Color(0.318252, 0.156647, 0.0172118, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4rv4"]
+albedo_color = Color(0.108721, 0.108721, 0.108721, 1)
+metallic = 0.87
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn4tk"]
+albedo_color = Color(0.744181, 0.744181, 0.744181, 1)
+metallic = 1.0
+
+[sub_resource type="Animation" id="Animation_nyfa0"]
+resource_name = "Open"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cabinetDoor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.71952, 0.497401, 0.447554), Vector3(1.71952, 0.497401, 0.447554)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cabinetDoor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n4rv4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cabinetDoor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.71816, 0.497401, 0.447554)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cabinetDoor:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hn4tk"]
+_data = {
+&"Open": SubResource("Animation_nyfa0"),
+&"RESET": SubResource("Animation_n4rv4")
+}
+
+[node name="TeachersTable" type="Node3D"]
+
+[node name="mainBody" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461126, 0)
+
+[node name="mainBody" type="CSGBox3D" parent="mainBody"]
+use_collision = true
+size = Vector3(3.65527, 1.25684, 1)
+material = SubResource("StandardMaterial3D_nyfa0")
+
+[node name="cabinet" type="CSGBox3D" parent="mainBody/mainBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28626, 0.0315857, 0.0463867)
+operation = 2
+size = Vector3(0.833618, 0.608948, 0.947266)
+material = SubResource("StandardMaterial3D_nyfa0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="mainBody/mainBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.865356, -0.162369, 0)
+operation = 2
+size = Vector3(1.75391, 0.996857, 1.04004)
+material = SubResource("StandardMaterial3D_nyfa0")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="mainBody/mainBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90193, -0.498116, 0)
+operation = 2
+size = Vector3(1.63593, 0.314407, 1.04004)
+material = SubResource("StandardMaterial3D_nyfa0")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="mainBody/mainBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000105083, -0.498116, 0)
+operation = 2
+size = Vector3(3.76953, 0.314407, 0.872803)
+material = SubResource("StandardMaterial3D_nyfa0")
+
+[node name="cabinetDoor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71816, 0.497401, 0.447554)
+
+[node name="cabinetdoor" type="CSGBox3D" parent="cabinetDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432896, 0.00754941, -0.0126641)
+size = Vector3(0.847771, 0.612, 0.0594482)
+material = SubResource("StandardMaterial3D_n4rv4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="cabinetDoor"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -0.72877, 0.00463688, 0.00259566)
+radius = 0.102539
+height = 0.0676289
+sides = 6
+material = SubResource("StandardMaterial3D_hn4tk")
+
+[node name="Cabinet" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hn4tk")
+}
+autoplay = "Open"
+
+[node name="Items" parent="." instance=ExtResource("1_niqrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2615, 0.399736, 0.12013)

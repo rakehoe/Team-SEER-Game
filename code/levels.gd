@@ -67,5 +67,6 @@ func _on_map_exam_time() -> void:
 	pass # Replace with function body.
 
 func _kill_player():
+	print("kill_player")
 	emit_signal('end_game',Days_count)
 	pass

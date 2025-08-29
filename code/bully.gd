@@ -1,79 +1,149 @@
 class_name Bully extends Node3D
 
 signal detected
-signal start_day
+signal consequences
+signal bully_beaten
 
-@export var Maincharacter: CharacterBody3D
-
+@onready var Maincharacter: CharacterBody3D = get_parent().get_node('Ben')
 @export var Name: String
-@onready var Bully_cam: Camera3D = $Camera3D
-@onready var Printed_dialogue = $Dialogue/Label
-@onready var Choice = $Dialogue/Choices
-var current_dialogue = 1
 
+var Bully_dialogue: Array[String] = [
+	"Hey kid, stop!",
+	"You cannot pass here, until you do something for me.",
+	"I must pass the exam. And you will give me the answer tomorrow.",
+	"ARGGHHH!",
+	"Hey! Comeback!"
+]
+@onready var Bully_cam: Camera3D = $Camera3D
+@onready var Dialoguetxt = $Dialogue/Label
+@onready var Choice = $Dialogue/Choices
+@onready var nextbtn :LinkButton = get_node("Dialogue/Label/LinkButton")
+@onready var DialogueUi :CanvasLayer = get_node("Dialogue")
+
+
+var fightback := 75
+var escape := 20
+var bullytext := 0
+var bentext := 0
 
 func _ready() -> void:
-	$Dialogue.hide()
+	for i in Ben_dialogue.size():
+		print("%0d =" % i + Ben_dialogue[i])
+	DialogueUi.hide()
 	Choice.hide()
 
-func dialogue(page):
-	match page:
-		1: 
-			text_animation()
-			Printed_dialogue.text = Name + ": Hey kid, stop!"
-		2:
-			text_animation()
-			Printed_dialogue.text = Name + ": You cannot pass here, until you do something for me."
-		3:
-			text_animation()
-			Printed_dialogue.text = "Ben: ??"
-		4:
-			text_animation()
-			Printed_dialogue.text = Name + ": I must pass the exam. And you will give me the answer tomorrow."
-			$Dialogue/Label/LinkButton.hide()
-			await get_tree().create_timer(0.4).timeout
-			Choice.show()
-			
 
-func text_animation():
-	var i = 0
-	Printed_dialogue.visible_ratio = 0
-	while i < 1:
-		await get_tree().create_timer(0.01).timeout
-		i += 0.1
-		Printed_dialogue.visible_ratio = i
+func bullyDialogue(page):
+	Dialoguetxt.visible_characters = 0
+	Dialoguetxt.text = '%s :\t' % Name + Bully_dialogue[page]
+	for i in Bully_dialogue[page].length():
+		await get_tree().create_timer(0.2).timeout
+		Dialoguetxt.visible_characters += i
+
+
+func benDialogue(page):
+	Dialoguetxt.text = ""
+	await get_tree().create_timer(0.5).timeout
+	Dialoguetxt.visible_characters = 0
+	if page < Ben_dialogue.size():
+		Dialoguetxt.text = Ben_dialogue[page]
+		for i in Ben_dialogue[page].length():
+			await get_tree().create_timer(0.2).timeout
+			Dialoguetxt.visible_characters += i
 
 func _on_link_button_pressed() -> void:
-	current_dialogue += 1
-	dialogue(current_dialogue)
-	pass # Replace with function body.
+	Dialoguetxt.text = ""
+	await get_tree().create_timer(0.5).timeout
+	Dialoguetxt.visible_characters = 0
+	match bullytext:
+		0:
+			bullytext += 1
+			bullyDialogue(bullytext)
+		1:
+			benDialogue(0)
+			bullytext += 1
+		2:
+			bullyDialogue(bullytext)
+			bullytext += 1
+			nextbtn.hide()
+			await get_tree().create_timer(1.0).timeout
+			Choice.show()
+		3:
+			pass # Replace with function body.
 
 func _on_detection_body_entered(body) -> void:
 	if body == Maincharacter:
-		Maincharacter.look_at($face.position)
 		Bully_cam.current = true
 		emit_signal('detected',true)
-		$Dialogue.show()
-		dialogue(1)
+		await get_tree().create_timer(0.9).timeout
+		DialogueUi.show()
+		bullyDialogue(bullytext)
 
 func done_chatting():
+	DialogueUi.hide()
+	emit_signal('detected',false)
 	Bully_cam.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	$Dialogue.hide()
-	$Detection.free()
-	emit_signal('detected',false)
+	
+	
+var Ben_dialogue: Array[String] = [
+	"Ehh?",
+	"You use [ 50 Energy ] to fight back the bully",
+	"You use [ 25 Energy ] to fight back the bully",
+	"You don't have enough courage to do that action",
+	"Your maximum energy has depleted by [ 25 Energy ] for the entire day",
+	"Your maximum energy has depleted by [ 20 Energy ] for the entire day",
+	"You are forced to accept the bully's order",
+	"You have beaten the bully",
+	"You have escaped successfully"
+]
+
+
+func _consequences(action,punishment):
+	Choice.hide()
+	Maincharacter.energy.value -= action
+	Maincharacter.current_max_energy -= punishment
+	await get_tree().create_timer(2).timeout
+	benDialogue(3)
+	await get_tree().create_timer(2).timeout
+	match action:
+		50:
+			benDialogue(4)
+		25:
+			benDialogue(5)
+	await get_tree().create_timer(2).timeout
+	benDialogue(6)
+	await get_tree().create_timer(2).timeout
+	done_chatting()
+
+
+func _action_success(action):
+	Choice.hide()
+	await get_tree().create_timer(2.0).timeout
+	match action:
+		'fightback':
+			benDialogue(6)
+		'escape':
+			benDialogue(7)
+	await get_tree().create_timer(2.0).timeout
+	done_chatting()
 
 
 func _on_fight_back_pressed() -> void:
-	emit_signal('start_day',50,30)
-	done_chatting()
-
+	benDialogue(1)
+	if Maincharacter.courage.value < fightback:
+		_consequences(50,25)
+	else:
+		_action_success('fightback')
 
 func _on_escape_pressed() -> void:
-	emit_signal('start_day',25,25)
-	done_chatting()
+	benDialogue(2)
+	if Maincharacter.courage.value < escape:
+		_consequences(25,20)
+	else:
+		_action_success('escape')
 
 
 func _on_accept_pressed() -> void:
 	done_chatting()
-	emit_signal('start_day')
+	emit_signal('consequences')

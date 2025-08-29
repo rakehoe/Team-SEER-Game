@@ -1603,16 +1603,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248646, 0.986215, 0)
 [node name="Detection_area" type="CollisionShape3D" parent="Detection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0537843, 0.103839, 2.43166)
 shape = SubResource("BoxShape3D_4ra3w")
-disabled = true
 debug_color = Color(1, 0.0470588, 0.152941, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99776, 0.0669008, 0, -0.0669008, 0.99776, -0.00815678, 1.55275, 4.5404)
+transform = Transform3D(1, 0, 0, 0, 0.99776, 0.0669008, 0, -0.0669008, 0.99776, -0.00815678, 1.55275, 3.79067)
 fov = 41.9
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="Dialogue"]
+[node name="Label" type="RichTextLabel" parent="Dialogue"]
 anchors_preset = -1
 anchor_top = 0.712
 anchor_right = 1.0
@@ -1620,24 +1619,12 @@ anchor_bottom = 1.0
 offset_top = -9.96002
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/normal_font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_gi71q")
-vertical_alignment = 1
+text = "this is the bully conversation"
 autowrap_mode = 2
-clip_text = true
-
-[node name="next_button" type="TextureButton" parent="Dialogue/Label"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.905
-anchor_top = 0.776
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.3999
-offset_top = -4.09601
-grow_horizontal = 0
-grow_vertical = 0
-action_mode = 0
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="LinkButton" type="LinkButton" parent="Dialogue/Label"]
 layout_direction = 2

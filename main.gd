@@ -10,14 +10,16 @@ var endtxtpool : Array[String] = [
 ]
 
 func _ready():
+	print(get_node('Levels'))
+	get_node('Levels').connect('end_game',_reset)
 	endscene = get_node('End Scene')
 	endtext = get_node('End Scene/ColorRect/content')
 	endscene.visible = false
-	get_node('Levels').connect('end_game',_reset)
 	pass
 
 
 func _reset(totaldays):
+	print("true")
 	daysbeaten = totaldays
 	var old_levels = get_node('Levels')
 	var parent = old_levels.get_parent()

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ds1tevhy8k5yv" path="res://icon.svg" id="3_8xumb"]
 [ext_resource type="Texture2D" uid="uid://begc5enqh2gb6" path="res://Assets/Models/Skins/Ben10Kulor.png" id="3_uykeq"]
 [ext_resource type="Script" uid="uid://dx588nxi2bkw7" path="res://code/inventory.gd" id="5_qosg8"]
-[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/Food.tscn" id="6_uykeq"]
+[ext_resource type="PackedScene" uid="uid://d01jvnx1fc80v" path="res://scenes/Items.tscn" id="6_uykeq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f48d1"]
 resource_name = "skin"
@@ -1631,6 +1631,44 @@ metadata/_edit_use_anchors_ = true
 layer = 2
 follow_viewport_enabled = true
 
+[node name="Cursor" type="Control" parent="Main_Ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center" type="ColorRect" parent="Main_Ui/Cursor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.0
+offset_right = 2.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="center2" type="ColorRect" parent="Main_Ui/Cursor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -6.0
+offset_right = 2.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.56761
+pivot_offset = Vector2(2, 6)
+
 [node name="top-right-ui" type="VBoxContainer" parent="Main_Ui"]
 layout_direction = 2
 anchors_preset = -1
@@ -1686,7 +1724,7 @@ size_flags_vertical = 15
 theme_override_font_sizes/font_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_2qkwl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qosg8")
-value = 100.0
+value = 1.0
 allow_lesser = true
 show_percentage = false
 
@@ -1737,34 +1775,6 @@ rotation = -1.89325
 scale = Vector2(1.90625, 4.09375)
 skew = 0.815069
 texture = ExtResource("3_8xumb")
-
-[node name="center" type="ColorRect" parent="Main_Ui"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -6.0
-offset_right = 2.0
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="center2" type="ColorRect" parent="Main_Ui"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -6.0
-offset_right = 2.0
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -1.56761
-pivot_offset = Vector2(2, 6)
 
 [node name="Inventory" type="HBoxContainer" parent="Main_Ui"]
 anchors_preset = -1

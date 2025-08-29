@@ -3,7 +3,7 @@ class_name Interactive_things extends CSGBox3D
 
 enum Interactivetype { NONE, FOOD, OBJECT }
 enum FoodType { NONE, APPLE, BREAD, BANANA, WATER, CHIPS, ENERGY_DRINK}
-enum ObjectType { NONE, CHAIR, LOCKER}
+enum ObjectType { NONE, CHAIR, ANSWERKEY}
 
 @export var Interactive_Type: Interactivetype = Interactivetype.NONE
 @export var Food_Type: FoodType = FoodType.NONE
