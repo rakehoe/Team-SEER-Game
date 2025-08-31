@@ -209,9 +209,9 @@ use_collision = true
 size = Vector3(0.978516, 2.37549, 34.9795)
 
 [node name="InsideSize" type="CSGBox3D" parent="RoomSize"]
-transform = Transform3D(1, 0, -6.66134e-16, 0, 1, 0, -5.68434e-12, 0, 1, 0, 0.0982668, 0)
+transform = Transform3D(1, 0, -6.66134e-16, 0, 1, 0, -1.50067e-11, 0, 1, 0, 0.0982666, 0)
 operation = 2
-size = Vector3(0.774414, 3.08203, 33.2725)
+size = Vector3(0.774414, 2.64844, 33.2725)
 
 [node name="Window" type="CSGBox3D" parent="RoomSize"]
 transform = Transform3D(1, 0, -6.66134e-16, 0, 1, 0, -5.68434e-12, 0, 1, -0.124565, -1.00457, -5.79549e-08)
@@ -249,7 +249,7 @@ size = Vector3(0.223633, 0.144531, 0.38855)
 material = SubResource("StandardMaterial3D_cel1m")
 
 [node name="Door" type="CSGBox3D" parent="RoomSize" groups=["Floor and Walls"]]
-transform = Transform3D(1, 0, -6.66134e-16, 0, 1, 0, -1.38698e-11, 0, 1, 0.273432, -1.05937, -16.9721)
+transform = Transform3D(1, 0, -6.66134e-16, 0, 1, 0, -2.22826e-11, 0, 1, 0.273432, -1.05937, -16.9721)
 operation = 2
 size = Vector3(0.0605469, 0.286041, 1.59292)
 
@@ -282,7 +282,7 @@ autowrap_mode = 3
 justification_flags = 131
 width = 125.0
 
-[node name="TeachersTable" parent="." instance=ExtResource("5_k7jyl")]
+[node name="TeachersTable" parent="." groups=["Floor and Walls"] instance=ExtResource("5_k7jyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05748e-07, 0, 4.70696)
 
 [node name="DoorRiddle" type="CanvasLayer" parent="."]
@@ -347,7 +347,7 @@ middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 caret_blink = true
 
-[node name="Shelfs" parent="." instance=ExtResource("6_yhl83")]
+[node name="Shelfs" parent="." groups=["Floor and Walls"] instance=ExtResource("6_yhl83")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0277241, 0, -7.28976)
 
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/A" to="." method="_on_a_pressed"]

@@ -80,7 +80,7 @@ script = ExtResource("1_ujm2o")
 [node name="mainBody" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461126, 0)
 
-[node name="mainBody" type="CSGBox3D" parent="mainBody"]
+[node name="mainBody" type="CSGBox3D" parent="mainBody" groups=["Floor and Walls"]]
 use_collision = true
 size = Vector3(3.65527, 1.25684, 1)
 material = SubResource("StandardMaterial3D_nyfa0")
