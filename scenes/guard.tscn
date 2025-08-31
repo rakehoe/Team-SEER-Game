@@ -1184,7 +1184,6 @@ _data = {
 
 [node name="Guard" type="CharacterBody3D"]
 script = ExtResource("1_m4fl1")
-Damage = 50
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965039, 0.262105, 0, -0.262105, 0.965039, -1.5431e-08, 1.26037, -0.124441)

@@ -28,6 +28,8 @@ func _entered(body):
 		instructions.show()
 
 func _choice(done):
+	var daystate = get_parent().DayCycle.text
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	var insides = get_node('CSGBox3D2/Entrance/inside')
 	var outsides = get_node('CSGBox3D2/Exit/outside')
@@ -35,14 +37,25 @@ func _choice(done):
 		await get_tree().create_timer(0.5).timeout
 	emit_signal('stop_player',false)
 	instructions.hide()
+
 	if done and side:
 		Maincharacter.position = insides.global_position
 	elif done and !side:
+		match daystate:
+			"Morning :":
+				get_parent().Transitions(false)
+			"Evening :":
+				get_parent().Transitions(true)
 		Maincharacter.position = outsides.global_position
 
 func _on_exit_body_entered(body:Node3D) -> void:
+	var daystate = get_parent().DayCycle.text
 	side = false
-	labelins.text = "Do you want to exit?"
+	match daystate:
+		"Morning :":
+			labelins.text = "Do you want to skip the morning?"
+		"Evening :":
+			labelins.text = "Do you want to skip the night?"
 	_entered(body)
 
 func _on_entrance_body_entered(body:Node3D) -> void:
@@ -61,10 +74,11 @@ func _on_yes_pressed() -> void:
 @onready var pathfollow = $NavigationRegion3D/Path3D/PathFollow3D
 
 func _guard_gone(spawn_again): 
+	guard = get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
 	var guardnode = preload("res://scenes/guard.tscn")
 	var instance = guardnode.instantiate()
 	instance.name = "Guard"
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	if spawn_again:
 		pathfollow.add_child(instance)
 	guard = get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')

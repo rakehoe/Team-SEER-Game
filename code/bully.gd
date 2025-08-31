@@ -28,8 +28,8 @@ func bullyDialogue(page):
 	Dialoguetxt.visible_characters = 0
 	Dialoguetxt.text = '%s :\t' % Name + Bully_dialogue[page]
 	for i in Bully_dialogue[page].length():
-		await get_tree().create_timer(0.2).timeout
-		Dialoguetxt.visible_characters += i
+		Dialoguetxt.visible_characters += 2
+		await get_tree().create_timer(0.03).timeout
 
 
 func benDialogue(page):
@@ -39,8 +39,8 @@ func benDialogue(page):
 	if page < Ben_dialogue.size():
 		Dialoguetxt.text = Ben_dialogue[page]
 		for i in Ben_dialogue[page].length():
-			await get_tree().create_timer(0.2).timeout
-			Dialoguetxt.visible_characters += i
+			Dialoguetxt.visible_characters += 2
+			await get_tree().create_timer(0.03).timeout
 
 func _on_link_button_pressed() -> void:
 	nextbtn.hide()
@@ -70,12 +70,12 @@ func _on_detection_body_entered(body) -> void:
 		Bully_cam.current = true
 		emit_signal('detected',true)
 		await get_tree().create_timer(0.9).timeout
-		DialogueUi.visible = true
 		nextbtn.visible = true
 		if not questsubmit:
 			bullyDialogue(bullytext)
 		elif questsubmit:
 			Questdialogue()
+		DialogueUi.visible = true
 
 
 # ending the bully convo
@@ -85,6 +85,7 @@ func done_chatting():
 	emit_signal('detected',false)
 	Bully_cam.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Maincharacter.display_quest()
 
 
 
@@ -116,6 +117,7 @@ var Ben_dialogue: Array[String] = [
 
 # if you acceptet the bully's order
 func Questdialogue():
+	nextbtn.hide()
 	bullyDialogue(5)
 	if !Maincharacter.has_answerkey:
 		await get_tree().create_timer(3.5).timeout
@@ -127,11 +129,11 @@ func Questdialogue():
 		benDialogue(10)
 	await get_tree().create_timer(3.5).timeout
 	bullyDialogue(7)
-	done_chatting()
-	self.global_position.y += 20
 	Maincharacter.has_answerkey = false
 	Maincharacter.has_quest = false
 	questsubmit = false
+	done_chatting()
+	self.global_position.y += 20
 
 func _consequences(action,punishment):
 	Choice.hide()
@@ -151,6 +153,8 @@ func _consequences(action,punishment):
 	await get_tree().create_timer(2).timeout
 	done_chatting()
 	self.global_position.y += 20
+	Maincharacter.display_quest()
+	questsubmit = true
 
 
 func _action_success(action):
@@ -173,8 +177,8 @@ func _action_success(action):
 func _on_fight_back_pressed() -> void:
 	benDialogue(1)
 	if Maincharacter.courage.value < fightback:
-		_consequences(50,25)
 		Maincharacter.has_quest = true
+		_consequences(50,25)
 	else:
 		_action_success('fightback')
 
@@ -182,17 +186,18 @@ func _on_fight_back_pressed() -> void:
 func _on_escape_pressed() -> void:
 	benDialogue(2)
 	if Maincharacter.courage.value < escape:
-		_consequences(25,20)
 		Maincharacter.has_quest = true
+		_consequences(25,20)
 	else:
 		_action_success('escape')
 
 
 func _on_accept_pressed() -> void:
-	done_chatting()
-	self.global_position.y += 20
 	questsubmit = true
 	Maincharacter.has_quest = true
+	Maincharacter.display_quest()
+	done_chatting()
+	self.global_position.y += 20
 
 # hiding all UI
 func Hide_Bully_Ui():

@@ -61,6 +61,10 @@ func _process(_delta: float) -> void:
 
 
 func MORNING():
+	Bully_nodes.DialogueUi.hide()
+	guard = get_node('Map/NavigationRegion3D/Path3D/PathFollow3D/Guard')
+	Map._guard_gone(false)
+	Bully_nodes.global_position = Bully_nodes.morningpos
 	if guard:
 		guard.queue_free()
 	exam1.exam_taken = false
@@ -113,13 +117,9 @@ func Transitions(sunisup:bool):
 	translabel.hide()
 	transcanvas.hide()
 	if not sunisup:
-		Bully_nodes.global_position.y += 10
-		Map._guard_gone(true)
 		NIGHT()
 	elif sunisup:
-		Bully_nodes.global_position = Bully_nodes.morningpos
 		Days_count += 1
-		Map._guard_gone(false)
 		MORNING()
 		for node in get_tree().get_nodes_in_group("answerkey"):
 			node.queue_free()
@@ -128,6 +128,9 @@ func Transitions(sunisup:bool):
 
 
 func NIGHT():
+	Map._guard_gone(true)
+	Bully_nodes.DialogueUi.hide()
+	Bully_nodes.global_position.y += 10
 	if Ben.has_quest:
 		spawn_answerkey()
 	DayAnim.play('Evening')

@@ -20,6 +20,8 @@ var Items = preload("res://scenes/Items.tscn")
 @onready var inventory = $Main_Ui/Inventory
 @onready var anim = $Ben10_2/Animation
 @onready var mainUI :CanvasLayer = get_node("Main_Ui")
+@onready var evaluetext = get_node('Main_Ui/top-right-ui/Energy/HBoxContainer/valueovertotal')
+@onready var cvaluetext = get_node('Main_Ui/top-right-ui/Courage/HBoxContainer/valueovertotal')
 var FOOD_ENERGY = {
 	"APPLE": 10,
 	"BREAD": 5,
@@ -34,7 +36,11 @@ var moved = false
 var talking = false
 var sit = false
 var current_max_energy := 100
+
+
+
 func _ready() -> void:
+	has_quest = false
 	mainUI.hide()
 	instructions.hide()
 	$Intro.show()
@@ -43,7 +49,7 @@ func _ready() -> void:
 		# bully.connect("consequences", _)
 	if inventory:
 		inventory.connect("eating",_energy_update)
-
+	display_quest()
 func idle():
 	anim.speed_scale = 1
 	anim.play('IDLEANIM')
@@ -64,14 +70,11 @@ func runfov(on):
 
 
 func _physics_process(_delta: float) -> void:
-	var evalue = get_node('Main_Ui/top-right-ui/Energy/HBoxContainer/valueovertotal')
-	var cvalue = get_node('Main_Ui/top-right-ui/Courage/HBoxContainer/valueovertotal')
-	display_quest()
-
+	
 	if energy.value > current_max_energy:
 		energy.value = current_max_energy
-	evalue.text = "%0d / 100" % energy.value
-	cvalue.text = "%0d / 100" % courage.value
+	evaluetext.text = "%0d / 100" % energy.value
+	cvaluetext.text = "%0d / 100" % courage.value
 	if courage.value <= 0:
 		emit_signal('medead')
 		return
@@ -184,7 +187,10 @@ func interacting(cast):
 					pass
 			target.Interactivetype.ANSWERKEY:
 				if Input.is_action_just_pressed("use"):
+					has_quest = false
 					has_answerkey = true
+					print('has the key')
+					display_quest()
 					await get_tree().create_timer(0.2).timeout
 					target.free()
 				pass
@@ -293,7 +299,7 @@ func display_quest():
 	# print("%s quest %s answer" % [has_quest, has_answerkey])
 	if has_quest:
 		test_text.text = "Quest: Find the answer key during night time."
-	elif has_quest and has_answerkey:
+	elif has_answerkey:
 		test_text.text = "Quest: Interact with the bully in the morning."
 	elif !has_quest:
 		test_text.text = ""
