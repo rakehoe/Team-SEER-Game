@@ -28,6 +28,7 @@ var FOOD_ENERGY = {
 	"WATER": 2,
 	"ENERGY DRINK": 20
 }
+
 var has_answerkey := false
 var has_quest := false
 
@@ -36,7 +37,7 @@ var moved = false
 var talking = false
 var sit = false
 var current_max_energy := 100
-
+var entered_room := false
 
 
 func _ready() -> void:
@@ -82,6 +83,8 @@ func _physics_process(_delta: float) -> void:
 		SPEED = 3
 	elif energy.value > 10:
 		SPEED = 5
+
+
 	interacting(raycast.is_colliding())
 	var input_dir: Vector2
 
@@ -156,27 +159,36 @@ func _energy_timer_timeout() -> void:
 
 #Checking if you are looking to an object
 # E - use and F - pickup
+var interacteddoor
 func interacting(cast):
 	var target = raycast.get_collider()
+
 	to_interact(target,false)
-	
 	instructions.hide()
+	
 	if cast and target:
-		if target.Object_Type != target.ObjectType.CHAIR:
-			to_interact(target,true)
-		elif target.Object_Type == target.ObjectType.SAFE:
-			to_interact(target,true)
+		var objects = target.ObjectType
+		to_interact(target,true)
 		match target.Interactive_Type:
 			target.Interactivetype.OBJECT:
-				if target.cansit:
-					to_interact(target,true)
 				if Input.is_action_just_pressed("use"):
-					if target.cansit and !sit:
-						sit = true
-						self.position.y += 1
-					elif target.Object_Type == target.ObjectType.SAFE:
-						var cabinetdoor = target.get_parent().get_node('Cabinet')
-						cabinetdoor.play('Open')
+					match target.Object_Type:
+						objects.CHAIR:
+							sit = true
+							self.global_position = target.global_transform.origin
+						objects.SAFE:
+							var cabinetdoor = target.get_parent().get_node('Cabinet')
+							cabinetdoor.play('Open')
+							pass
+						objects.DOOR:
+							var curdoor = target.get_parent().get_parent()
+							var ROOM = target.get_parent().get_parent().get_parent().get_parent()
+							if entered_room:
+								ROOM.door_open(curdoor,true,false)
+
+							ROOM._start_exam(curdoor)
+							ROOM.riddles._start_riddle(curdoor)
+							pass
 				else:
 					to_interact(target,false)
 			target.Interactivetype.FOOD:
@@ -197,6 +209,8 @@ func interacting(cast):
 			_:
 				pass
 	else:
+		if interacteddoor:
+			interacteddoor.thisname.hide()
 		instructions.hide()
 
 func update_inv(new_item,freethis,evalue):
@@ -211,6 +225,10 @@ func update_inv(new_item,freethis,evalue):
 func to_interact(a,b):
 	if a != null:
 		instructions.text = a.caninteract
+		if a.Object_Type == a.ObjectType.DOOR:
+			interacteddoor = a
+			a.thisname.show()
+			pass
 	if b:
 		instructions.show()
 

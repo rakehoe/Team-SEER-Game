@@ -28,17 +28,18 @@ func _ready():
 	get_child(0).hide()
 	
 func _start_riddle(doorname):
-	if !night:
+	if !night :
 		return
-	self.show()
-	globalplayer.talking = true
-	get_child(0).color = '#21423ea2'
-	door = doorname
-	get_child(0).show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	rng.randomize()
-	idx = rng.randi_range(0, Riddles.size()-1)
-	riddleshow.text = Riddles[idx]
+	if !globalplayer.entered_room:
+		self.show()
+		globalplayer.talking = true
+		get_child(0).color = '#21423ea2'
+		door = doorname
+		get_child(0).show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		rng.randomize()
+		idx = rng.randi_range(0, Riddles.size()-1)
+		riddleshow.text = Riddles[idx]
 
 
 func _answer_submit(new_text: String) -> void:
@@ -51,7 +52,7 @@ func _answer_submit(new_text: String) -> void:
 		alert_guard()
 		result = false
 		await get_tree().create_timer(1).timeout
-	emit_signal("open_door",door,result)
+	emit_signal("open_door",door,result,false)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	riddleans.text = ""
 	self.hide()

@@ -64,7 +64,8 @@ func _on_flashlight_body_entered(body:Node3D) -> void:
 func _on_flashlight_body_exited(body: Node3D) -> void:
 	if body.name == "Ben":
 		outofrange = true
-		outofsight.paused = false
+		if outofsight.time_left > 0:
+			outofsight.paused = false
 		outofsight.start(3)
 	pass # Replace with function body.
 

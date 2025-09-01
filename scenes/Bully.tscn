@@ -1643,42 +1643,40 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Choices" type="Control" parent="Dialogue"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.70463
-offset_bottom = 6.10352e-05
+anchor_bottom = 1.0
 grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
+grow_vertical = 2
 
 [node name="Buttons" type="HBoxContainer" parent="Dialogue/Choices"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.13125
-anchor_top = 0.394218
-anchor_right = 0.86875
-anchor_bottom = 0.605781
-offset_left = 1.52588e-05
+anchor_left = 0.132813
+anchor_top = 0.433333
+anchor_right = 0.867188
+anchor_bottom = 0.566667
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 180
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Fight_back" type="Button" parent="Dialogue/Choices/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 40
 text = "Fight back"
 
 [node name="Escape" type="Button" parent="Dialogue/Choices/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 40
 text = "Escape"
 
 [node name="Accept" type="Button" parent="Dialogue/Choices/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 40
 text = "Accept"
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

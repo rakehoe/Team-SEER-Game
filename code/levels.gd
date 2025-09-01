@@ -6,7 +6,7 @@ signal end_game
 
 
 @onready var Ben = $Ben
-@onready var Top_left = $"Time_Ui"
+@onready var Top_left := get_node('Time_Ui')
 @onready var Stopwatch = $"Time_Ui/top-left-Ui/Timer"
 @onready var Days_label = $"Time_Ui/top-left-Ui/Value/DayCounts"
 @onready var Time_Left_Value = $"Time_Ui/top-left-Ui/Value/Countdown"
@@ -34,8 +34,7 @@ func _on_ben_showui() -> void:
 	pass # Replace with function body.
 
 func _ready() -> void:
-	guard.queue_free()
-	Map._guard_gone(false)
+	DayAnim.play('BasicDay')
 	get_node('Ben').connect('medead',_kill_player)
 	startingpos = Ben.position
 	startingrot = Ben.rotation
@@ -61,9 +60,9 @@ func _process(_delta: float) -> void:
 
 
 func MORNING():
-	Bully_nodes.DialogueUi.hide()
-	guard = get_node('Map/NavigationRegion3D/Path3D/PathFollow3D/Guard')
+	DayAnim.play('BasicDay')
 	Map._guard_gone(false)
+	Bully_nodes.DialogueUi.hide()
 	Bully_nodes.global_position = Bully_nodes.morningpos
 	if guard:
 		guard.queue_free()
@@ -72,7 +71,8 @@ func MORNING():
 	exam3.exam_taken = false
 	exam4.exam_taken = false
 	DayCycle.text = current_daycycle[0]
-	DayAnim.play('Morning')
+
+	# DayAnim.play('Morning')
 	Ben.sit = false
 	Ben.talking = false
 	Ben.get_node('CameraController/Camera3D').current = true
@@ -133,7 +133,9 @@ func NIGHT():
 	Bully_nodes.global_position.y += 10
 	if Ben.has_quest:
 		spawn_answerkey()
-	DayAnim.play('Evening')
+	
+	DayAnim.play('BasicNight')
+	# DayAnim.play('Evening')
 	DayCycle.text = current_daycycle[1]
 	emit_signal('Day_state','Evening')
 	Stopwatch.start(night)

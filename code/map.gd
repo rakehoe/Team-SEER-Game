@@ -73,14 +73,16 @@ func _on_yes_pressed() -> void:
 @onready var guard := get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
 @onready var pathfollow = $NavigationRegion3D/Path3D/PathFollow3D
 
-func _guard_gone(spawn_again): 
-	guard = get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
+func _guard_gone(spawn_again):
+	if not spawn_again and guard:
+		guard.queue_free()
+		return
 	var guardnode = preload("res://scenes/guard.tscn")
 	var instance = guardnode.instantiate()
 	instance.name = "Guard"
 	await get_tree().create_timer(3.0).timeout
 	if spawn_again:
 		pathfollow.add_child(instance)
-	guard = get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
-	if guard:
-		guard.connect("gone",_guard_gone)
+		guard = get_node('NavigationRegion3D/Path3D/PathFollow3D/Guard')
+		if guard:
+			guard.connect("gone",_guard_gone)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2vfabm3t30qs"]
+[gd_scene load_steps=18 format=3 uid="uid://d2vfabm3t30qs"]
 
 [ext_resource type="Script" uid="uid://vgg14470s1na" path="res://code/examtime.gd" id="1_15do6"]
 [ext_resource type="PackedScene" uid="uid://cunpmklph2hk2" path="res://scenes/ExamRooms/chair.tscn" id="2_cel1m"]
@@ -39,12 +39,49 @@ transparency = 1
 albedo_color = Color(0.819608, 0.819608, 0.807843, 0.545098)
 metallic = 1.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhl83"]
+size = Vector3(16.5784, 14.1588, 15.6563)
+
 [node name="Examroom" type="Node3D" groups=["Floor and Walls"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_15do6")
 
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.42311e-07, 3.89215, 7.83116)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+size = Vector3(14.843, 6.34, 1)
+
+[node name="Node3D" type="Node3D" parent="Node3D"]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 6.30076, 2.08165, -0.518596)
+
+[node name="Subject" type="Label3D" parent="Node3D/Node3D"]
+transform = Transform3D(-0.999999, 0.000929021, -0.000544397, 0.000928962, 1, 0.000107772, 0.000544497, 0.000107266, -1, 0.547, 0.635, 0)
+modulate = Color(0.0267215, 0.0267215, 0.0267215, 1)
+outline_modulate = Color(0.000693898, 0.000693897, 0.000693898, 1)
+text = "Subject Taken"
+font_size = 60
+outline_size = 5
+horizontal_alignment = 0
+vertical_alignment = 0
+uppercase = true
+autowrap_mode = 3
+width = 1020.0
+
+[node name="Question" type="Label3D" parent="Node3D/Node3D"]
+transform = Transform3D(-0.999999, 0.000929021, -0.000544397, 0.000928962, 1, 0.000107772, 0.000544497, 0.000107266, -1, 0.553, 0.194, 0)
+modulate = Color(0.0267215, 0.0267215, 0.0267215, 1)
+outline_modulate = Color(0.000693898, 0.000693897, 0.000693898, 1)
+font_size = 70
+outline_size = 6
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 2
+justification_flags = 131
+width = 1700.0
+
 [node name="Exam_Camera" type="Camera3D" parent="."]
-transform = Transform3D(-1, 6.10321e-10, 8.74206e-08, 0, 0.999976, -0.00698126, -8.74228e-08, -0.00698126, -0.999976, 0.0711253, 2.80306, -4.08488)
+transform = Transform3D(-1, 6.10321e-10, 8.74207e-08, 0, 0.999976, -0.00698126, -8.74228e-08, -0.00698126, -0.999976, -0.0203917, 2.80306, -4.08488)
 doppler_tracking = 2
 fov = 51.8
 
@@ -258,30 +295,6 @@ transform = Transform3D(1, 0, -6.66134e-16, 0, 1, 0, -1.3415e-11, 0, 1, -0.28936
 operation = 2
 size = Vector3(0.0605469, 0.286041, 1.70278)
 
-[node name="Board" type="CSGBox3D" parent="."]
-transform = Transform3D(21.8065, 0, -1.77636e-15, 0, 8.63261, 0, 0, 0, 0.365501, -0.020575, 3.50992, 8.46356)
-gi_mode = 2
-operation = 1
-use_collision = true
-size = Vector3(0.624023, 0.698242, 5.33627)
-
-[node name="Label3D" type="Label3D" parent="Board"]
-physics_interpolation_mode = 2
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.304, 0.263, -2.745)
-alpha_antialiasing_mode = 1
-texture_filter = 0
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0.988235)
-text = "asda sd qwefa sdfasdf adsfsadf"
-font_size = 10
-outline_size = 1
-horizontal_alignment = 0
-vertical_alignment = 0
-line_spacing = 1.0
-autowrap_mode = 3
-justification_flags = 131
-width = 125.0
-
 [node name="TeachersTable" parent="." groups=["Floor and Walls"] instance=ExtResource("5_k7jyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05748e-07, 0, 4.70696)
 
@@ -301,15 +314,15 @@ anchor_right = 0.675
 anchor_bottom = 0.625926
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.129412, 0.258824, 0.243137, 0.635294)
+color = Color(0.113725, 0.231373, 0.215686, 0.843137)
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DoorRiddle/Bg"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0848214
+anchor_left = 0.046131
 anchor_top = 0.0955882
-anchor_right = 0.915179
+anchor_right = 0.953869
 anchor_bottom = 0.904411
 grow_horizontal = 2
 grow_vertical = 0
@@ -318,17 +331,21 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="DoorRiddle/Bg/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.0165517, 0.0165517, 0.0165517, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
 text = "bugtong"
 horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="ShowRiddle" type="RichTextLabel" parent="DoorRiddle/Bg/VBoxContainer"]
 custom_minimum_size = Vector2(4.88, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.00234459, 0.00234459, 0.00234459, 1)
-theme_override_font_sizes/normal_font_size = 20
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 25
 text = "Nilalaman na bugtong"
 fit_content = true
 scroll_active = false
@@ -350,11 +367,21 @@ caret_blink = true
 [node name="Shelfs" parent="." groups=["Floor and Walls"] instance=ExtResource("6_yhl83")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0277241, 0, -7.28976)
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.0018, 0)
+shape = SubResource("BoxShape3D_yhl83")
+
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/A" to="." method="_on_a_pressed"]
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/B" to="." method="_on_b_pressed"]
 [connection signal="pressed" from="Exam_Camera/Examchoices/HBoxContainer/C" to="." method="_on_c_pressed"]
 [connection signal="body_entered" from="FromInside" to="." method="_fromdoor1"]
 [connection signal="body_entered" from="FromInside2" to="." method="_fromdoor2"]
 [connection signal="body_entered" from="RoomDoor" to="." method="_Door_one_entered"]
+[connection signal="body_exited" from="RoomDoor" to="." method="Door1_exits"]
 [connection signal="body_entered" from="RoomDoor2" to="." method="_Door_two_entered"]
+[connection signal="body_exited" from="RoomDoor2" to="." method="Door2_exits"]
 [connection signal="text_submitted" from="DoorRiddle/Bg/VBoxContainer/Answer" to="DoorRiddle" method="_answer_submit"]
+[connection signal="body_entered" from="Area3D" to="." method="_player_in" binds= [true]]
+[connection signal="body_exited" from="Area3D" to="." method="_player_in" binds= [false]]

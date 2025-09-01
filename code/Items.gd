@@ -2,7 +2,7 @@ extends RigidBody3D
 
 enum FoodType { NONE, APPLE, BREAD, ENERGY_DRINK, WATER }
 enum Interactivetype { NONE, FOOD, OBJECT, ANSWERKEY }
-enum ObjectType { NONE, CHAIR, SAFE}
+enum ObjectType { NONE, CHAIR, SAFE, DOOR}
 
 @export var Object_Type: ObjectType = ObjectType.NONE
 @export var Interactive_Type:Interactivetype = Interactivetype.NONE

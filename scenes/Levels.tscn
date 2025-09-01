@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7xltcmx2w6p5"]
+[gd_scene load_steps=13 format=3 uid="uid://c7xltcmx2w6p5"]
 
 [ext_resource type="PackedScene" uid="uid://c81ugl3yfuic1" path="res://scenes/Map.tscn" id="1_5ch6c"]
 [ext_resource type="Script" uid="uid://cqkh4mng0awws" path="res://code/levels.gd" id="1_c6mwt"]
@@ -6,6 +6,84 @@
 [ext_resource type="PackedScene" uid="uid://yrv80x2vkau4" path="res://scenes/Ben.tscn" id="3_4e448"]
 [ext_resource type="PackedScene" uid="uid://dhlcch7mrsbx6" path="res://scenes/Bully.tscn" id="4_elgn6"]
 [ext_resource type="PackedScene" uid="uid://c6rq82k7lnr6g" path="res://scenes/quest_board.tscn" id="6_elgn6"]
+
+[sub_resource type="Animation" id="Animation_tno38"]
+resource_name = "BasicDay"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.315]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.03392, 1.5708, -0.165806)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.18]
+}
+
+[sub_resource type="Animation" id="Animation_gfy75"]
+resource_name = "BasicNight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.86583, 1.50622, -0.101229)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.409]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6]
+}
 
 [sub_resource type="Animation" id="Animation_cae5c"]
 resource_name = "Evening"
@@ -99,7 +177,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [5.672]
+"values": [2.315]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -111,7 +189,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.148692, 1.50663, -0.100758)]
+"values": [Vector3(-1.5708, 1.50622, -0.101229)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -128,6 +206,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_elgn6"]
 _data = {
+&"BasicDay": SubResource("Animation_tno38"),
+&"BasicNight": SubResource("Animation_gfy75"),
 &"Evening": SubResource("Animation_cae5c"),
 &"Morning": SubResource("Animation_4e448"),
 &"RESET": SubResource("Animation_elgn6")
@@ -143,13 +223,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.49
 transform = Transform3D(1, 1.77636e-15, 1.42109e-14, 0, 1, 0, -7.10543e-15, 0, 1, 1.19209e-07, 1.72513, -1.08284)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.078668, -0.14064, 0.986931, -0.0994777, 0.983949, 0.148145, -0.991925, -0.109832, 0.0634148, 0, 15.2284, 0)
+transform = Transform3D(0.165047, -0.986285, -3.61244e-06, 3.65823e-07, -3.60146e-06, 1, -0.986286, -0.165047, -2.33603e-07, 0, 15.2284, 0)
 light_color = Color(0.798964, 0.724629, 0.516765, 1)
-light_energy = 5.672
-light_volumetric_fog_energy = 6.761
-light_angular_distance = 23.44
+light_energy = 2.315
 shadow_enabled = true
-shadow_blur = 6.118
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_elgn6")
@@ -177,17 +254,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Text" type="VBoxContainer" parent="Time_Ui/top-left-Ui"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Time" type="Label" parent="Time_Ui/top-left-Ui/Text"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Nighttime :"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Days" type="Label" parent="Time_Ui/top-left-Ui/Text"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "Day :"
 vertical_alignment = 1
 
@@ -197,35 +275,21 @@ ignore_time_scale = true
 
 [node name="Value" type="VBoxContainer" parent="Time_Ui/top-left-Ui"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Countdown" type="Label" parent="Time_Ui/top-left-Ui/Value"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "00:00"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="DayCounts" type="Label" parent="Time_Ui/top-left-Ui/Value"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 text = "00"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="center2" type="ColorRect" parent="Time_Ui"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -6.0
-offset_right = 2.0
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -1.56761
-pivot_offset = Vector2(2, 6)
 
 [node name="QuestBoard" parent="." instance=ExtResource("6_elgn6")]
 transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, -13.4932, 1.46123, -49.9767)

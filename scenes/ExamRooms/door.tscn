@@ -1,5 +1,7 @@
 [gd_scene load_steps=22 format=4 uid="uid://dr40tre4pg7ti"]
 
+[ext_resource type="Script" uid="uid://diaygu2p2vmik" path="res://code/can_interact.gd" id="1_41n5t"]
+
 [sub_resource type="Animation" id="Animation_5f452"]
 resource_name = "OpenDoor1"
 length = 0.8
@@ -122,18 +124,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-1.5708, -3.11849, 0), Vector3(-1.5708, -3.11849, 0), Vector3(-1.5708, -2.33643, 0), Vector3(-1.5708, -1.66079, 0), Vector3(-1.5708, -1.54769, 0), Vector3(-1.5708, -1.54769, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("DoorBoddy/StaticBody3D/CollisionShape3D:disabled")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.32, 0.67),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_hpvv5"]
@@ -319,219 +309,11 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector3(0.213404, 0.0814317, 0.740599)]
 }
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("DoorBoddy/StaticBody3D/CollisionShape3D:disabled")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.34, 0.59),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_uvdjg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh_002:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.43313, 6.846, 0.368198)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh_001:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.356, 6.846, -0.373374)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh_002:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, 0.0380208, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh_001:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5708, -0.00693679, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Locker_001:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.43756, 6.53003, -0.0937411)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("DoorBoddy:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(3.68521, 6.01217, -0.0171051)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Locker_002:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.36042, 6.53004, 0.0861983)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Locker_001:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, -0.00797946, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("DoorBoddy:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, -3.13669, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Locker_002:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, -3.11849, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Locker_002:scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.213404, 0.0814317, 0.740599)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Mesh_002:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.0940001, 0.0460001, 0.07)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("DoorBoddy:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(3.2791, 0.167207, 0.421542)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Mesh_001:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.094, 0.046, 0.07)]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Locker_001:scale")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.213404, 0.0814317, 0.740599)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("DoorBoddy/StaticBody3D/CollisionShape3D:disabled")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uvdjg"]
 _data = {
 &"OpenDoor1": SubResource("Animation_5f452"),
-&"OpenDoor2": SubResource("Animation_hpvv5"),
-&"RESET": SubResource("Animation_uvdjg")
+&"OpenDoor2": SubResource("Animation_hpvv5")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkwgh"]
@@ -794,8 +576,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_facnn")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5f452"]
-size = Vector3(2.21875, 5.44043, 28)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ract5"]
+transparency = 1
+blend_mode = 2
+albedo_color = Color(1, 1, 1, 0)
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.86
 
 [node name="Door" type="Node3D"]
 transform = Transform3D(-7.98851e-09, 0, 0.185139, 0, 0.189917, 0, -0.182756, 0, -8.0866e-09, 0, 0, 0)
@@ -826,11 +612,27 @@ transform = Transform3D(-3.27906, 0.000819771, 7.48146e-09, 0, -6.05288e-07, 0.4
 mesh = SubResource("ArrayMesh_msu2r")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="DoorBoddy"]
+[node name="Door" type="CSGBox3D" parent="DoorBoddy"]
+transform = Transform3D(1, -5.38421e-09, -1.03251e-13, -3.40492e-06, 0.999955, -2.86312e-10, -1.29319e-12, 3.09897e-11, 0.999971, 1.01752, 0.136677, 1.05597)
+use_collision = true
+collision_layer = 2147516416
+collision_mask = 2147516416
+size = Vector3(1.95996, 2.23047, 28.3337)
+material = SubResource("StandardMaterial3D_ract5")
+script = ExtResource("1_41n5t")
+Interactive_Type = 2
+Object_Type = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorBoddy/StaticBody3D"]
-transform = Transform3D(1, 0, 1.05818e-16, 1.3411e-06, 1, 1.84072e-12, -9.32587e-15, -7.4994e-15, 1, 1, 7.54371e-08, 1.5)
-shape = SubResource("BoxShape3D_5f452")
+[node name="Doorinst" type="Label3D" parent="DoorBoddy/Door"]
+transform = Transform3D(1, 1.04774e-07, 1.01918e-13, 3.36766e-06, 20.0009, 2.80308e-10, 1.37845e-12, -6.08464e-10, 1.00003, 0.0139429, 0.109907, -1.056)
+visible = false
+billboard = 2
+no_depth_test = true
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0.859754, 0.609074, 3.85046e-07, 1)
+text = "Press [ E ] to interact"
+outline_size = 5
+uppercase = true
 
 [node name="Locker_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.213347, 0.00188112, 6.19319e-08, 0, -2.94782e-07, 0.740599, 0.00492976, 0.08141, 2.68025e-06, -2.36042, 6.53004, 0.0861983)

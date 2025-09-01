@@ -14,7 +14,8 @@ enum Answers { NONE, A, B, C }
 @onready var Button_B = $Exam_Camera/Examchoices/HBoxContainer/B
 @onready var Button_C = $Exam_Camera/Examchoices/HBoxContainer/C
 @onready var ExamCamera: Camera3D = $Exam_Camera
-@onready var ExamBoard = $Board/Label3D
+@onready var SubjectAssigned := get_node('Node3D/Node3D/Subject')
+@onready var ExamBoard := get_node('Node3D/Node3D/Question')
 @onready var Mainlevel = get_parent().get_parent().get_parent()
 @onready var tempTaker
 
@@ -26,7 +27,7 @@ var exam_taken := false
 
 
 func _ready():
-	ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
+	SubjectAssigned.text = Subjects.keys()[Subject_Room]+" Exam"
 	get_parent().get_parent().connect('exam_taken',_stay_open)
 	riddles.connect("open_door", door_open)
 	for i in Mainlevel.get_child_count():
@@ -54,14 +55,24 @@ func _stay_open(stay):
 
 
 func _start_exam(takenfrom):
-	emit_signal('taken',true)
-	page = 0
-	score = 0
-	ExamCamera.current = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	await get_tree().create_timer(0.5).timeout
-	choicesUi.show()
-	_page_update(takenfrom)
+	print(takenfrom)
+	print(exam_taken)
+	print(morning)
+	if morning and exam_taken:
+		door_open( takenfrom, true, false )
+	elif morning and not exam_taken:
+		exam_taken = true
+		emit_signal('taken',true)
+		tempTaker.talking = true
+		tempTaker.mainUI.hide()
+
+		page = 0
+		score = 0
+		ExamCamera.current = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		await get_tree().create_timer(0.5).timeout
+		choicesUi.show()
+		_page_update(takenfrom)
 
 
 func _page_update(takenfrom):
@@ -81,37 +92,49 @@ func daystate(states):
 	pass
 
 
+var total :int = Exam_List.size()
+var couragegain :int
 func _exam_done(takenfrom):
-	emit_signal('taken',true)
-	match score:
-		5:
-			tempTaker.courage.value += 10
-		4: 
-			tempTaker.courage.value += 7
-		3: 
-			tempTaker.courage.value += 5
-		2: 
-			tempTaker.courage.value += 2
-		1: 
-			tempTaker.courage.value += 1
-		_: 
-			pass
+	if score == total:
+		tempTaker.courage.value += 15
+		couragegain = 15
+	elif score == total * 0.75:
+		tempTaker.courage.value += 10
+		couragegain = 10
+	elif score == total * 0.5:
+		tempTaker.courage.value += 5
+		couragegain = 5
+	elif score == total * 0.25:
+		tempTaker.courage.value += 3
+		couragegain = 3
+	elif score == total * 0.10:
+		tempTaker.courage.value += 1
+		couragegain = 1
+	ExamBoard.text = "Your total score is : %1d \n 
+	Your courage is increase by : %1d" % [score,couragegain]
+	await get_tree().create_timer(2).timeout
 	tempTaker.talking = false
 	ExamCamera.current = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if takenfrom != null:
-		print("open")
-		door_open(takenfrom,true)
-	ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
+	emit_signal('taken',true)
+	door_open(takenfrom,true,false)
 	choicesUi.hide()
+	Mainlevel.Top_left.show()
+	tempTaker.mainUI.show()
 
 
 func _answer_checking(ans):
+	var checked :String
 	var _dump = null
 	if page < Exam_Answer_Key.size():
 		if ans == Exam_Answer_Key[page]:
 			score += 1
+			checked = "Correct!"
+		else:
+			checked = "Wrong!"
 		page += 1
+		ExamBoard.text = checked
+		await get_tree().create_timer(1).timeout
 		_page_update(_dump)
 
 
@@ -130,64 +153,78 @@ func _on_c_pressed() -> void:
 @onready var riddles = $DoorRiddle
 @onready var fromdoor1 = $FromInside
 @onready var fromdoor2 = $FromInside2
-@onready var Door2 = $RoomDoor2/Door
+@onready var Door2 := get_node("RoomDoor2/Door")
 @onready var doorcolision = $RoomDoor/DoorCollision
-@onready var Door1 = $RoomDoor/Door
+@onready var Door1 := get_node("RoomDoor/Door")
 @onready var door2colision = $RoomDoor2/DoorCollision
-var entered3
+var entered
 
 
 
-func door_open(whatdoor,open):
-	if open:
+func door_open(whatdoor,open,close):
+	if open and not entered:
+		print('this opens')
+		print(whatdoor)
 		match whatdoor:
 			Door1:
 				Door1.get_child(0).play("OpenDoor1")
 				await Door1.get_child(0).animation_finished
-				Door1.get_child(0).play_backwards("OpenDoor1")
 					
 			Door2:
 				Door2.get_child(0).play("OpenDoor2")
 				await Door2.get_child(0).animation_finished
+	elif close:
+		print('this close')
+		print(whatdoor)
+		match whatdoor:
+			Door1:
+				Door1.get_child(0).play_backwards("OpenDoor1")
+				await Door1.get_child(0).animation_finished
+					
+			Door2:
 				Door2.get_child(0).play_backwards("OpenDoor2")
+				await Door2.get_child(0).animation_finished
+		
 
 func _Door_one_entered(body:Node3D) -> void:
-	if body.name == "Ben":
-		Takers = body
-		if morning and not exam_taken:
-			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
-			body.talking = true
-			_start_exam(Door1)
-		elif morning and exam_taken:
-			door_open(Door1,true)
-		riddles._start_riddle(Door1)
-	elif body.name == "Guard":
-		door_open(Door1,true)
+	if body.name == "Guard":
+		door_open( Door1, true, false )
 
 func _Door_two_entered(body: Node3D) -> void:
-	if body.name == "Ben":
-		Takers = body
-		if morning and not exam_taken:
-			ExamBoard.text = Subjects.keys()[Subject_Room]+" Exam"
-			body.talking = true
-			_start_exam(Door2)
-		
-		elif morning and exam_taken:
-			door_open(Door2,true)
-		riddles._start_riddle(Door2)
-		pass
-	elif body.name == "Guard":
-		door_open(Door2,true)
+	if body.name == "Guard":
+		door_open( Door2, true, false )
 	pass # Replace with function body.
 
 
 func _fromdoor2(body: Node3D) -> void:
 	if body.name == "Ben" and !Door1.get_child(0).is_playing():
-		door_open(Door2,true)
+		await Door2.get_child(0).animation_finished
+		door_open(Door2, false, true)
 	pass # Replace with function body.
 
 
 func _fromdoor1(body: Node3D) -> void:
 	if body.name == "Ben" and !Door2.get_child(0).is_playing():
-		door_open(Door1,true)
+		await Door1.get_child(0).animation_finished
+		door_open(Door1, false, true)
 	pass # Replace with function body.
+
+
+func Door2_exits(body: Node3D) -> void:
+	if body.name == "Ben" and entered:
+		entered = false
+	pass # Replace with function body.
+
+
+func Door1_exits(body: Node3D) -> void:
+	if body.name == "Ben" and entered:
+		entered = false
+	pass # Replace with function body.
+
+
+func _player_in(body: Node3D, is_it_in_yet: bool) -> void:
+	if body.name == "Ben":
+		if is_it_in_yet:
+			body.entered_room = true
+		else:
+			body.entered_room = false

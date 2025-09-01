@@ -1119,6 +1119,8 @@ border_color = Color(0, 0, 0, 1)
 
 [node name="Ben" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 2147483649
+collision_mask = 2147483649
 script = ExtResource("1_am71v")
 
 [node name="CameraControllerAnchor" type="Marker3D" parent="."]
@@ -1675,7 +1677,7 @@ anchors_preset = -1
 anchor_left = 0.688542
 anchor_top = 0.0277778
 anchor_right = 0.978646
-anchor_bottom = 0.212963
+anchor_bottom = 0.162037
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 10
@@ -1702,20 +1704,25 @@ grow_vertical = 2
 theme_override_constants/separation = 19
 
 [node name="Label" type="Label" parent="Main_Ui/top-right-ui/Energy/HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "Energy : "
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="valueovertotal" type="Label" parent="Main_Ui/top-right-ui/Energy/HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "00/00"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Energy update" type="Label" parent="Main_Ui/top-right-ui/Energy"]
 visible = false
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.661869
@@ -1723,6 +1730,7 @@ anchor_top = 0.127273
 anchor_right = 0.91007
 anchor_bottom = 0.836364
 grow_vertical = 2
+theme_override_font_sizes/font_size = 15
 text = "+000  information"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -1749,20 +1757,25 @@ grow_vertical = 2
 theme_override_constants/separation = 19
 
 [node name="Label" type="Label" parent="Main_Ui/top-right-ui/Courage/HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "Courage : "
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="valueovertotal" type="Label" parent="Main_Ui/top-right-ui/Courage/HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "00/00"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Courage update" type="Label" parent="Main_Ui/top-right-ui/Courage"]
 visible = false
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.661869
@@ -1771,16 +1784,17 @@ anchor_right = 0.910408
 anchor_bottom = 0.875
 offset_right = -0.188004
 grow_vertical = 2
+theme_override_font_sizes/font_size = 15
 text = "+000  information"
 horizontal_alignment = 2
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="test" type="Label" parent="Main_Ui/top-right-ui"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
 horizontal_alignment = 2
-vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Energy_timer" type="Timer" parent="Main_Ui/top-right-ui"]
@@ -1848,24 +1862,23 @@ autowrap_mode = 2
 visible = false
 
 [node name="Side_Instructions" type="VBoxContainer" parent="Main_Ui"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -334.0
-offset_top = -158.0
-offset_right = -16.0
-offset_bottom = -26.0
+anchors_preset = -1
+anchor_left = 0.795833
+anchor_top = 0.890741
+anchor_right = 0.991667
+anchor_bottom = 0.975926
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Look_instruction" type="Label" parent="Main_Ui/Side_Instructions"]
 visible = false
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
+size_flags_vertical = 7
 theme_override_font_sizes/font_size = 20
 text = "Looking at"
 horizontal_alignment = 2
@@ -1875,7 +1888,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Item_instruction" type="Label" parent="Main_Ui/Side_Instructions"]
 visible = false
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
+size_flags_vertical = 7
 theme_override_font_sizes/font_size = 20
 text = "using"
 horizontal_alignment = 2
@@ -1884,8 +1899,9 @@ autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Item_deletion" type="Label" parent="Main_Ui/Side_Instructions"]
-visible = false
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
+size_flags_vertical = 7
 theme_override_font_sizes/font_size = 20
 text = "deleting"
 horizontal_alignment = 2
@@ -1903,7 +1919,7 @@ anchor_right = 0.682292
 anchor_bottom = 0.651852
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.137255, 0.309804, 0.184314, 0.529412)
+color = Color(0.109804, 0.262745, 0.152941, 0.741176)
 metadata/_edit_use_anchors_ = true
 
 [node name="Instruction" type="Label" parent="Intro/Instruction"]
